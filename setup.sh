@@ -1,14 +1,14 @@
 #!/usr/bin/env bash 
 
 dotfiles_dir=~/dotfiles
-log_file=~/install_progress_log.txt
 
 # git pull origin main 
 
 function createLinks() {
   if [ ! -f /usr/local/bin/starship ]; then
     echo "Starship not found. Installing starship"
-    curl -sS https://starship.rs/install.sh | sh
+    curl -sS https://starship.rs/install.sh | sh -s -- -y
+    # eval "$(starship init bash)" # sourcing .bashrc will do this 
   fi
 
   # remove files
@@ -25,10 +25,9 @@ function createLinks() {
   ln -nfs ~/.vim/init.vim ~/.vimrc
   ln -nfs $dotfiles_dir/starship.toml ~/.config/starship.toml
 
+  . ~/.bashrc
+
   echo -e "\n===== Summary =====\n"
-  cat $log_file
-  echo 
-  rm $log_file
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

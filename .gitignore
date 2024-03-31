@@ -1,2 +1,2 @@
-vim/autoload/
-vim/vendor/
+.vim/autoload/
+.vim/vendor/

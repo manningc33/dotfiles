@@ -36,8 +36,12 @@ for option in autocd globstar dirspell cdspell; do
     shopt -s "$option" 2> /dev/null
 done
 
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
 # set prompt just incase starship isn't avaliable
-PS1="\n\t \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\n\\$ "
+PS1="\n\t \[\033[32m\]\w\[\033[33m\] \$(parse_git_branch)\[\033[00m\]\n\\$ "
 
 # set starship prompt:
 [ -f /usr/local/bin/starship ] && eval "$(starship init bash)"
