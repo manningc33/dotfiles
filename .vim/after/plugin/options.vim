@@ -17,9 +17,8 @@ set noshowmode
 " Set relative linenumbers 
 set relativenumber
 
+" Show hidden files in NERDTree
 let NERDTreeShowHidden = 1
-let NERDTreeRespectWildIgnore = 1
-set wildignore+=*.DS_Store,*.min.*
 
 " Start NERDTree when Vim starts with a directory argument.
 autocmd StdinReadPre * let s:std_in=1

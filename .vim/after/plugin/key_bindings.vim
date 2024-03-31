@@ -1,5 +1,11 @@
-" ctrl-s to save 
-nnoremap <C-s> :w<CR>
+" :W sudo saves the file (useful for handling the permission-denied error) 
+command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+
+" Clear highlighting on escrape in normal mode 
+nnoremap <esc><esc> :noh<return><esc>
+
+" Navigating buffers
+nnoremap <Leader>b :buffers<CR>:buffer<Space>
 
 " tab navigation mapping
 map <C-Down> <C-W>j
@@ -20,8 +26,10 @@ inoremap <S-Tab> <C-d>
 
 " ; to to fzf files 
 if exists(':Files')
-  nnoremap ; :Files<CR>
   nnoremap <C-p> :Files<CR>
+  nnoremap \ :Files<CR>
+  " use Ctrl+\ to search entire file system
+  nnoremap <C-\> :Files /<CR>
 endif
 
 " NERDTree mappings
