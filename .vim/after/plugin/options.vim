@@ -14,6 +14,9 @@ colorscheme catppuccin_mocha
 set termguicolors
 set noshowmode
 
+" split below
+set splitbelow
+
 " Set relative linenumbers 
 set relativenumber
 

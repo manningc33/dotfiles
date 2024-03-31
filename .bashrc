@@ -17,6 +17,9 @@ export HISTFILESIZE=32768
 export HISTCONTROL='erasedups:ignoreboth'
 export HISTIGNORE="&:[ ]*:exit:ls:pg:fg:history:clear:h"
 
+# force color terminal
+export TERM=xterm-256color
+
 # Case-insensitive globbing (used in pathname expansion) 
 shopt -s nocaseglob
 

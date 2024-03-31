@@ -4,32 +4,28 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " Clear highlighting on escrape in normal mode 
 nnoremap <esc><esc> :noh<return><esc>
 
-" Navigating buffers
-nnoremap <Leader>b :buffers<CR>:buffer<Space>
-
-" tab navigation mapping
-map <C-Down> <C-W>j
-map <C-Up> <C-W>k
-map <C-Left> <C-W>h
-map <C-Right> <C-W>l
-
 " scrolling up and down places cursor in middle of page
-nnoremap <C-u> <C-u>zz
-nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zzzv
+nnoremap <C-d> <C-d>zzzv
 map <PageUp> <C-u> 
 map <PageDown> <C-d>
 
 " provide Tab and shift-Tab functionality 
-" nnoremap <Tab> >>
-nnoremap <S-Tab> <<
 inoremap <S-Tab> <C-d>
+" nnoremap <Tab> >>
+" nnoremap <S-Tab> <<
 
-" ; to to fzf files 
+" \ to fzf files 
+" Navigating buffer, use fzf :Buffers if defined
 if exists(':Files')
   nnoremap <C-p> :Files<CR>
   nnoremap \ :Files<CR>
-  " use Ctrl+\ to search entire file system
-  nnoremap <C-\> :Files /<CR>
+  nnoremap <Leader>f :Files<CR>
+  " use Ctrl+\ to search from home
+  nnoremap <C-\> :Files ~<CR>
+  nnoremap <Leader>b :Buffers<CR>
+else 
+  nnoremap <Leader>b :buffers<CR>:buffer<Space>
 endif
 
 " NERDTree mappings

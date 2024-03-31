@@ -2,7 +2,7 @@
 
 dotfiles_dir=~/dotfiles
 
-# git pull origin main 
+git pull origin main 
 
 function createLinks() {
   if [ ! -f /usr/local/bin/starship ]; then
@@ -12,7 +12,7 @@ function createLinks() {
   fi
 
   # remove files
-  for dotfile in ~/.{bashrc,bash_aliases,vimrc,vim,config/nvim,config/starship.toml}; do
+  for dotfile in ~/.{bashrc,bash_aliases,vimrc,vim,config/nvim,config/starship.toml,tmux.conf}; do
     rm -rf "$dotfile" > /dev/null 2>&1
   done 
   unset dotfile
@@ -20,6 +20,7 @@ function createLinks() {
   # link files in dot directory
   ln -nfs $dotfiles_dir/.bashrc ~/.bashrc
   ln -nfs $dotfiles_dir/.bash_aliases ~/.bash_aliases
+  ln -nfs $dotfiles_dir/.tmux.conf ~/.tmux.conf
   ln -nfs $dotfiles_dir/.vim ~/.vim
   ln -nfs $dotfiles_dir/.vim ~/.config/nvim
   ln -nfs ~/.vim/init.vim ~/.vimrc

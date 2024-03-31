@@ -16,7 +16,7 @@ endif
 " Run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | source $MYVIMRC | endif
 
-call plug#begin('~/.vim/vendor')
+call plug#begin()
 
 if !has('nvim') && !exists('g:gui_oni') | Plug 'tpope/vim-sensible' | endif 
 Plug 'rstacruz/vim-opinion'
@@ -28,6 +28,8 @@ Plug 'dense-analysis/ale'
 Plug 'preservim/nerdtree'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'itchyny/lightline.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'RyanMillerC/better-vim-tmux-resizer'
 
 call plug#end()
 
