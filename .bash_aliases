@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# search with fzf and edit
+alias v="find . -not -iwholename '*.git*' | fzf-tmux -p | xargs -o vim"
+
 # Easier navigation: 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -7,6 +10,9 @@ alias ....="cd ../../.."
 alias .....="cd../../../.."
 alias home="cd ~"
 alias cd..="cd .."
+
+# clear screen
+alias cls="clear"
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -28,10 +34,8 @@ alias l="ls -CF"
 # use pygmentize to do colored print
 alias ccat="pygmentize -g"
 
-# grep history 
-alias h="history | grep"
-
-# grep current folder 
+# grep history and current folder
+alias h="history | grep" 
 alias f="find . | grep"
 
 # python alias 
