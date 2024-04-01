@@ -2,7 +2,7 @@
 
 dotfiles_dir=~/dotfiles
 
-git pull origin main 
+git pull origin master 
 
 function createLinks() {
   if [ ! -f /usr/local/bin/starship ]; then
@@ -37,7 +37,7 @@ else
   read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1 
   echo ""
   if [[ $REPLY =~ ^[Yy]$ ]]; then 
-    createLinks 
+    createLinks  
   fi
 fi
 
