@@ -14,6 +14,11 @@ colorscheme catppuccin_mocha
 set termguicolors
 set noshowmode
 
+" autocomplete options 
+set complete+=kspell
+set completeopt=menuone,longest
+set shortmess+=c
+
 " split below
 set splitbelow
 
@@ -33,3 +38,6 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 
 " Open a copy of current NERDTree when opening a new tab
 autocmd BufWinEnter * silent NERDTreeMirror
+
+" auto-resize splits when Vim gets resized 
+autocmd VimResized * wincmd =

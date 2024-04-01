@@ -22,14 +22,15 @@ if !has('nvim') && !exists('g:gui_oni') | Plug 'tpope/vim-sensible' | endif
 Plug 'rstacruz/vim-opinion'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-sleuth'
-Plug 'sheerun/vim-polyglot'
-Plug 'dense-analysis/ale'
+"Plug 'tpope/vim-sleuth'
+"Plug 'sheerun/vim-polyglot'
+"Plug 'dense-analysis/ale'
 Plug 'preservim/nerdtree'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'itchyny/lightline.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'RyanMillerC/better-vim-tmux-resizer'
+Plug 'vim-scripts/AutoComplPop'
 
 call plug#end()
 
