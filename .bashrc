@@ -3,7 +3,17 @@
 #    [ -r "$file" ] && [ -f "$file" ] && source "$file"
 #done
 #unset file
-[ -f ~/.bash_aliases  ] && . ~/.bash_aliases
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
+
+# Enable fzf (this replaces needing ~/.fzf.bash in home directory
+if [[ ! "$PATH" == *~/.local/share/fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}~/.local/share/fzf/bin"
+fi
+
+# load fzf completion if only in interactive mode 
+[[ $- == *i* ]] && [ -f ~/.local/share/fzf/shell/completion.bash ] && . "~/.local/share/fzf/shell/completion.bash" 2> /dev/null
+# source fzf keybinding function
+[ -f ~/.local/share/fzf/shell/key-bindings.bash ] && . ~/.local/share/fzf/shell/key-bindings.bash
 
 # ==== EXPORTS ==== 
 # Make vim the default editor. 

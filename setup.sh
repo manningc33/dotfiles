@@ -5,6 +5,12 @@ dotfiles_dir=~/dotfiles
 git pull origin master 
 
 function createLinks() {
+  # install fzf 
+  rm -rf "~/.local/share/fzf"
+  
+  git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.local/share/fzf" \
+    && yes | "${HOME}/.local/share/fzf/install" --bin --no-update-rc
+
   if [ ! -f /usr/local/bin/starship ]; then
     echo "Starship not found. Installing starship"
     curl -sS https://starship.rs/install.sh | sh -s -- -y

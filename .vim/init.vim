@@ -20,7 +20,7 @@ call plug#begin()
 
 if !has('nvim') && !exists('g:gui_oni') | Plug 'tpope/vim-sensible' | endif 
 Plug 'rstacruz/vim-opinion'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug '~/.local/share/fzf' " fzf already installed by setup.sh
 Plug 'junegunn/fzf.vim'
 "Plug 'tpope/vim-sleuth'
 "Plug 'sheerun/vim-polyglot'

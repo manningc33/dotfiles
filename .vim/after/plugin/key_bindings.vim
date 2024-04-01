@@ -10,10 +10,26 @@ nnoremap <C-d> <C-d>zzzv
 map <PageUp> <C-u> 
 map <PageDown> <C-d>
 
+" Navigating to next find 
+nnoremap n nzzzv
+noremap N Nzzzv
+
 " provide Tab and shift-Tab functionality 
 inoremap <S-Tab> <C-d>
 " nnoremap <Tab> >>
 " nnoremap <S-Tab> <<
+
+" Extended Home functionality 
+function ExtendedHome()
+  let column = col('.')
+  normal! ^
+  if column == col('.')
+    normal! 0
+  endif
+endfunction
+
+noremap <silent> <Home> :call ExtendedHome()<CR>
+inoremap <silent> <Home> <C-O>:call ExtendedHome()<CR>
 
 " \ to fzf files 
 " Navigating buffer, use fzf :Buffers if defined
