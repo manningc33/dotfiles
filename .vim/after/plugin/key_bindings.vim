@@ -27,8 +27,3 @@ if exists(':Files')
 else 
   nnoremap <Leader>b :buffers<CR>:buffer<Space>
 endif
-
-" NERDTree mappings
-map <C-o> :NERDTreeToggle<CR>
-
-

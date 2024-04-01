@@ -25,7 +25,7 @@ Plug 'junegunn/fzf.vim'
 "Plug 'tpope/vim-sleuth'
 "Plug 'sheerun/vim-polyglot'
 "Plug 'dense-analysis/ale'
-Plug 'preservim/nerdtree'
+Plug 'lambdalisue/fern.vim'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'itchyny/lightline.vim'
 Plug 'christoomey/vim-tmux-navigator'
