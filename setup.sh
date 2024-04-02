@@ -7,7 +7,7 @@ git pull origin master
 function createLinks() {
   # install fzf 
   rm -rf "~/.local/share/fzf"
-  
+
   git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.local/share/fzf" \
     && yes | "${HOME}/.local/share/fzf/install" --bin --no-update-rc
 
@@ -17,8 +17,14 @@ function createLinks() {
     # eval "$(starship init bash)" # sourcing .bashrc will do this 
   fi
 
+  # Get bat catppuccin theme
+  if [ ! -f ~/.config/bat/themes/Catppuccin\ Latte.tmTheme ]; then
+    mkdir -p ~/.config/bat/themes
+    wget -P ~/.config/bat/themes https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+  fi
+
   # remove files
-  for dotfile in ~/.{bashrc,bash_aliases,vimrc,vim,config/nvim,config/starship.toml,tmux.conf}; do
+  for dotfile in ~/.{bashrc,bash_aliases,bash_profile,profile,vimrc,vim,config/nvim,config/starship.toml,tmux.conf}; do
     rm -rf "$dotfile" > /dev/null 2>&1
   done 
   unset dotfile
@@ -26,6 +32,9 @@ function createLinks() {
   # link files in dot directory
   ln -nfs $dotfiles_dir/.bashrc ~/.bashrc
   ln -nfs $dotfiles_dir/.bash_aliases ~/.bash_aliases
+  ln -nfs $dotfiles_dir/.profile ~/.bash_profile
+  ln -nfs $dotfiles_dir/.profile ~/.profile
+
   ln -nfs $dotfiles_dir/.tmux.conf ~/.tmux.conf
   ln -nfs $dotfiles_dir/.vim ~/.vim
   ln -nfs $dotfiles_dir/.vim ~/.config/nvim

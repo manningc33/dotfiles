@@ -1,17 +1,16 @@
+# If not running interactively, don't do anything 
+[[ $- != *i* ]] && return 
+
 # Enable fzf (this replaces needing ~/.fzf.bash in home directory
 if [[ ! "$PATH" == *~/.local/share/fzf/bin* ]]; then
   PATH="${PATH:+${PATH}:}~/.local/share/fzf/bin"
 fi
 
-# load fzf completion if only in interactive mode 
+# load fzf completion and keybinding function
 [[ $- == *i* ]] && [ -f ~/.local/share/fzf/shell/completion.bash ] && . "~/.local/share/fzf/shell/completion.bash" 2> /dev/null
-# source fzf keybinding function
 [ -f ~/.local/share/fzf/shell/key-bindings.bash ] && . ~/.local/share/fzf/shell/key-bindings.bash
 
 # ==== EXPORTS ==== 
-# Make vim the default editor. 
-export EDITOR='vim'
-
 # increase Bash history size 
 export HISTSIZE=32768
 export HISTFILESIZE=32768
@@ -26,7 +25,7 @@ export TERM=xterm-256color
 # Configure FZF 
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 export FZF_TMUX_OPTS="-p -h 100% -w 100%"
-export FZF_CTRL_T_OPTS="--preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down" 
+export FZF_CTRL_T_OPTS="--preview='bat --color=always --style=numbers --line-range=:500 {}' --bind shift-up:preview-page-up,shift-down:preview-page-down" 
 
 # Case-insensitive globbing (used in pathname expansion) 
 shopt -s nocaseglob
