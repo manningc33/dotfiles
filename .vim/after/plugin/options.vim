@@ -1,5 +1,9 @@
 if !has('gui_running') | set t_Co=256 | endif 
 
+set undodir=~/.vim/backup
+set undofile
+set undoreload=10000
+
 " set catppucin colorscheme
 let g:lightline = { 
       \'colorscheme': 'catppuccin_mocha',

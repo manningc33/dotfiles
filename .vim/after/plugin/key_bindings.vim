@@ -20,6 +20,10 @@ map <PageDown> <C-d>
 nnoremap n nzzzv
 noremap N Nzzzv
 
+" Search word stays at current place 
+nnoremap # #N 
+nnoremap * *N
+
 " provide Tab and shift-Tab functionality 
 inoremap <S-Tab> <C-d>
 " nnoremap <Tab> >>
