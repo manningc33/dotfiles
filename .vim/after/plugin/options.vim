@@ -4,10 +4,10 @@ if !has('gui_running') | set t_Co=256 | endif
 let g:lightline = { 
       \'colorscheme': 'catppuccin_mocha',
       \  'active': {
-      \    'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
-      \    'right': [['lineinfo'], ['percent']]
-      \  }
-      \}
+        \    'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
+        \    'right': [['lineinfo'], ['percent']]
+        \  }
+        \}
 colorscheme catppuccin_mocha
 set termguicolors
 set noshowmode
@@ -25,3 +25,6 @@ set relativenumber
 
 " auto-resize splits when Vim gets resized 
 autocmd VimResized * wincmd =
+
+" Return to last edit position when opening files
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
