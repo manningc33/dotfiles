@@ -7,7 +7,7 @@ if [[ ! "$PATH" == *~/.local/share/fzf/bin* ]]; then
 fi
 
 # load fzf completion and keybinding function
-[[ $- == *i* ]] && [ -f ~/.local/share/fzf/shell/completion.bash ] && . "~/.local/share/fzf/shell/completion.bash" 2> /dev/null
+[ -f ~/.local/share/fzf/shell/completion.bash ] && . "~/.local/share/fzf/shell/completion.bash" 2> /dev/null
 [ -f ~/.local/share/fzf/shell/key-bindings.bash ] && . ~/.local/share/fzf/shell/key-bindings.bash
 
 # ==== EXPORTS ==== 
