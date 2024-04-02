@@ -29,10 +29,10 @@ function createLinks() {
   echo ""
 
   # Get bat catppuccin theme
-  if [ ! -f ~/.config/bat/themes/Catppuccin\ Latte.tmTheme ]; then
+  if [ ! -f ~/.config/bat/themes/Catppuccin\ Mocha.tmTheme ]; then
     echo "Installing bat catppuccin theme from github..."
     mkdir -p ~/.config/bat/themes
-    wget -P ~/.config/bat/themes https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+    wget -P ~/.config/bat/themes https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
   else 
     echo "Bat catppuccin theme already installed..."
   fi

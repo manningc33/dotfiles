@@ -24,8 +24,8 @@ cd dotfiles
 | c*                  | replace current word or visual selection and use . to repeat on next occurance(s) |
 
 ## Dependencies (need to be installed manually) 
-- [bat](https://github.com/sharkdp/bat?tab=readme-ov-file#installation) (for colored previews, colorscheme downloaded automatically by dot setup)
-- ripgrep (for multi-file search) 
+- ripgrep (for multi-file search, and for fzf to work) 
+- [bat](https://github.com/sharkdp/bat?tab=readme-ov-file#installation) (for colored previews, colorscheme downloaded automatically by dot setup, don't forget to run `bat cache --build`)
 
 ## To-do 
 - figure out ALE
@@ -35,3 +35,5 @@ cd dotfiles
 - look in to integrating lazy-git with bat for colored display
 - start defining own prompt, move away from lightline
 - tmux nerd font dependency 
+- store symlinks in file to be read by setup.sh
+- extract XDG config stuff as environment variables 
