@@ -1,8 +1,14 @@
+if exists('g:loaded_after_key_bindings.vim')
+  finish
+endif
+
+let g:loaded_after_key_bindings = 1
+
 " :W sudo saves the file (useful for handling the permission-denied error) 
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
 " Clear highlighting on escrape in normal mode 
-nnoremap <esc><esc> :noh<return><esc>
+"nnoremap <esc><esc> :noh<return> 
 
 " scrolling up and down places cursor in middle of page
 nnoremap <C-u> <C-u>zzzv
@@ -30,16 +36,3 @@ endfunction
 
 noremap <silent> <Home> :call ExtendedHome()<CR>
 inoremap <silent> <Home> <C-O>:call ExtendedHome()<CR>
-
-" \ to fzf files 
-" Navigating buffer, use fzf :Buffers if defined
-if exists(':Files')
-  nnoremap <C-p> :Files<CR>
-  nnoremap \ :Files<CR>
-  nnoremap <Leader>f :Files<CR>
-  " use Ctrl+\ to search from home
-  nnoremap <C-\> :Files ~<CR>
-  nnoremap <Leader>b :Buffers<CR>
-else 
-  nnoremap <Leader>b :buffers<CR>:buffer<Space>
-endif

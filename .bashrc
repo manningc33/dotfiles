@@ -1,10 +1,3 @@
-# Load shell dotfiles
-#for file in ~/.{bash_aliases}; do 
-#    [ -r "$file" ] && [ -f "$file" ] && source "$file"
-#done
-#unset file
-[ -f ~/.bash_aliases ] && . ~/.bash_aliases
-
 # Enable fzf (this replaces needing ~/.fzf.bash in home directory
 if [[ ! "$PATH" == *~/.local/share/fzf/bin* ]]; then
   PATH="${PATH:+${PATH}:}~/.local/share/fzf/bin"
@@ -29,6 +22,11 @@ export HISTIGNORE="&:[ ]*:exit:ls:pg:fg:history:clear:h"
 
 # force color terminal
 export TERM=xterm-256color
+
+# Configure FZF 
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+export FZF_TMUX_OPTS="-p -h 100% -w 100%"
+export FZF_CTRL_T_OPTS="--preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down" 
 
 # Case-insensitive globbing (used in pathname expansion) 
 shopt -s nocaseglob
@@ -58,3 +56,11 @@ PS1="\n\t \[\033[32m\]\w\[\033[33m\] \$(parse_git_branch)\[\033[00m\]\n\\$ "
 
 # set starship prompt:
 [ -f /usr/local/bin/starship ] && eval "$(starship init bash)"
+
+# Load shell dotfiles
+#for file in ~/.{bash_aliases}; do 
+#    [ -r "$file" ] && [ -f "$file" ] && source "$file"
+#done
+#unset file
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
+[ -f ~/.bash_functions ] && . ~/.bash_functions

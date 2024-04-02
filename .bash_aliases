@@ -2,6 +2,7 @@
 
 # search with fzf and edit
 alias v="find . -not -iwholename '*.git*' | fzf-tmux -p | xargs -o vim"
+alias pf="fzf-tmux ${FZF_CTRL_T_OPTS}"
 
 # Easier navigation: 
 alias ..="cd .."
