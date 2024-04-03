@@ -79,6 +79,7 @@ function createLinks() {
   ln -nfs $dotfiles_dir/.profile ~/.bash_profile
   ln -nfs $dotfiles_dir/.profile ~/.profile
   ln -nfs $dotfiles_dir/git/.gitconfig ~/.gitconfig
+  mkdir -p ~/.config/lazygit
   ln -nfs $dotfiles_dir/git/lazygit-config.yml ~/.config/lazygit/config.yml
 
   ln -nfs $dotfiles_dir/.tmux.conf ~/.tmux.conf
