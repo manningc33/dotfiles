@@ -1,0 +1,23 @@
+[user]
+    name = Manning Chen
+    email = manningchen33@gmail.com
+
+[core]
+    pager = delta
+
+[include]
+    path = ~/.config/.local/share/catppuccin/delta/catppuccin.gitconfig
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    features = catppuccin-mocha
+    line-numbers = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default

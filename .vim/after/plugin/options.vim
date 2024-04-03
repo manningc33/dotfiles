@@ -9,7 +9,7 @@ if !isdirectory($HOME .  '/.vim/undo')
   call mkdir($HOME . '/.vim/undo', 'p', 0700)
 endif 
 
-" set catppucin colorscheme
+" set catppuccin colorscheme
 let g:lightline = { 
       \'colorscheme': 'catppuccin_mocha',
       \  'active': {

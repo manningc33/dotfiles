@@ -24,8 +24,12 @@ cd dotfiles
 | c*                  | replace current word or visual selection and use . to repeat on next occurance(s) |
 
 ## Dependencies (need to be installed manually) 
+- fzf (automatically installed)
 - ripgrep (for multi-file search, and for fzf to work) 
 - [bat](https://github.com/sharkdp/bat?tab=readme-ov-file#installation) (for colored previews, colorscheme downloaded automatically by dot setup, don't forget to run `bat cache --build`)
+- lazygit as git gui
+- delta as git pager (automatically installed)
+
 
 ## To-do 
 - figure out ALE
@@ -37,3 +41,5 @@ cd dotfiles
 - tmux nerd font dependency 
 - store symlinks in file to be read by setup.sh
 - extract XDG config stuff as environment variables 
+- add flag to setup to forcibly reinstall everything
+- vim-floatterm form lazygit integration
