@@ -23,7 +23,7 @@ export HISTIGNORE="&:[ ]*:exit:ls:pg:fg:history:clear:h"
 export TERM=xterm-256color
 
 # Configure FZF 
-export FZF_DEFAULT_OPTS="--layout=reverse"
+export FZF_DEFAULT_OPTS="--layout=reverse --bind ctrl-c:clear-query"
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 export FZF_TMUX_OPTS="-p -h 100% -w 100%"
 export FZF_CTRL_T_OPTS="--preview='bat --color=always --style=numbers --line-range=:500 {}' --bind shift-up:preview-page-up,shift-down:preview-page-down" 

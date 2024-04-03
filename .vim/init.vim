@@ -31,7 +31,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'RyanMillerC/better-vim-tmux-resizer'
 Plug 'vim-scripts/AutoComplPop'
-Plug 'nelstrom/vim-visual-star-search'
+Plug 'bronson/vim-visual-star-search'
 Plug 'wellle/context.vim'
 
 call plug#end()
