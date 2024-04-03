@@ -22,7 +22,9 @@ if !has('nvim') && !exists('g:gui_oni') | Plug 'tpope/vim-sensible' | endif
 Plug 'rstacruz/vim-opinion'
 Plug 'junegunn/fzf', { 'dir': '~/.local/share/fzf', 'do': { -> fzf#install() } } " fzf already installed by setup.sh
 Plug 'junegunn/fzf.vim'
-"Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 "Plug 'sheerun/vim-polyglot'
 "Plug 'dense-analysis/ale'
 Plug 'lambdalisue/fern.vim'
