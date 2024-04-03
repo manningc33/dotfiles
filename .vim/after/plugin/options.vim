@@ -28,6 +28,7 @@ set shortmess+=c
 
 " split below
 set splitbelow
+set splitright
 
 " Set relative linenumbers 
 set relativenumber

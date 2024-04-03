@@ -35,3 +35,6 @@ if exists(':TmuxResizeLeft')
   xnoremap <silent> <M-Up> :<C-U>TmuxResizeUp<CR>gv
   xnoremap <silent> <M-Right> :<C-U>TmuxResizeRight<CR>gv
 endif
+
+nnoremap <Leader>- :split<CR>:Files<CR>
+nnoremap <Leader><Bar> :vsplit<CR>:Files<CR>
