@@ -24,4 +24,14 @@ if exists(':TmuxResizeLeft')
   nnoremap <silent> <M-Down> :TmuxResizeDown<CR>
   nnoremap <silent> <M-Up> :TmuxResizeUp<CR>
   nnoremap <silent> <M-Right> :TmuxResizeRight<CR>
+
+  inoremap <silent> <M-Left> <Esc>:TmuxResizeLeft<CR>i
+  inoremap <silent> <M-Down> <Esc>:TmuxResizeDown<CR>i
+  inoremap <silent> <M-Up> <Esc>:TmuxResizeUp<CR>i
+  inoremap <silent> <M-Right> <Esc>:TmuxResizeRight<CR>i
+
+  xnoremap <silent> <M-Left> :<C-U>TmuxResizeLeft<CR>gv
+  xnoremap <silent> <M-Down> :<C-U>TmuxResizeDown<CR>gv
+  xnoremap <silent> <M-Up> :<C-U>TmuxResizeUp<CR>gv
+  xnoremap <silent> <M-Right> :<C-U>TmuxResizeRight<CR>gv
 endif
