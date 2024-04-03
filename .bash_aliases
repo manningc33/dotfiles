@@ -11,6 +11,7 @@ alias ....="cd ../../.."
 alias .....="cd../../../.."
 alias home="cd ~"
 alias cd..="cd .."
+alias dots="cd ~/dotfiles/"
 
 # clear screen
 alias cls="clear"
@@ -33,7 +34,10 @@ alias la="ls -A"
 alias l="ls -CF"
 
 # use pygmentize to do colored print
-alias ccat="pygmentize -g"
+if [ -x /usr/bin/batcat ]; then 
+    alias cat='batcat --color=always'
+    alias rcat='cat'
+fi
 
 # grep history and current folder
 alias h="history | grep" 
@@ -47,6 +51,9 @@ alias sudo="sudo "
 
 # refersh bash
 alias refresh="source ~/.bashrc"
+
+# run set up for dotfiles 
+alias dotsinstall='cd ~/dotfiles; . ./setup.sh'
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
