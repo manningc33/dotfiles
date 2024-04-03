@@ -1,8 +1,13 @@
 if !has('gui_running') | set t_Co=256 | endif 
 
-set undodir=~/.vim/backup
+" allow undos after save 
+set undodir=~/.vim/undo
 set undofile
-set undoreload=10000
+
+" create undo folder if doesn't exist 
+if !isdirectory($HOME .  '/.vim/undo')
+  call mkdir($HOME . '/.vim/undo', 'p', 0700)
+endif 
 
 " set catppucin colorscheme
 let g:lightline = { 
