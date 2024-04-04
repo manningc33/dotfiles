@@ -10,6 +10,9 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " Clear highlighting on escrape in normal mode 
 "nnoremap <esc><esc> :noh<return> 
 
+nnoremap <Down> g<Down> 
+"nnoremap <Up> gk 
+
 " scrolling up and down places cursor in middle of page
 nnoremap <C-u> <C-u>zzzv
 nnoremap <C-d> <C-d>zzzv

@@ -1,12 +1,12 @@
 if !has('gui_running') | set t_Co=256 | endif 
 
 " allow undos after save 
-set undodir=~/.vim/undo
+set undodir=~/.vim/data/undo
 set undofile
 
 " create undo folder if doesn't exist 
-if !isdirectory($HOME .  '/.vim/undo')
-  call mkdir($HOME . '/.vim/undo', 'p', 0700)
+if !isdirectory($HOME .  '/.vim/data/undo')
+  call mkdir($HOME . '/.vim/data/undo', 'p', 0700)
 endif 
 
 " set catppuccin colorscheme

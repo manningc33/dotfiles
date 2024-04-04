@@ -16,6 +16,9 @@ xnoremap <silent> c* "sy:let @/=@s<CR>cgn
 
 " fzf dependant finds
 if exists(':Files')
+  " save fzf history 
+  let g:fzf_history_dir = '~/.vim/data/fzf-history'
+
   function FindInFile(token,...) 
     let query = ''
     if !empty(a:token) 
@@ -29,23 +32,24 @@ if exists(':Files')
     endif
 
     call fzf#vim#grep( "rg --column --line-number --no-heading --color=always --smart-case '' /dev/null " . expand('%'), 
-          \  1, fzf#vim#with_preview( { 'options': query . ' --exact' } ) )
+          \  1, fzf#vim#with_preview({ 'options': query . ' --exact' }), 1)
   endfunction
 
-  command! -bang -nargs=* Find
+  command! -nargs=* Find
         \ call FindInFile(<q-args>)
 
   " Ctrl-f find current word in current file w/ preview
   " Visual mode depends on visual-star-search plugin
-  nnoremap <C-f> :silent! normal! *#<CR>:Find zy6qcgxYhJ<CR>
+  nnoremap ff :silent! normal! *#<CR>:Find zy6qcgxYhJ<CR>
+  nnoremap <C-f> :Rg '' /dev/null <C-r>%<CR><C-p>
   xmap <C-f> *N:<C-u>Find "<C-r>=@/<CR>"<CR>
 
   " Allow passing optional flags into the Rg command.
   "   Example: :Rg myterm -g '*.md'
-  command! -bang -nargs=* Rg
+  command! -nargs=* Rg
         \ call fzf#vim#grep(
         \ "rg --column --line-number --no-heading --color=always --smart-case " .
-        \ <q-args>, 1, fzf#vim#with_preview({ 'options': '--exact' }), <bang>0)
+        \ <q-args>, 1, fzf#vim#with_preview({ 'options': '--exact' }), 1)
 
   " leader f to search files in current dirs 
   " leader b to search open buffers 
