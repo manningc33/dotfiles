@@ -40,9 +40,10 @@ if exists(':Files')
 
   " Ctrl-f find current word in current file w/ preview
   " Visual mode depends on visual-star-search plugin
-  nnoremap ff :silent! normal! *#<CR>:Find zy6qcgxYhJ<CR>
-  nnoremap <C-f> :Rg '' /dev/null <C-r>%<CR><C-p>
+  nnoremap <C-f> :silent! normal! *#<CR>:Find zy6qcgxYhJ<CR>
   xmap <C-f> *N:<C-u>Find "<C-r>=@/<CR>"<CR>
+  nnoremap <Leader>f :Find<CR><C-p>
+  xnoremap <Leader>f :<C-U>Find<CR><C-p> 
 
   " Allow passing optional flags into the Rg command.
   "   Example: :Rg myterm -g '*.md'
@@ -51,17 +52,14 @@ if exists(':Files')
         \ "rg --column --line-number --no-heading --color=always --smart-case " .
         \ <q-args>, 1, fzf#vim#with_preview({ 'options': '--exact' }), 1)
 
-  " leader f to search files in current dirs 
+  " \ used to search files, use Ctrl to search from home  
+  nnoremap \ :Files<CR>
+  nnoremap <C-\> :Files ~<CR>
+  
   " leader b to search open buffers 
   " leader l to search lines in open buffers
-  nnoremap <Leader>f :Files<CR>
   nnoremap <Leader>b :Buffers<CR>
   nnoremap <Leader>l :Lines<CR>
-
-  nnoremap <C-p> :Files<CR>
-  nnoremap \ :Files<CR>
-  " use Ctrl+\ to search from home
-  nnoremap <C-\> :Files ~<CR>
 else 
   nnoremap <Leader>b :buffers<CR>:buffer<Space>
 endif
