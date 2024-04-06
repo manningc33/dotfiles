@@ -6,8 +6,8 @@
 [ -d ~/.local/bin ] && PATH="~/.local/bin:$PATH"
 [ -d ~/.cargo/bin ] && PATH="~/.cargo/bin:$PATH"
 
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export PAGER="less"
 export GIT_PAGER="delta"
 

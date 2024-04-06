@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # search with fzf and edit
-alias v="find . -not -iwholename '*.git*' | fzf-tmux -p | xargs -o vim"
-alias pf="fzf-tmux ${FZF_CTRL_T_OPTS}"
+alias v="nvim"
+alias vim="nvim" 
 
 # Easier navigation: 
 alias ..="cd .."

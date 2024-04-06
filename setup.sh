@@ -84,8 +84,8 @@ function createLinks() {
 
   ln -nfs $dotfiles_dir/.tmux.conf ~/.tmux.conf
   ln -nfs $dotfiles_dir/.vim ~/.vim
-  ln -nfs $dotfiles_dir/.vim ~/.config/nvim
-  ln -nfs ~/.vim/init.vim ~/.vimrc
+  ln -nfs $dotfiles_dir/nvim ~/.config/nvim
+  ln -nfs $dotfiles_dir/.vimrc ~/.vimrc
   ln -nfs $dotfiles_dir/starship.toml ~/.config/starship.toml
 
   . ~/.bashrc
