@@ -18,8 +18,10 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | 
 
 call plug#begin()
 
+" ===== general ===== " 
 if !has('nvim') && !exists('g:gui_oni') | Plug 'tpope/vim-sensible' | endif 
 Plug 'rstacruz/vim-opinion'
+
 Plug 'junegunn/fzf', { 'dir': '~/.local/share/fzf', 'do': { -> fzf#install() } } " fzf already installed by setup.sh
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sleuth'
@@ -32,9 +34,17 @@ Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'itchyny/lightline.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'RyanMillerC/better-vim-tmux-resizer'
-Plug 'vim-scripts/AutoComplPop'
+"Plug 'vim-scripts/AutoComplPop'
 Plug 'bronson/vim-visual-star-search'
 Plug 'wellle/context.vim'
+
+" ===== lsp ===== 
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 

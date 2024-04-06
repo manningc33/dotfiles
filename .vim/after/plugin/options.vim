@@ -9,6 +9,10 @@ if !isdirectory($HOME .  '/.vim/data/undo')
   call mkdir($HOME . '/.vim/data/undo', 'p', 0700)
 endif 
 
+" Column set to column 100 and set to grey
+set colorcolumn=100
+highlight ColorColumn ctermbg=1
+
 " set catppuccin colorscheme
 let g:lightline = { 
       \'colorscheme': 'catppuccin_mocha',
@@ -22,9 +26,9 @@ set termguicolors
 set noshowmode
 
 " autocomplete options 
-set complete+=kspell
-set completeopt=menuone,longest
-set shortmess+=c
+" set complete+=kspell
+" set completeopt=menuone,longest
+" set shortmess+=c
 
 " split below
 set splitbelow
