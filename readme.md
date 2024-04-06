@@ -16,11 +16,12 @@ cd dotfiles
 | ---                 | --- |
 | Ctrl + ←↑↓→         | navigate between splits/panes (works w/ tmux) |
 | Alt + ←↑↓→          | resize splits/panes (works w/ tmux) | 
-| \<Leader\>f or '\\' | fzf files in current dir |
+| '\\'                | fzf files in current dir |
 | ctrl + '\\'         | fzf in home dir |
 | \<Leader\>b         | fzf current buffers |
 | \<Leader\>l         | fzf current lines of open buffers |
-| \<Leader\>r         | replace previously highlighted search in file, can use visual mode to select a range|
+| \<Leader\>r         | replace previously highlighted search in file, can use visual mode to select a range |
+| \<Leader\>f         | live grep through entire directory | 
 | c*                  | replace current word or visual selection and use . to repeat on next occurance(s) |
 
 ## Dependencies (need to be installed manually) 
@@ -32,14 +33,12 @@ cd dotfiles
 
 
 ## To-do 
-- figure out ALE
-- figure out polyglot 
 - make readme look better
 - git integration: fugitive, set up vim nvim parity with gitgutter and gitsigns 
 - look in to integrating lazy-git with bat for colored display
-- start defining own prompt, move away from lightline
-- tmux nerd font dependency 
 - store symlinks in file to be read by setup.sh
 - extract XDG config stuff as environment variables 
 - add flag to setup to forcibly reinstall everything
 - vim-floatterm form lazygit integration
+- reconfigure starship to use nerdfont 
+- nvim autocomplete 
