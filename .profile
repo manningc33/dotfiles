@@ -6,15 +6,15 @@ PATH="~/bin:$PATH"
 PATH="~/.local/bin:$PATH"
 PATH="~/.cargo/bin:$PATH"
 
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export PAGER="less"
 export GIT_PAGER="delta"
 
 if [[ -x /usr/bin/batcat ]]; then
-  export MANPAGER="sh -c 'col -bx | batcat -l man -p'" 
-elif [[ -x ~/.local/bin/bat ]]; then 
-  export MANPAGER="sh -c 'col -bx | bat -l man -p'" 
+	export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+elif [[ -x ~/.local/bin/bat ]]; then
+	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
 
 export BAT_THEME="Catppuccin Mocha"
