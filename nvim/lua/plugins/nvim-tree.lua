@@ -61,6 +61,9 @@ return {
 				group_empty = true,
 				indent_width = 1,
 				highlight_opened_files = "all",
+				icons = {
+					git_placement = "after",
+				},
 				indent_markers = {
 					enable = true,
 				},

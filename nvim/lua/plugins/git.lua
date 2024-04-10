@@ -1,0 +1,15 @@
+return {
+	{
+		"tpope/vim-fugitive",
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			local gitsigns = require("gitsigns")
+			gitsigns.setup()
+
+			vim.keymap.set("n", "gp", gitsigns.preview_hunk, {})
+			vim.keymap.set("n", "gb", gitsigns.toggle_current_line_blame, {})
+		end,
+	},
+}

@@ -19,7 +19,6 @@ return {
 				cmake = { "cmakelang" },
 				tex = { "latexindent" },
 				python = { "black" },
-
 				javascript = { "prettierd" },
 				typescript = { "prettierd" },
 			},
@@ -30,7 +29,7 @@ return {
 			},
 		})
 
-		vim.keymap.set({ "n", "v" }, "gf", function()
+		vim.keymap.set({ "n", "v" }, "<Leader>gf", function()
 			conform.format({
 				lsp_fallback = true,
 				async = false,
