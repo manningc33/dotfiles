@@ -1,10 +1,10 @@
 # source bash rc if running bash and exists
 [ -f ~/.bashrc ] && . ~/.bashrc
   
-# set PATH so it includes user  bins if exists
-[ -d ~/bin ] && PATH="~/bin:$PATH"
-[ -d ~/.local/bin ] && PATH="~/.local/bin:$PATH"
-[ -d ~/.cargo/bin ] && PATH="~/.cargo/bin:$PATH"
+# set PATH so it includes user bins if exists
+PATH="~/bin:$PATH"
+PATH="~/.local/bin:$PATH"
+PATH="~/.cargo/bin:$PATH"
 
 export EDITOR="vim"
 export VISUAL="vim"
