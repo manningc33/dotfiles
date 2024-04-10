@@ -13,3 +13,13 @@ keymap.set("n", "N", "Nzzzv", { desc = "center prev find" })
 keymap.set("i", "<S-Tab>", "<C-d>", { desc = "shift-tab behaves normally in insert" })
 
 keymap.set("n", "ge", "gF", { desc = "ge goes to file (and goes to line number)" })
+
+local function ExtendedHome()
+	local column = vim.fn.col(".")
+	vim.cmd("normal! ^")
+	if column == vim.fn.col(".") then
+		vim.cmd("normal! 0")
+	end
+end
+
+keymap.set({ "n", "v", "i" }, "<Home>", ExtendedHome, { silent = true })
