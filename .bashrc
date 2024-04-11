@@ -55,7 +55,8 @@ parse_git_branch() {
 PS1="\n\t \[\033[32m\]\w\[\033[33m\] \$(parse_git_branch)\[\033[00m\]\n\\$ "
 
 # set starship prompt:
-[ -f /usr/local/bin/starship ] && eval "$(starship init bash)"
+[ "$(which starship)" != "" ] && eval "$(starship init bash)"
+[ "$(which zoxide)" != "" ] && eval "$(zoxide init bash)"
 
 # Load shell dotfiles
 #for file in ~/.{bash_aliases}; do

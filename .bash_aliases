@@ -40,6 +40,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # forcing certain programs
+alias cd="z"
 alias cat='bat --color=always'
 alias rcat='cat' # rcat = raw cat
 alias vim="nvim"
