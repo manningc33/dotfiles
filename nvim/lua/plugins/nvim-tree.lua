@@ -15,7 +15,6 @@ local function on_attach(bufnr)
   -- navigation mappings
   vim.keymap.set("n", ">", api.tree.change_root_to_node, opts("CD"))
   vim.keymap.set("n", "<", api.tree.change_root_to_parent, opts("Up"))
-  vim.keymap.set("n", "-", api.tree.change_root_to_parent, opts("Up"))
   vim.keymap.set("n", "P", api.node.navigate.parent, opts("Parent Directory"))
   vim.keymap.set("n", "q", api.tree.close, opts("Close"))
 
