@@ -84,7 +84,7 @@ return {
     })
     -- toggle tree keymap, finds file
     vim.keymap.set("n", "<C-o>", ":NvimTreeFindFileToggle<CR>", { desc = "toggle nvim-tree" })
-    vim.keymap.set("n", "<C-n>", ":NvimTreeFocus<CR>", { desc = "focus nvim-tree" })
+    vim.keymap.set("n", "<C-Home>", ":NvimTreeFocus<CR>", { desc = "focus nvim-tree" })
 
     -- autoclose if last buffer
     vim.api.nvim_create_autocmd("QuitPre", {
