@@ -51,12 +51,12 @@ parse_git_branch() {
 	git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
-# set prompt just incase starship isn't avaliable
+# set prompt just incase starship isn't available
 PS1="\n\t \[\033[32m\]\w\[\033[33m\] \$(parse_git_branch)\[\033[00m\]\n\\$ "
 
 # set starship prompt:
-[ "$(which starship)" != "" ] && eval "$(starship init bash)"
-[ "$(which zoxide)" != "" ] && eval "$(zoxide init bash)"
+command -v starship &>/dev/null && eval "$(starship init bash)"
+command -v zoxide &>/dev/null && eval "$(zoxide init bash)"
 
 # Load shell dotfiles
 #for file in ~/.{bash_aliases}; do
