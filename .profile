@@ -1,6 +1,6 @@
 # source bash rc if running bash and exists
 [ -f ~/.bashrc ] && . ~/.bashrc
-  
+
 # set PATH so it includes user bins if exists
 PATH="~/bin:$PATH"
 PATH="~/.local/bin:$PATH"

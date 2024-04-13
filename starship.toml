@@ -32,18 +32,18 @@ style = "bright-black"
 [cmd_duration]
 format = "[$duration]($style) "
 style = "teal"
-show_milliseconds = true 
+show_milliseconds = true
 min_time = 1_000
 
 [python]
 format = "[$virtualenv]($style) "
 style = "bright-black"
 
-[time] 
+[time]
 disabled = false
 format = '[$time]($style) '
 style = 'bold white'
-time_format='%T'
+time_format = '%T'
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
