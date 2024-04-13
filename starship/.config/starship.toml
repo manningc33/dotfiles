@@ -5,28 +5,29 @@ $time\
 $directory\
 $git_branch\
 $git_state\
+$git_status\
 $cmd_duration\
-$line_break\
+$docker_context\
 $python\
+$line_break\
 $character"""
 
 [directory]
 truncation_length = 3
 style = "bold lavender"
-read_only = "*"
 
 [character]
 # Note the use of Catppuccin color 'maroon'
-success_symbol = "[<3](bold green) [>](bold maroon)"
-error_symbol = "[/:](bold red) [>](bold maroon)"
-vimcmd_symbol = "[<](bold green)"
+success_symbol = "[<3](bold green) [❯](bold maroon)"
+error_symbol = "[/:](bold red) [❯](bold maroon)"
+vimcmd_symbol = "[](bold green)"
 
 [git_branch]
-format = "[$branch]($style) "
+format = "[$symbol$branch(:$remote_branch)]($style) "
 style = "mauve"
+truncation_length = 30
 
 [git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
 
 [cmd_duration]
