@@ -10,6 +10,5 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export PAGER="less"
 
-command -v delta &>/delta/null && export GIT_PAGER="delta"
-command -v bat &>/dev/null && export MANPAGER="sh -c 'col -bx | bat -l man -p'" \ 
-  && export BAT_THEME="Catppuccin Mocha"
+command -v delta &>/dev/null && export GIT_PAGER="delta"
+command -v bat &>/dev/null && export MANPAGER="sh -c 'col -bx | bat -l man -p'" && export BAT_THEME="Catppuccin Mocha"
