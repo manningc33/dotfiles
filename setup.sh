@@ -7,10 +7,13 @@ git pull origin master
 function createLinks() {
 	# install fzf
 	echo ""
-	rm -rf ~/.local/share/fzf
-	git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.local/share/fzf" &&
-		yes | "${HOME}/.local/share/fzf/install" --bin --no-update-rc
-
+	if [ ! -f /.local/share/fzf ]; then
+		echo "fzf not found. Installing fzf"
+		git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.local/share/fzf" &&
+			yes | "${HOME}/.local/share/fzf/install" --bin --no-update-rc
+	else
+		echo "fzf already found. "
+	fi
 	echo ""
 	echo ""
 
@@ -62,31 +65,13 @@ function createLinks() {
 	echo ""
 	echo ""
 
-	echo "Removing dotfiles from system..."
-	# remove files
-	for dotfile in ~/.{bashrc,bash_aliases,bash_profile,profile,vimrc,vim,config/lazygit/config.yml,config/nvim,gitconfig,config/starship.toml,tmux.conf}; do
-		rm -rf "$dotfile" >/dev/null 2>&1
-	done
-	unset dotfile
-
-	echo ""
-	echo ""
-
-	echo "Linking dotfiles from repo..."
-	# link files in dot directory
-	ln -nfs $dotfiles_dir/.bashrc ~/.bashrc
-	ln -nfs $dotfiles_dir/.bash_aliases ~/.bash_aliases
-	ln -nfs $dotfiles_dir/.profile ~/.bash_profile
-	ln -nfs $dotfiles_dir/.profile ~/.profile
-	ln -nfs $dotfiles_dir/git/.gitconfig ~/.gitconfig
-	mkdir -p ~/.config/lazygit
-	ln -nfs $dotfiles_dir/git/lazygit-config.yml ~/.config/lazygit/config.yml
-
-	ln -nfs $dotfiles_dir/.tmux.conf ~/.tmux.conf
-	ln -nfs $dotfiles_dir/.vim ~/.vim
-	ln -nfs $dotfiles_dir/nvim ~/.config/nvim
-	ln -nfs $dotfiles_dir/.vimrc ~/.vimrc
-	ln -nfs $dotfiles_dir/starship.toml ~/.config/starship.toml
+	mkdir -p "$HOME/.config"
+	# stowing all modules
+	stow bash
+	stow git
+	stow nvim
+	stow starship
+	stow tmux
 
 	. ~/.bashrc
 }
