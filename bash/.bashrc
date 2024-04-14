@@ -7,7 +7,7 @@ if [[ ! "$PATH" == *~/.local/share/fzf/bin* ]]; then
 fi
 
 # load fzf completion and keybinding function
-[ -f ~/.local/share/fzf/shell/completion.bash ] && . "~/.local/share/fzf/shell/completion.bash" 2>/dev/null
+[ -f ~/.local/share/fzf/shell/completion.bash ] && . ~/.local/share/fzf/shell/completion.bash 2>/dev/null
 [ -f ~/.local/share/fzf/shell/key-bindings.bash ] && . ~/.local/share/fzf/shell/key-bindings.bash
 
 # ==== EXPORTS ====
@@ -37,6 +37,10 @@ shopt -s histappend
 # check the window size after each command and, if necessary,
 # update the value of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# Prevent file overwriet on stdout redirection
+# Use '>|' to force redirection to an existing file
+set -o noclobber
 
 # Enable some Bash 4 features when possible:
 # * autocd, e.g. '**/qux' will enter './foo/bar/baz/qux'
