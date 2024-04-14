@@ -35,8 +35,8 @@ vim.keymap.set("n", "<leader>p", function()
 end, { desc = "paste as lines" })
 
 -- jump back to last position
-vim.keymap.set("n", "<bs>", "<c-o>", { desc = "jump backwards" })
-vim.keymap.set("n", "<s-bs>", "<c-i>", { desc = "jump forwards" })
+--vim.keymap.set("n", "<bs>", "<c-o>", { desc = "jump backwards" })
+--vim.keymap.set("n", "<s-bs>", "<c-i>", { desc = "jump forwards" })
 vim.keymap.set("n", "gl", "`.", { desc = "goto to last change" })
 
 -- move visual blocks
