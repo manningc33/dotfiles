@@ -6,11 +6,11 @@ if command -v zoxide &>/dev/null; then
 	alias rcd="\cd"
 fi
 
-# use exa instead of ls
-if command -v exa &>/dev/null; then
-	alias ls="exa"
-	alias ll="exa -aghl"
-	alias exa="exa --icons"
+# use eza instead of ls
+if command -v eza &>/dev/null; then
+	alias ls="eza"
+	alias ll="eza -aghl"
+	alias eza="eza --icons"
 	alias rls="\ls --color=auto"
 	alias rll="\ls -AlF --color=auto"
 else
