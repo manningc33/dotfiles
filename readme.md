@@ -30,6 +30,11 @@ cd dotfiles
 - [bat](https://github.com/sharkdp/bat?tab=readme-ov-file#installation) (for colored previews, colorscheme downloaded automatically by dot setup, don't forget to run `bat cache --build`)
 - lazygit as git gui
 - delta as git pager (automatically installed)
+- eza as ls replacement 
+- zoxide as cd replacement 
+- tldr as better man
+- neofetch 
+- starship for bash prompt 
 
 
 ## To-do 
