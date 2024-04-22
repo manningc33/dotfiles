@@ -2,9 +2,9 @@
 [ -f ~/.bashrc ] && . ~/.bashrc
 
 # set PATH so it includes user bins if exists
-PATH="~/bin:$PATH"
 PATH="~/.local/bin:$PATH"
 PATH="~/.cargo/bin:$PATH"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
