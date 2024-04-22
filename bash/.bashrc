@@ -1,15 +1,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Enable fzf (this replaces needing ~/.fzf.bash in home directory
-if [[ ! "$PATH" == *~/.local/share/fzf/bin* ]]; then
-	PATH="${PATH:+${PATH}:}~/.local/share/fzf/bin"
-fi
-
-# load fzf completion and keybinding function
-[ -f ~/.local/share/fzf/shell/completion.bash ] && . ~/.local/share/fzf/shell/completion.bash 2>/dev/null
-[ -f ~/.local/share/fzf/shell/key-bindings.bash ] && . ~/.local/share/fzf/shell/key-bindings.bash
-
 # ==== EXPORTS ====
 # increase Bash history size
 export HISTSIZE=32768
@@ -59,6 +50,7 @@ parse_git_branch() {
 PS1="\n\t \[\033[32m\]\w\[\033[33m\] \$(parse_git_branch)\[\033[00m\]\n\\$ "
 
 # set starship prompt:
+command -v fzf &> /dev/null && eval "$(fzf --bash)"
 command -v starship &>/dev/null && eval "$(starship init bash)"
 command -v zoxide &>/dev/null && eval "$(zoxide init bash)"
 
