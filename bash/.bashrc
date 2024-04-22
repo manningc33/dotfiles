@@ -18,29 +18,24 @@ export FZF_DEFAULT_OPTS="--layout=reverse --bind ctrl-c:clear-query"
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 export FZF_TMUX_OPTS="-p -h 100% -w 100%"
 export FZF_CTRL_T_OPTS="--preview='bat --color=always --style=numbers --line-range=:500 {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
-
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob
-
-# Append the the Bash history file, rather than overwriting it
-shopt -s histappend
-
-# check the window size after each command and, if necessary,
-# update the value of LINES and COLUMNS.
-shopt -s checkwinsize
+export TMUX_PLUGIN_MANAGER_PATH=~/.local/share/tmux/plugins
 
 # Prevent file overwriet on stdout redirection
 # Use '>|' to force redirection to an existing file
 set -o noclobber
 
-# Enable some Bash 4 features when possible:
-# * autocd, e.g. '**/qux' will enter './foo/bar/baz/qux'
-# * Recursize globbing, e.g. 'echo **/*.text'
-# * dirspell, correct spelling errors during tab-completion
-# * cdspell correct spelling errors in arguments supplied to cd
-for option in autocd globstar dirspell cdspell; do
-	shopt -s "$option" 2>/dev/null
-done
+# enable shell options
+options=(
+	autocd       # e.g. '**/qux' will enter './foo/bar/baz/qux'
+	cdspell      # correct spelling errors in arguments supplied to cd
+	checkwinsize # check the window size after each command and, if necessary, update the value of LINES and COLUMNS.
+	cmdhist      # save multiline commands in one history entry
+	dirspell     # correct spelling errors during tab-completion
+	globstar     # recursive globbing, e.g. 'echo **/*.text'
+	histappend   # append the the Bash history file, rather than overwriting it
+	nocaseglob   # case-insensitive globbing (used in pathname expansion)
+)
+shopt -s "${options[@]}" # 2>/dev/null
 
 parse_git_branch() {
 	git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
@@ -49,8 +44,8 @@ parse_git_branch() {
 # set prompt just incase starship isn't available
 PS1="\n\t \[\033[32m\]\w\[\033[33m\] \$(parse_git_branch)\[\033[00m\]\n\\$ "
 
-# set starship prompt:
-command -v fzf &> /dev/null && eval "$(fzf --bash)"
+# init fzf, starship and zoxide
+command -v fzf &>/dev/null && eval "$(fzf --bash)"
 command -v starship &>/dev/null && eval "$(starship init bash)"
 command -v zoxide &>/dev/null && eval "$(zoxide init bash)"
 
