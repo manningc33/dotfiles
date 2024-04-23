@@ -63,7 +63,7 @@ keymap.set("n", "i", function()
 end, { desc = "enter insert mode", expr = true })
 
 -- no yank delete
-keymap.set("n", ")", '"_d', { desc = "delete without yanking" })
+keymap.set({ "n", "x" }, ")", '"_d', { desc = "delete without yanking" })
 keymap.set("n", "))", '"_dd', { desc = "delete line without yanking" })
 keymap.set("n", "dd", function()
   if vim.api.nvim_get_current_line():match("^%s*$") then

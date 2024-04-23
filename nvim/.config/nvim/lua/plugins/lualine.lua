@@ -1,20 +1,35 @@
 return {
   "nvim-lualine/lualine.nvim",
   config = function()
+    -- function to detect substitute.nvim exchange mode
+    local function exchange()
+      if vim.b.exchange_origin ~= nil then
+        return [[ exchange in progress]]
+      end
+      return ""
+    end
+
     require("lualine").setup({
       options = {
         icons_enabled = true,
         theme = "catppuccin",
         disabled_filetypes = {
-          statusline = { "NvimTree" },
-          winbar = { "NvimTree" },
+          -- statusline = { "NvimTree" },
+          -- winbar = { "NvimTree" },
         },
         ignore_focus = { "NvimTree" },
       },
       sections = {
         lualine_b = { "diff", "diagnostics" },
         lualine_c = { { "filename", newfile_status = true } },
-        lualine_x = { "fileformat", "filetype" },
+        lualine_x = {
+          {
+            exchange,
+            color = { fg = "pink" }
+          },
+          { "fileformat" },
+          { "filetype" }
+        },
       },
       tabline = {
         lualine_b = { { 'branch', color = { fg = "#b4befe" } } },
@@ -26,7 +41,8 @@ return {
       },
       inactive_winbar = {
         lualine_c = { { 'filename', path = 1, newfile_status = true } },
-      }
+      },
+      extensions = { "oil", "nvim-tree", "lazy", "mason", "man", "quickfix" },
     })
   end,
 }
