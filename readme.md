@@ -40,10 +40,8 @@ cd dotfiles
 ## To-do 
 - make readme look better
 - git integration: fugitive, set up vim nvim parity with gitgutter and gitsigns 
-- look in to integrating lazy-git with bat for colored display
-- store symlinks in file to be read by setup.sh
 - extract XDG config stuff as environment variables 
+- figure out running how to bashrc system wide 
 - add flag to setup to forcibly reinstall everything
 - vim-floatterm form lazygit integration
-- reconfigure starship to use nerdfont 
-- nvim autocomplete 
+- move inputrc and bash files outside of home directory
