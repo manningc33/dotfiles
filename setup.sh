@@ -4,8 +4,10 @@ dotfiles_dir=~/dotfiles
 
 git pull origin master
 
-function homebrewInstall() {
+function installHomebrew() {
 	! command -v brew &>/dev/null && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+	test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 	brew update
 	brew upgrade
 
@@ -13,11 +15,13 @@ function homebrewInstall() {
 		bat
 		eza
 		fzf
+		gcc
 		git
 		git-delta
 		lazygit
 		neofetch
 		neovim
+		node
 		ripgrep
 		starship
 		stow
@@ -29,14 +33,26 @@ function homebrewInstall() {
 	brew install "${pkgs[@]}"
 }
 
-function catppuccinThemesInstall() {
-	# get bat catppuccin theme
+function installMisc() {
+  # install rust and cargo 
+  echo "Installing rust..."
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+	# get bat and delta-git catppuccin theme
 	echo "Getting bat and delta catppuccin themes if not present..."
 	[ ! -f ~/.config/bat/themes/Catppuccin\ Mocha.tmTheme ] && wget -P ~/.config/bat/themes https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
 	[ ! -f ~/.local/share/catppuccin/delta/catppuccin.gitconfig ] && wget -P ~/.local/share/catppuccin/delta https://github.com/catppuccin/delta/raw/main/catppuccin.gitconfig
+
+  # build bat themes 
+  bat cache --build
 }
 
-function stowCreateLinks() {
+function installApps() {
+  installHomebrew
+  installMisc
+}
+
+function createStowLinks() {
 	mkdir -p "$HOME/.config"
 	# stowing all modules
 	stow_modules=(
@@ -55,9 +71,8 @@ function stowCreateLinks() {
 }
 
 function runSetup() {
-	homebrewInstall
-	catppuccinThemesInstall
-	stowCreateLinks
+	installApps
+	createStowLinks
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
@@ -73,6 +88,7 @@ fi
 echo "Dotfiles setup finish"
 
 unset runSetup
-unset homebrewInstall
-unset catppuccinThemesInstall
-unset stowCreateLinks
+unset installHomebrew
+unset installMisc
+unset installApps
+unset createStowLinks
