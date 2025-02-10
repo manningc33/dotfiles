@@ -5,10 +5,10 @@ local function augroup(name)
 end
 
 -- Last position on Document
-autocmd("BufReadPost", {
-  group = augroup("last_loc"),
+autocmd('BufReadPost', {
+  group = augroup 'last_loc',
   callback = function(event)
-    local exclude = { "gitcommit" }
+    local exclude = { 'gitcommit' }
     local buf = event.buf
     if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
       return
@@ -23,38 +23,38 @@ autocmd("BufReadPost", {
 })
 
 -- Check if we need to reload the file when it changed
-autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
-  group = augroup("checktime"),
+autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
+  group = augroup 'checktime',
   callback = function()
-    if vim.o.buftype ~= "nofile" then
-      vim.cmd("checktime")
+    if vim.o.buftype ~= 'nofile' then
+      vim.cmd 'checktime'
     end
   end,
 })
 
 -- Highlight on yank
-autocmd("TextYankPost", {
-  group = augroup("highlight_yank"),
+autocmd('TextYankPost', {
+  desc = 'Highlight when yanking text',
+  group = augroup 'highlight_yank',
   callback = function()
     vim.highlight.on_yank()
   end,
 })
 
 -- resize splits if window got resized
-autocmd({ "VimResized" }, {
-  group = augroup("resize_splits"),
+autocmd({ 'VimResized' }, {
+  group = augroup 'resize_splits',
   callback = function()
     local current_tab = vim.fn.tabpagenr()
-    vim.cmd("tabdo wincmd =")
-    vim.cmd("tabnext " .. current_tab)
+    vim.cmd 'tabdo wincmd ='
+    vim.cmd('tabnext ' .. current_tab)
   end,
 })
 
-
 -- wrap and check for spell in text filetypes
-autocmd("FileType", {
-  group = augroup("wrap_spell"),
-  pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
+autocmd('FileType', {
+  group = augroup 'wrap_spell',
+  pattern = { 'text', 'plaintex', 'typst', 'gitcommit', 'markdown' },
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
@@ -62,31 +62,31 @@ autocmd("FileType", {
 })
 
 -- close some filetypes with <q>
-autocmd("FileType", {
-  group = augroup("close_with_q"),
+autocmd('FileType', {
+  group = augroup 'close_with_q',
   pattern = {
-    "PlenaryTestPopup",
-    "grug-far",
-    "help",
-    "lspinfo",
-    "notify",
-    "qf",
-    "spectre_panel",
-    "startuptime",
-    "tsplayground",
-    "neotest-output",
-    "checkhealth",
-    "neotest-summary",
-    "neotest-output-panel",
-    "dbout",
-    "gitsigns.blame",
+    'PlenaryTestPopup',
+    'grug-far',
+    'help',
+    'lspinfo',
+    'notify',
+    'qf',
+    'spectre_panel',
+    'startuptime',
+    'tsplayground',
+    'neotest-output',
+    'checkhealth',
+    'neotest-summary',
+    'neotest-output-panel',
+    'dbout',
+    'gitsigns.blame',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", {
+    vim.keymap.set('n', 'q', '<cmd>close<cr>', {
       buffer = event.buf,
       silent = true,
-      desc = "Quit buffer",
+      desc = 'Quit buffer',
     })
   end,
 })
