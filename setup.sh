@@ -34,14 +34,10 @@ function installHomebrew() {
 }
 
 function installMisc() {
-  # install rust and cargo 
-  echo "Installing rust..."
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
-	# get bat and delta-git catppuccin theme
-	echo "Getting bat and delta catppuccin themes if not present..."
-	[ ! -f ~/.config/bat/themes/Catppuccin\ Mocha.tmTheme ] && wget -P ~/.config/bat/themes https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
-	[ ! -f ~/.local/share/catppuccin/delta/catppuccin.gitconfig ] && wget -P ~/.local/share/catppuccin/delta https://github.com/catppuccin/delta/raw/main/catppuccin.gitconfig
+  # get bat and delta-git catppuccin theme
+  echo "Getting bat and delta catppuccin themes if not present..."
+  [ ! -f ~/.config/bat/themes/Catppuccin\ Mocha.tmTheme ] && wget -P ~/.config/bat/themes https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+  [ ! -f ~/.local/share/catppuccin/delta/catppuccin.gitconfig ] && wget -P ~/.local/share/catppuccin/delta https://github.com/catppuccin/delta/raw/main/catppuccin.gitconfig
 
   # build bat themes 
   bat cache --build
@@ -64,7 +60,7 @@ function createStowLinks() {
 		# other
 	)
 
-	stow "${stow_modules[@]}"
+	stow --adopt "${stow_modules[@]}"
 
 	. ~/.profile
 	. ~/.bashrc
