@@ -8,7 +8,8 @@ export HISTFILESIZE=32768
 
 # Don't put duplicate lines or lines starting with space in the history
 export HISTCONTROL='erasedups:ignoreboth'
-export HISTIGNORE="&:[ ]*:exit:ls:pg:fg:history:clear:h"
+export HISTIGNORE="&:[ ]*:exit:pg:fg:history:clear:h"
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # force color terminal
 export TERM=xterm-256color
