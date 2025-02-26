@@ -13,27 +13,37 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({ import = 'plugins' }, { change_detection = { notify = false } })
-
 require('lazy').setup {
-  require 'plugins.nvim-tree',
-  require 'plugins.colortheme',
-  require 'plugins.tmux',
-  require 'plugins.lualine',
-  require 'plugins.treesitter',
-  require 'plugins.telescope',
-  require 'plugins.lsp',
-  require 'plugins.formatting',
-  require 'plugins.lint',
-  require 'plugins.autocompletion',
-  require 'plugins.gitsigns',
-  require 'plugins.alpha',
-  require 'plugins.indent-blankline',
-  require 'plugins.oil',
-  require 'plugins.comments',
-  require 'plugins.autopairs',
-  require 'plugins.mini',
-  require 'plugins.misc',
-  require 'plugins.which-key',
-  require 'plugins.harpoon',
+  spec = {
+    { import = 'plugins' },
+    { import = 'plugins.ui' },
+    { import = 'plugins.coding' },
+    { import = 'plugins.editor' },
+  },
+  change_detection = { notify = false },
 }
+require('lazy').setup { import = 'plugins' } -- , { change_detection = { notify = false } })
+-- require('lazy').setup({ import = 'plugins' }, { change_detection = { notify = false } })
+
+-- require('lazy').setup {
+--   require 'plugins.nvim-tree',
+--   require 'plugins.colortheme',
+--   require 'plugins.tmux',
+--   require 'plugins.lualine',
+--   require 'plugins.treesitter',
+--   require 'plugins.telescope',
+--   require 'plugins.lsp',
+--   require 'plugins.formatting',
+--   require 'plugins.lint',
+--   require 'plugins.autocompletion',
+--   require 'plugins.gitsigns',
+--   require 'plugins.alpha',
+--   require 'plugins.indent-blankline',
+--   require 'plugins.oil',
+--   require 'plugins.comments',
+--   require 'plugins.autopairs',
+--   require 'plugins.mini',
+--   require 'plugins.misc',
+--   require 'plugins.which-key',
+--   require 'plugins.harpoon',
+-- }

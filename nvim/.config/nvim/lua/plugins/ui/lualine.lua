@@ -22,26 +22,23 @@ return {
       },
       sections = {
         lualine_a = { 'mode' },
-        lualine_b = { 'diff', 'diagnostics' },
+        lualine_b = { 'diagnostics' },
         lualine_c = { { 'filename', newfile_status = true } },
         lualine_x = {
           {
             exchange,
             color = { fg = 'pink' },
           },
+          { 'diff' },
           { 'fileformat' },
           { 'encoding' },
           { 'filetype' },
         },
-        lualine_y = { 'progress' },
-        lualine_z = { 'location' },
-      },
-      tabline = {
-        lualine_b = { { 'branch', color = { fg = '#b4befe' } } },
-        lualine_c = { { 'buffers', mode = 2 } },
+        lualine_y = { 'branch' },
+        lualine_z = { { 'progress', 'location' } },
       },
       winbar = {
-        lualine_c = { { 'filename', path = 1, newfile_status = true } },
+        lualine_c = { { 'filename', path = 1 }, { 'navic', color_correction = 'dyanmic' } },
         lualine_x = { 'searchcount' },
       },
       inactive_winbar = {

@@ -1,4 +1,4 @@
-return {
+return { -- for special commenting, gco, gcO, gcA
   'numToStr/Comment.nvim',
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
@@ -9,6 +9,9 @@ return {
 
     comment.setup {
       pre_hook = ts_context_commentstring.create_pre_hook(),
+      mappings = {
+        basic = vim.fn.has 'nvim-0.10.0' == 0, -- basic is no longer necessary with neovim version 0.10.0
+      },
     }
   end,
 }

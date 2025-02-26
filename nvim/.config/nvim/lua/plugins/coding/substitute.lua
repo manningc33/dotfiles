@@ -1,4 +1,4 @@
-return {
+return { -- addes additional substitute and exchange operators, another plugin that can do this is mini.operators
   'gbprod/substitute.nvim',
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
