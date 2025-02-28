@@ -7,6 +7,8 @@ return {
     oil.setup {
       default_file_explorer = false,
       use_default_keymaps = true,
+      delete_to_trash = true,
+      skip_confirm_for_simple_edits = true,
       keymaps = {
         ['g?'] = 'actions.show_help',
         ['<CR>'] = 'actions.select',
@@ -26,5 +28,6 @@ return {
       },
     }
     vim.keymap.set('n', '-', oil.toggle_float, { desc = 'Open up oil in floating window' })
+    vim.keymap.set('n', '<leader><leader>-', oil.open, { desc = 'Open up oil in floating window' })
   end,
 }

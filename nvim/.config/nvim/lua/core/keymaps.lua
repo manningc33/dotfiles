@@ -145,3 +145,6 @@ set_keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnosti
 
 -- lazy
 set_keymap('n', '<leader>L', '<cmd>Lazy<cr>', { desc = 'Lazy' })
+set_keymap('n', '<leader>lg', function()
+  Snacks.lazygit()
+end, { desc = 'Lazygit' }) 
