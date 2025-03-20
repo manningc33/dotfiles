@@ -30,6 +30,9 @@ set_keymap('n', 'x', '"_x')
 -- shift tab behaves correctly
 set_keymap('i', '<S-Tab>', '<C-d>', { desc = 'shift-tab behaves normally in insert' })
 
+-- join line
+set_keymap('n', 'J', 'mzJ`z', { desc = 'Join lines' })
+
 -- smart beginning and end of line
 set_keymap({ 'n', 'v', 'i' }, '<Home>', function()
   local column = vim.fn.col('.')
@@ -90,6 +93,10 @@ set_keymap('n', 'dd', function()
     return 'dd'
   end
 end, { desc = 'delete line', expr = true })
+
+-- search and replace word
+set_keymap('n', '<leader>*', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'replace word' })
+set_keymap('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'Change file to executable' })
 
 -- Diagnostic keymaps
 set_keymap('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
