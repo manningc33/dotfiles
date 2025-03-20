@@ -17,10 +17,8 @@ return {
       changedelete = { text = '▎' },
     },
     on_attach = function(bufnr)
-      local gs = require 'gitsigns'
-      local function map(mode, l, r, desc)
-        vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
-      end
+      local gs = require('gitsigns')
+      local function map(mode, l, r, desc) vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc }) end
 
     -- stylua: ignore start
     map('n', ']h', function()

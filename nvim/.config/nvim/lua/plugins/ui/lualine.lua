@@ -9,7 +9,7 @@ return {
       return ''
     end
 
-    require('lualine').setup {
+    require('lualine').setup({
       options = {
         icons_enabled = true,
         theme = 'catppuccin',
@@ -35,7 +35,7 @@ return {
           { 'filetype' },
         },
         lualine_y = { 'branch' },
-        lualine_z = { { 'progress', 'location' } },
+        lualine_z = { { 'progress' }, { 'location' } },
       },
       winbar = {
         lualine_c = { { 'filename', path = 1 }, { 'navic', color_correction = 'dyanmic' } },
@@ -45,6 +45,6 @@ return {
         lualine_c = { { 'filename', path = 1, newfile_status = true } },
       },
       extensions = { 'oil', 'nvim-tree', 'lazy', 'mason', 'man', 'quickfix' },
-    }
+    })
   end,
 }

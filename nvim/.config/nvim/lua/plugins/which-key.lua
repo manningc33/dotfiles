@@ -28,9 +28,7 @@ return { -- Useful plugin to show you pending keybinds.
   keys = {
     {
       '<leader>?',
-      function()
-        require('which-key').show { global = false }
-      end,
+      function() require('which-key').show({ global = false }) end,
       desc = 'Buffer Local Keymaps (which-key)',
     },
   },

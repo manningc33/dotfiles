@@ -32,10 +32,10 @@ set_keymap('i', '<S-Tab>', '<C-d>', { desc = 'shift-tab behaves normally in inse
 
 -- smart beginning and end of line
 set_keymap({ 'n', 'v', 'i' }, '<Home>', function()
-  local column = vim.fn.col '.'
-  vim.cmd 'normal! ^'
-  if column == vim.fn.col '.' then
-    vim.cmd 'normal! 0'
+  local column = vim.fn.col('.')
+  vim.cmd('normal! ^')
+  if column == vim.fn.col('.') then
+    vim.cmd('normal! 0')
   end
 end, { desc = 'go to start of line' })
 set_keymap('o', '<Home>', '^', { desc = 'go to start of line' })
@@ -84,7 +84,7 @@ set_keymap('v', 'p', '"_dP')
 set_keymap({ 'n', 'x' }, ')', '"_d', { desc = 'delete without yanking' })
 set_keymap('n', '))', '"_dd', { desc = 'delete line without yanking' })
 set_keymap('n', 'dd', function()
-  if vim.api.nvim_get_current_line():match '^%s*$' then
+  if vim.api.nvim_get_current_line():match('^%s*$') then
     return '"_dd'
   else
     return 'dd'
@@ -99,6 +99,4 @@ set_keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnosti
 
 -- lazy
 set_keymap('n', '<leader>L', '<cmd>Lazy<cr>', { desc = 'Lazy' })
-set_keymap('n', '<leader>lg', function()
-  Snacks.lazygit()
-end, { desc = 'Lazygit' })
+set_keymap('n', '<leader>lg', function() Snacks.lazygit() end, { desc = 'Lazygit' })

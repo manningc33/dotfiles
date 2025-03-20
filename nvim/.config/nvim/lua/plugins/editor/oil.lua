@@ -3,8 +3,8 @@ return {
   opts = {},
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
-    local oil = require 'oil'
-    oil.setup {
+    local oil = require('oil')
+    oil.setup({
       default_file_explorer = false,
       use_default_keymaps = true,
       delete_to_trash = true,
@@ -26,7 +26,7 @@ return {
         ['h'] = 'actions.toggle_hidden',
         ['g.'] = 'actions.toggle_trash',
       },
-    }
+    })
     vim.keymap.set('n', '-', oil.toggle_float, { desc = 'Open up oil in floating window' })
     vim.keymap.set('n', '<leader><leader>-', oil.open, { desc = 'Open up oil in floating window' })
   end,

@@ -1,7 +1,7 @@
 return {
   'echasnovski/mini.surround',
   config = function()
-    require('mini.surround').setup {
+    require('mini.surround').setup({
       mappings = {
         add = 'gsa', -- Add surrounding in Normal and Visual modes
         delete = 'gsd', -- Delete surrounding
@@ -11,6 +11,6 @@ return {
         highlight = 'gsh', -- Highlight surrounding
         update_n_lines = 'gsn', -- Update `n_lines`
       },
-    }
+    })
   end,
 }

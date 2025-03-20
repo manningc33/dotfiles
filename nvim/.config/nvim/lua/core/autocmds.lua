@@ -1,12 +1,10 @@
 local autocmd = vim.api.nvim_create_autocmd
 
-local function augroup(name)
-  return vim.api.nvim_create_augroup(name, { clear = true })
-end
+local function augroup(name) return vim.api.nvim_create_augroup(name, { clear = true }) end
 
 -- Last position on Document
 autocmd('BufReadPost', {
-  group = augroup 'last_loc',
+  group = augroup('last_loc'),
   callback = function(event)
     local exclude = { 'gitcommit' }
     local buf = event.buf
@@ -24,10 +22,10 @@ autocmd('BufReadPost', {
 
 -- Check if we need to reload the file when it changed
 autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
-  group = augroup 'checktime',
+  group = augroup('checktime'),
   callback = function()
     if vim.o.buftype ~= 'nofile' then
-      vim.cmd 'checktime'
+      vim.cmd('checktime')
     end
   end,
 })
@@ -35,25 +33,23 @@ autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
 -- Highlight on yank
 autocmd('TextYankPost', {
   desc = 'Highlight when yanking text',
-  group = augroup 'highlight_yank',
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+  group = augroup('highlight_yank'),
+  callback = function() vim.highlight.on_yank() end,
 })
 
 -- resize splits if window got resized
 autocmd({ 'VimResized' }, {
-  group = augroup 'resize_splits',
+  group = augroup('resize_splits'),
   callback = function()
     local current_tab = vim.fn.tabpagenr()
-    vim.cmd 'tabdo wincmd ='
+    vim.cmd('tabdo wincmd =')
     vim.cmd('tabnext ' .. current_tab)
   end,
 })
 
 -- wrap and check for spell in text filetypes
 autocmd('FileType', {
-  group = augroup 'wrap_spell',
+  group = augroup('wrap_spell'),
   pattern = { 'text', 'plaintex', 'typst', 'gitcommit', 'markdown' },
   callback = function()
     vim.opt_local.wrap = true
@@ -63,7 +59,7 @@ autocmd('FileType', {
 
 -- close some filetypes with <q>
 autocmd('FileType', {
-  group = augroup 'close_with_q',
+  group = augroup('close_with_q'),
   pattern = {
     'PlenaryTestPopup',
     'grug-far',

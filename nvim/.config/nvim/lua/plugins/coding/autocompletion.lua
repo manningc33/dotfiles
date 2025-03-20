@@ -7,7 +7,7 @@ return { -- Autocompletion
       build = (function()
         -- Build Step is needed for regex support in snippets.
         -- This step is not supported in many windows environments.
-        if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+        if vim.fn.has('win32') == 1 or vim.fn.executable('make') == 0 then
           return
         end
         return 'make install_jsregexp'
@@ -16,9 +16,7 @@ return { -- Autocompletion
         -- `friendly-snippets` contains a variety of premade snippets.
         {
           'rafamadriz/friendly-snippets',
-          config = function()
-            require('luasnip.loaders.from_vscode').lazy_load()
-          end,
+          config = function() require('luasnip.loaders.from_vscode').lazy_load() end,
         },
       },
     },
@@ -32,9 +30,9 @@ return { -- Autocompletion
     -- 'hrsh7th/cmp-cmdline',
   },
   config = function()
-    local cmp = require 'cmp'
-    local luasnip = require 'luasnip'
-    luasnip.config.setup {}
+    local cmp = require('cmp')
+    local luasnip = require('luasnip')
+    luasnip.config.setup({})
 
     local kind_icons = {
       Text = '󰉿',
@@ -63,11 +61,9 @@ return { -- Autocompletion
       Operator = '󰆕',
       TypeParameter = '󰊄',
     }
-    cmp.setup {
+    cmp.setup({
       snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
+        expand = function(args) luasnip.lsp_expand(args.body) end,
       },
       completion = { completeopt = 'menu,menuone,noinsert' },
 
@@ -75,7 +71,7 @@ return { -- Autocompletion
       -- chosen, you will need to read `:help ins-completion`
       --
       -- No, but seriously. Please read `:help ins-completion`, it is really good!
-      mapping = cmp.mapping.preset.insert {
+      mapping = cmp.mapping.preset.insert({
         -- Select the [n]ext item
         ['<C-n>'] = cmp.mapping.select_next_item(),
         -- Select the [p]revious item
@@ -92,14 +88,14 @@ return { -- Autocompletion
 
         -- If you prefer more traditional completion keymaps,
         -- you can uncomment the following lines
-        ['<CR>'] = cmp.mapping.confirm { select = true },
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
         -- ['<Tab>'] = cmp.mapping.select_next_item(),
         -- ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
         -- Manually trigger a completion from nvim-cmp.
         --  Generally you don't need this, because nvim-cmp will display
         --  completions whenever it has completion options available.
-        ['<C-Space>'] = cmp.mapping.complete {},
+        ['<C-Space>'] = cmp.mapping.complete({}),
 
         -- Think of <c-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:
@@ -141,7 +137,7 @@ return { -- Autocompletion
             fallback()
           end
         end, { 'i', 's' }),
-      },
+      }),
       sources = {
         {
           name = 'lazydev',
@@ -166,6 +162,6 @@ return { -- Autocompletion
           return vim_item
         end,
       },
-    }
+    })
   end,
 }

@@ -1,6 +1,4 @@
-local buf_delete = function(n)
-  Snacks.bufdelete(n)
-end
+local buf_delete = function(n) Snacks.bufdelete(n) end
 
 return {
   'akinsho/bufferline.nvim',
@@ -19,7 +17,7 @@ return {
     { ']b', '<cmd>BufferLineMoveNext<cr>', desc = 'Move buffer next' },
   },
   config = function()
-    require('bufferline').setup {
+    require('bufferline').setup({
       options = {
         close_command = buf_delete,
         right_mouse_command = buf_delete,
@@ -34,12 +32,10 @@ return {
           },
         },
       },
-    }
+    })
     vim.api.nvim_create_autocmd({ 'BufAdd', 'BufDelete' }, {
       callback = function()
-        vim.schedule(function()
-          pcall(nvim_bufferline)
-        end)
+        vim.schedule(function() pcall(nvim_bufferline) end)
       end,
     })
   end,
