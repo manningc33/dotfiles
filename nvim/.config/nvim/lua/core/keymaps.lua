@@ -81,7 +81,7 @@ set_keymap('v', '<', '<gv')
 set_keymap('v', '>', '>gv')
 
 -- Keep last yanked when pasting
-set_keymap('v', 'p', '"_dP')
+-- set_keymap('v', 'p', '"_dP')
 
 -- Delete without yanking
 set_keymap({ 'n', 'x' }, ')', '"_d', { desc = 'delete without yanking' })
@@ -101,7 +101,7 @@ set_keymap('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'Ch
 -- Diagnostic keymaps
 set_keymap('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 set_keymap('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-set_keymap('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+set_keymap('n', '<leader>dd', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 set_keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- lazy
