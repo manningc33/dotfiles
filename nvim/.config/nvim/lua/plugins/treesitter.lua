@@ -22,6 +22,7 @@ return {
       'perl',
       'python',
       'query',
+      'regex',
       'rust',
       'toml',
       'vim',
