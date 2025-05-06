@@ -65,9 +65,6 @@ set_keymap('n', '<leader>tx', ':tabclose<CR>') -- close current tab
 set_keymap('n', '<leader>tn', ':tabn<CR>') --  go to next tab
 set_keymap('n', '<leader>tp', ':tabp<CR>') --  go to previous tab
 
--- Toggle line wrapping
-set_keymap('n', '<leader>lw', '<cmd>set wrap!<CR>')
-
 -- Stay in indent mode
 set_keymap('v', '<', '<gv')
 set_keymap('v', '>', '>gv')

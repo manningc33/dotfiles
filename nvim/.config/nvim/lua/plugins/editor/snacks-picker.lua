@@ -1,7 +1,10 @@
 return {
   'folke/snacks.nvim',
+  priority = 1000,
+  lazy = false,
   opts = {
-    picker = {},
+    picker = { enabled = true },
+    indent = { enabled = true, animate = { enabled = false }, scope = { enabled = false } },
   },
   keys = {
     { '\\', function() Snacks.picker.smart() end, desc = 'Find Files (Root Dir)' },
