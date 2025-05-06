@@ -59,14 +59,6 @@ set_keymap('n', '<leader>-', '<C-W>s', { desc = 'Split Window Below', noremap = 
 set_keymap('n', '<leader>|', '<C-W>v', { desc = 'Split Window Right', noremap = false })
 set_keymap('n', '<leader>wd', '<C-W>c', { desc = 'Delete Window', noremap = false })
 
--- Move visual blocks
-set_keymap('n', '<M-Up>', '<cmd>m -2<CR>', { desc = 'move block up' })
-set_keymap('n', '<M-Down>', '<cmd>m +1<CR>', { desc = 'move block up' })
-set_keymap('i', '<M-Up>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
-set_keymap('i', '<M-Down>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Down' })
-set_keymap('v', '<M-Up>', ":m '<-2<CR>gv=gv", { desc = 'move block up' })
-set_keymap('v', '<M-Down>', ":m '>+1<CR>gv=gv", { desc = 'move block down' })
-
 -- Tabs
 set_keymap('n', '<leader>to', ':tabnew<CR>') -- open new tab
 set_keymap('n', '<leader>tx', ':tabclose<CR>') -- close current tab
