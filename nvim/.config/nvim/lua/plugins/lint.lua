@@ -1,9 +1,9 @@
 return {
   { -- Linting
     'mfussenegger/nvim-lint',
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = 'LazyFile',
     config = function()
-      local lint = require 'lint'
+      local lint = require('lint')
       lint.linters_by_ft = {
         markdown = { 'markdownlint' },
         -- c = { 'cpplint' },
@@ -46,9 +46,7 @@ return {
           end
         end,
       })
-      vim.keymap.set('n', '<Leader>gl', function()
-        lint.try_lint()
-      end, { desc = 'Trigger linting for current file' })
+      vim.keymap.set('n', '<Leader>gl', function() lint.try_lint() end, { desc = 'Trigger linting for current file' })
     end,
   },
 }

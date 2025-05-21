@@ -4,7 +4,6 @@ return {
   lazy = false,
   opts = {
     picker = { enabled = true },
-    indent = { enabled = true, animate = { enabled = false }, scope = { enabled = false } },
   },
   keys = {
     { '\\', function() Snacks.picker.smart() end, desc = 'Find Files (Root Dir)' },
