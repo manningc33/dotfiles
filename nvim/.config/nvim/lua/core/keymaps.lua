@@ -69,6 +69,8 @@ set_keymap('n', '<leader>tp', ':tabp<CR>') --  go to previous tab
 set_keymap('v', '<', '<gv')
 set_keymap('v', '>', '>gv')
 
+set_keymap('n', 'zff', 'V%zf', { desc = 'create fold for block' })
+
 -- Keep last yanked when pasting
 -- set_keymap('v', 'p', '"_dP')
 
