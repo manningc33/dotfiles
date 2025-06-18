@@ -4,6 +4,7 @@ return { -- autocompletion
   dependencies = {
     'rafamadriz/friendly-snippets',
   },
+  version = '1.*',
   opts = {
     keymap = {
       preset = 'default',
