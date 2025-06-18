@@ -1,7 +1,7 @@
 return {
   'nvim-lualine/lualine.nvim',
   event = 'VeryLazy',
-  opt = {
+  opts = {
     options = {
       icons_enabled = true,
       theme = 'catppuccin',
