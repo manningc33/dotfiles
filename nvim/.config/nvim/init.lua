@@ -23,6 +23,7 @@ require('lazy').setup({
     { import = 'plugins.utility' },
     { import = 'plugins.coding' },
     { import = 'plugins.editor' },
+    { import = 'plugins.lang' },
   },
   change_detection = { notify = false },
 })
