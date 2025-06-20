@@ -43,7 +43,16 @@ return {
     },
   },
   {
+    'mfussenegger/nvim-lint',
+    opts = {
+      linters_by_ft = {
+        c = { 'cpplint' },
+        cpp = { 'cpplint' },
+      },
+    },
+  },
+  {
     'mason-org/mason.nvim',
-    opts = { ensure_installed = { 'clang-format' } },
+    opts = { ensure_installed = { 'clang-format', 'cpplint' } },
   },
 }
