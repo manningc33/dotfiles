@@ -17,8 +17,8 @@ vim.g.maplocalleader = ' '
 -- better up/down
 set_keymap({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = 'Down' })
 set_keymap({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'Up' })
-set_keymap('i', '<Down>', "v:count == 0 ? '<cmd>normal! gj<cr>' : '<Down>'", { expr = true, desc = 'Down' })
-set_keymap('i', '<Up>', "v:count == 0 ? '<cmd>normal! gk<cr>' : '<Up>'", { expr = true, desc = 'Up' })
+set_keymap('i', '<Down>', '<C-o>g<Down>', { desc = 'Down' })
+set_keymap('i', '<Up>', '<C-o>g<Up>', { desc = 'Up' })
 
 -- Clear search with <esc>
 set_keymap({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Escape and Clear hlsearch' })
@@ -44,7 +44,8 @@ set_keymap({ 'n', 'v', 'i' }, '<Home>', function()
   end
 end, { desc = 'go to start of line' })
 set_keymap('o', '<Home>', '^', { desc = 'go to start of line' })
-set_keymap({ 'n', 'v', 'i' }, '<End>', '<cmd>normal! g$<cr>', { desc = 'go to end of line' })
+set_keymap({ 'n', 'v' }, '<End>', 'g$', { desc = 'go to end of line' })
+set_keymap('i', '<End>', '<C-o>g$', { desc = 'go to end of line' })
 
 -- Vertical scroll and center
 set_keymap({ 'n', 'v' }, '<C-d>', '<C-d>zz')
