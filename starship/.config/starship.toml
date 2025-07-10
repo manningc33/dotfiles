@@ -4,6 +4,7 @@ format = """
 $time\
 $directory\
 $git_branch\
+$git_commit\
 $git_state\
 $git_status\
 $cmd_duration\
@@ -26,6 +27,9 @@ vimcmd_symbol = "[](bold green)"
 format = "[$symbol$branch(:$remote_branch)]($style) "
 style = "mauve"
 truncation_length = 30
+
+[git_commit]
+tag_disabled = false
 
 [git_state]
 style = "bright-black"
