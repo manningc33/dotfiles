@@ -1,5 +1,7 @@
 local opt = vim.opt
 
+vim.g.autoformat = true
+
 opt.number = true -- show line number
 opt.relativenumber = true -- show relative line number
 opt.clipboard = 'unnamedplus' -- Copy/paste to system clipboard

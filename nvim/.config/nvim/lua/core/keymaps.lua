@@ -58,7 +58,6 @@ set_keymap('n', 'n', 'nzzzv')
 set_keymap('n', 'N', 'Nzzzv')
 
 -- Windows
-set_keymap('n', '<leader>w', '<c-w>', { desc = 'Windows', noremap = false })
 set_keymap('n', '<leader>-', '<C-W>s', { desc = 'Split Window Below', noremap = false })
 set_keymap('n', '<leader>|', '<C-W>v', { desc = 'Split Window Right', noremap = false })
 set_keymap('n', '<leader>wd', '<C-W>c', { desc = 'Delete Window', noremap = false })
