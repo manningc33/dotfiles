@@ -11,9 +11,9 @@ return { -- addes additional substitute and exchange operators, another plugin t
     vim.keymap.set('n', '<leader>P', substitute.eol, { desc = 'Paste over to end of line' })
     vim.keymap.set('x', '<leader>p', substitute.visual, { desc = 'Paste over' })
 
-    vim.keymap.set('n', '(', require('substitute.exchange').operator, { noremap = true, desc = 'Exchange' })
-    vim.keymap.set('n', '((', require('substitute.exchange').line, { noremap = true, desc = 'Exchange line' })
-    vim.keymap.set('x', '(', require('substitute.exchange').visual, { noremap = true, desc = 'Exchange' })
-    vim.keymap.set('n', '(c', require('substitute.exchange').cancel, { noremap = true, desc = 'cancel exchange' })
+    vim.keymap.set('n', 'gx', require('substitute.exchange').operator, { noremap = true, desc = 'Exchange' })
+    vim.keymap.set('n', 'gxx', require('substitute.exchange').line, { noremap = true, desc = 'Exchange line' })
+    vim.keymap.set('x', 'gx', require('substitute.exchange').visual, { noremap = true, desc = 'Exchange' })
+    vim.keymap.set('n', 'gxc', require('substitute.exchange').cancel, { noremap = true, desc = 'cancel exchange' })
   end,
 }

@@ -7,7 +7,7 @@ local function dial(increment, g)
   return require('dial.map')[func](group)
 end
 
-return {
+return { -- extend ctrl-a and ctrl-x functionality
   'monaqa/dial.nvim',
   recommended = true,
   desc = 'Increment and decrement numbers, dates, and more',

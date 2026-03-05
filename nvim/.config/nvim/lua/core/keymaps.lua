@@ -78,8 +78,8 @@ set_keymap('n', 'zff', 'V%zf', { desc = 'create fold for block' })
 -- set_keymap('v', 'p', '"_dP')
 
 -- Delete without yanking
-set_keymap({ 'n', 'x' }, ')', '"_d', { desc = 'delete without yanking' })
-set_keymap('n', '))', '"_dd', { desc = 'delete line without yanking' })
+set_keymap({ 'n', 'x' }, 'g)', '"_d', { desc = 'delete without yanking' })
+set_keymap('n', 'g))', '"_dd', { desc = 'delete line without yanking' })
 set_keymap('n', 'dd', function()
   if vim.api.nvim_get_current_line():match('^%s*$') then
     return '"_dd'

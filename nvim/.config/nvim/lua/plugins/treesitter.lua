@@ -1,5 +1,6 @@
 return {
   'nvim-treesitter/nvim-treesitter',
+  lazy = false,
   build = ':TSUpdate',
   opts = {
     ensure_installed = {
@@ -14,6 +15,10 @@ return {
       'gitattributes',
       'gitcommit',
       'gitignore',
+      'go',
+      'gomod',
+      'gowork',
+      'gosum',
       'html',
       'json',
       'latex',
@@ -32,8 +37,8 @@ return {
       'yaml',
     },
     -- Autoinstall languages that are not installed
-    sync_install = false,
     highlight = { enable = true },
     indent = { enable = true },
+    folds = { enable = true },
   },
 }

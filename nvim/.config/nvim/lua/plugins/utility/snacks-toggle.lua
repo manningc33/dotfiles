@@ -19,6 +19,8 @@ return {
         Snacks.toggle.inlay_hints():map('<leader>uh')
         Snacks.toggle.indent():map('<leader>ug')
         Snacks.toggle.dim():map('<leader>uD')
+        Snacks.toggle.zen():map('<leader>uz')
+        Snacks.toggle.zoom():map('<leader>wm'):map('<leader>uZ')
       end,
     })
   end,
