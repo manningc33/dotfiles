@@ -1,6 +1,6 @@
 return { -- autocompletion
   'saghen/blink.cmp',
-  event = 'InsertEnter',
+  event = { 'InsertEnter', 'CmdlineEnter' },
   dependencies = {
     'rafamadriz/friendly-snippets',
     -- { 'L3MON4D3/LuaSnip', version = 'v2.*' },
@@ -31,6 +31,16 @@ return { -- autocompletion
       documentation = { auto_show = true, auto_show_delay_ms = 200 },
     },
     sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
+    cmdline = {
+      enabled = true,
+      completion = {
+        list = { selection = { preselect = false } },
+        menu = {
+          auto_show = function(ctx) return vim.fn.getcmdtype() == ':' end,
+        },
+        ghost_text = { enabled = true },
+      },
+    },
     -- snippets = { preset = 'luasnip' },
   },
   opts_extend = { 'sources.default' },
