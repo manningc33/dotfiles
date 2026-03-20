@@ -6,21 +6,21 @@ return {
         -- Ensure mason installs the server
         clangd = {
           keys = {
-            { '<leader>ch', '<cmd>ClangdSwitchSourceHeader<cr>', desc = 'Switch Source/Header (C/C++)' },
+            { '<leader>ch', '<cmd>LspClangdSwitchSourceHeader<cr>', desc = 'Switch Source/Header (C/C++)' },
           },
-          root_dir = function(fname)
-            return require('lspconfig.util').root_pattern(
-              'Makefile',
-              'configure.ac',
-              'configure.in',
-              'config.h.in',
-              'meson.build',
-              'meson_options.txt',
-              'build.ninja'
-            )(fname) or require('lspconfig.util').root_pattern('compile_commands.json', 'compile_flags.txt')(
-              fname
-            ) or require('lspconfig.util').find_git_ancestor(fname)
-          end,
+          root_markers = {
+            'compile_commands.json',
+            'compile_flags.txt',
+            'configure.ac', -- AutoTools
+            'Makefile',
+            'configure.ac',
+            'configure.in',
+            'config.h.in',
+            'meson.build',
+            'meson_options.txt',
+            'build.ninja',
+            '.git',
+          },
           capabilities = {
             offsetEncoding = { 'utf-16' },
           },
@@ -52,7 +52,11 @@ return {
     },
   },
   {
-    'mason-org/mason.nvim',
+    'mason-org/mason-lspconfig.nvim',
+    opts = { ensure_installed = { 'clangd' } },
+  },
+  {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
     opts = { ensure_installed = { 'clang-format', 'cpplint' } },
   },
 }

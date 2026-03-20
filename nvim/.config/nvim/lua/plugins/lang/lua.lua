@@ -3,6 +3,7 @@ return {
     'neovim/nvim-lspconfig',
     opts = {
       servers = {
+        -- Ensure mason installs the server
         lua_ls = {
           settings = {
             Lua = {
@@ -28,7 +29,22 @@ return {
     },
   },
   {
-    'mason-org/mason.nvim',
-    opts = { ensure_installed = { 'stylua' }, },
+    'mason-org/mason-lspconfig.nvim',
+    opts = { ensure_installed = { 'lua_ls' } },
+  },
+  {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    opts = { ensure_installed = { 'stylua' } },
+  },
+  { -- configure LuaLS of editing Neovim configurations
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    cmd = 'LavyDev',
+    opts = {
+      library = {
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+        { path = 'snacks.nvim', words = { 'Snacks' } },
+      },
+    },
   },
 }

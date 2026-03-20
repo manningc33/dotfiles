@@ -8,15 +8,11 @@ return {
     },
   },
   {
-    'mason-org/mason.nvim',
-    opts = { ensure_installed = { 'cmakelang', 'cmakelint' } },
+    'mason-org/mason-lspconfig.nvim',
+    opts = { ensure_installed = { 'neocmake' } },
   },
   {
-    'neovim/nvim-lspconfig',
-    opts = {
-      servers = {
-        neocmake = {},
-      },
-    },
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    opts = { ensure_installed = { 'cmakelang', 'cmakelint' } },
   },
 }
