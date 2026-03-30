@@ -1,14 +1,20 @@
-return {
-  'SmiteshP/nvim-navic',
-  opts = function()
-    return {
-      separator = ' ',
-      highlight = true,
-      depth_limit = 5,
-      lazy_update_context = true,
-      lsp = {
-        auto_attach = true,
-      },
-    }
-  end,
-}
+return {}
+-- {
+--   'SmiteshP/nvim-navic',
+--   opts = function()
+--     Snacks.toggle({
+--       name = 'navic',
+--       get = function() return not vim.g.navic_disable end,
+--       set = function(state) vim.g.navic_disable = not state end,
+--     }):map('<leader>un')
+--     return {
+--       separator = ' ',
+--       highlight = true,
+--       depth_limit = 5,
+--       lazy_update_context = true,
+--       lsp = {
+--         auto_attach = true,
+--       },
+--     }
+--   end,
+-- }

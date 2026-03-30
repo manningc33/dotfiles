@@ -5,9 +5,9 @@
 -- e.g. lua_ls not lua_language_server, or neocmake not neocmakelsp
 --
 -- Mason is just a tool installer
--- nvim-lspconfig created custom config function. 
---  - sets custom keymaps for lsp 
---  - configures lsp on top of configs provided by nvim-lspconfig 
+-- nvim-lspconfig created custom config function.
+--  - sets custom keymaps for lsp
+--  - configures lsp on top of configs provided by nvim-lspconfig
 --  - enables lsp
 
 return {
@@ -26,7 +26,7 @@ return {
       ensure_installed = {
         'lua_ls',
       },
-      automatic_enable = false,
+      automatic_enable = true,
     },
     dependencies = {
       {
@@ -96,12 +96,11 @@ return {
             -- configure and then enable LSP
             vim.lsp.config(server, server_opts)
             if server ~= '*' then
-              vim.lsp.enable(server)
+              -- vim.lsp.enable(server)
             end
           end
         end,
       },
-    }
-  }
+    },
+  },
 }
-

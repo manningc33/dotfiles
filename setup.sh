@@ -57,6 +57,8 @@ function createStowLinks() {
 		nvim
 		starship
 		tmux
+		# wezterm
+		# zsh
 		# other
 	)
 

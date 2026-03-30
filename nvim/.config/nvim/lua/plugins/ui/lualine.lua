@@ -1,10 +1,29 @@
 return {
   'nvim-lualine/lualine.nvim',
   event = 'VeryLazy',
+  dependencies = {
+    'SmiteshP/nvim-navic',
+    opts = function()
+      Snacks.toggle({
+        name = 'navic',
+        get = function() return not vim.g.navic_disable end,
+        set = function(state) vim.g.navic_disable = not state end,
+      }):map('<leader>un')
+      return {
+        separator = ' ',
+        highlight = true,
+        depth_limit = 5,
+        lazy_update_context = true,
+        lsp = {
+          auto_attach = true,
+        },
+      }
+    end,
+  },
   opts = {
     options = {
       icons_enabled = true,
-      theme = 'catppuccin',
+      -- theme = 'catppuccin',
       disabled_filetypes = {
         -- statusline = { "NvimTree" },
         -- winbar = { "NvimTree" },
@@ -35,7 +54,13 @@ return {
       lualine_z = { { 'progress' }, { 'location' } },
     },
     winbar = {
-      lualine_c = { { 'filename', path = 1 }, { 'navic', color_correction = 'dyanmic' } },
+      lualine_c = {
+        { 'filename', path = 1 },
+        {
+          function() return require('nvim-navic').get_location() end,
+          cond = function() return not vim.g.navic_disable and require('nvim-navic').is_available() end,
+        },
+      },
       lualine_x = { 'searchcount' },
     },
     inactive_winbar = {
