@@ -27,10 +27,8 @@ return {
       'query',
       'regex',
       'rust',
-      'toml',
       'vim',
       'vimdoc',
-      'yaml',
     },
   },
   config = function(_, opts)

@@ -1,5 +1,6 @@
 return {
   'nvim-treesitter/nvim-treesitter-context',
+  event = 'LazyFile',
   opts = function()
     local tsc = require('treesitter-context')
     Snacks.toggle({

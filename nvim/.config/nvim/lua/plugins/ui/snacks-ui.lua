@@ -6,6 +6,9 @@ return { -- used for indent, input, and starting dashboard currently
     indent = { enabled = true, animate = { enabled = false }, scope = { enabled = false } },
     input = { enabled = true },
     dashboard = {
+      preset = {
+        header = {},
+      },
       sections = {
         { section = 'header' },
         { icon = ' ', title = 'Keymaps', section = 'keys', gap = 1, indent = 2, padding = 1 },

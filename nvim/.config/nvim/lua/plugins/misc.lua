@@ -2,25 +2,24 @@ return {
   {
     -- Detect tabstop and shiftwidth automatically
     'tpope/vim-sleuth',
-  },
-  {
-    -- Powerful Git integration for Vim
-    'tpope/vim-fugitive',
-  },
-  {
-    -- Hints keybinds
-    'folke/which-key.nvim',
-  },
-  {
-    -- Highlight todo, notes, etc in comments
-    'folke/todo-comments.nvim',
     event = 'LazyFile',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false },
   },
   {
-    -- High-performance color highlighter
-    'norcalli/nvim-colorizer.lua',
-    opts = {},
+    'nvim-mini/mini.hipatterns',
+    event = 'LazyFile',
+    config = function()
+      local hipatterns = require('mini.hipatterns')
+      hipatterns.setup({
+        highlighters = {
+          fixme = { pattern = 'FIXME', group = 'MiniHipatternsFixme' },
+          hack = { pattern = 'HACK', group = 'MiniHipatternsHack' },
+          todo = { pattern = 'TODO', group = 'MiniHipatternsTodo' },
+          note = { pattern = 'NOTE', group = 'MiniHipatternsNote' },
+
+          -- Highlight hex color strings (`#rrggbb`) using that color
+          hex_color = hipatterns.gen_highlighter.hex_color(),
+        },
+      })
+    end,
   },
 }

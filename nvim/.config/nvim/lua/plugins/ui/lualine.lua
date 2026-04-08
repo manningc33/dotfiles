@@ -1,8 +1,7 @@
 return {
-  'nvim-lualine/lualine.nvim',
-  event = 'VeryLazy',
-  dependencies = {
+  {
     'SmiteshP/nvim-navic',
+    lazy = true,
     opts = function()
       Snacks.toggle({
         name = 'navic',
@@ -20,52 +19,56 @@ return {
       }
     end,
   },
-  opts = {
-    options = {
-      icons_enabled = true,
-      -- theme = 'catppuccin',
-      disabled_filetypes = {
-        -- statusline = { "NvimTree" },
-        -- winbar = { "NvimTree" },
-      },
-      ignore_focus = { 'NvimTree' },
-      always_divide_middle = true,
-    },
-    sections = {
-      lualine_a = { 'mode' },
-      lualine_b = { 'diagnostics' },
-      lualine_c = { { 'filename', newfile_status = true } },
-      lualine_x = {
-        {
-          function()
-            if vim.b.exchange_origin ~= nil then
-              return [[ exchange in progress]]
-            end
-            return ''
-          end,
-          color = { fg = 'pink' },
+  {
+    'nvim-lualine/lualine.nvim',
+    event = 'VeryLazy',
+    opts = {
+      options = {
+        icons_enabled = true,
+        -- theme = 'catppuccin',
+        disabled_filetypes = {
+          -- statusline = { "NvimTree" },
+          -- winbar = { "NvimTree" },
         },
-        { 'diff' },
-        { 'fileformat' },
-        { 'encoding' },
-        { 'filetype' },
+        ignore_focus = { 'NvimTree' },
+        always_divide_middle = true,
       },
-      lualine_y = { 'branch' },
-      lualine_z = { { 'progress' }, { 'location' } },
-    },
-    winbar = {
-      lualine_c = {
-        { 'filename', path = 1 },
-        {
-          function() return require('nvim-navic').get_location() end,
-          cond = function() return not vim.g.navic_disable and require('nvim-navic').is_available() end,
+      sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'diagnostics' },
+        lualine_c = { { 'filename', newfile_status = true } },
+        lualine_x = {
+          {
+            function()
+              if vim.b.exchange_origin ~= nil then
+                return [[ exchange in progress]]
+              end
+              return ''
+            end,
+            color = { fg = 'pink' },
+          },
+          { 'diff' },
+          { 'fileformat' },
+          { 'encoding' },
+          { 'filetype' },
         },
+        lualine_y = { 'branch' },
+        lualine_z = { { 'progress' }, { 'location' } },
       },
-      lualine_x = { 'searchcount' },
+      winbar = {
+        lualine_c = {
+          { 'filename', path = 1 },
+          {
+            function() return require('nvim-navic').get_location() end,
+            cond = function() return not vim.g.navic_disable and require('nvim-navic').is_available() end,
+          },
+        },
+        lualine_x = { 'searchcount' },
+      },
+      inactive_winbar = {
+        lualine_c = { { 'filename', path = 1, newfile_status = true } },
+      },
+      extensions = { 'oil', 'nvim-tree', 'lazy', 'mason', 'man', 'quickfix' },
     },
-    inactive_winbar = {
-      lualine_c = { { 'filename', path = 1, newfile_status = true } },
-    },
-    extensions = { 'oil', 'nvim-tree', 'lazy', 'mason', 'man', 'quickfix' },
   },
 }

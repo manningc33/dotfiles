@@ -1,8 +1,16 @@
 local detail = false
 return {
   'stevearc/oil.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  keys = {
+    {
+      '-',
+      function() require('oil').open_float() end,
+      desc = 'Open up oil in floating window',
+    },
+    { '<leader><leader>-', function() require('oil').open() end, desc = 'Open up oil in current window' },
+  },
   lazy = false,
+  dependencies = { { 'nvim-tree/nvim-web-devicons', opts = {} } },
   opts = {
     default_file_explorer = true,
     use_default_keymaps = true,
@@ -41,13 +49,5 @@ return {
         end,
       },
     },
-  },
-  keys = {
-    {
-      '-',
-      function() require('oil').open_float() end,
-      desc = 'Open up oil in floating window',
-    },
-    { '<leader><leader>-', function() require('oil').open() end, desc = 'Open up oil in current window' },
   },
 }

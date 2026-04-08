@@ -12,16 +12,10 @@
 
 return {
   {
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    opts_extend = { 'ensure_installed' },
-    dependencies = {
-      'williamboman/mason.nvim',
-    },
-  },
-  {
     'mason-org/mason-lspconfig.nvim',
     -- mason-lspconfig will automatically install and enable ensure_installed
     opts_extend = { 'ensure_installed' },
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {
       ensure_installed = {
         'lua_ls',
@@ -32,6 +26,11 @@ return {
       {
         'mason-org/mason.nvim',
         cmd = 'Mason',
+        dependencies = {
+          'WhoIsSethDaniel/mason-tool-installer.nvim',
+          opts_extend = { 'ensure_installed' },
+          event = 'LazyFile',
+        },
         config = function(_, opts)
           require('mason').setup(opts)
           local mr = require('mason-registry')
@@ -48,6 +47,7 @@ return {
       },
       {
         'neovim/nvim-lspconfig',
+        event = { 'BufReadPre', 'BufNewFile' },
         opts = {
           servers = {
             ['*'] = { -- '*' server defines behavior for all LSPs
