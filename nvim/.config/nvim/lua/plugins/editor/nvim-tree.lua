@@ -50,6 +50,13 @@ end
 
 return {
   'nvim-tree/nvim-tree.lua',
+  -- lazy = true,
+  cmd = { 'NvimTreeFindFileToggle', 'NvimTreeFocus' },
+  keys = {
+    { '+', '<cmd>NvimTreeFindFileToggle<CR>', desc = 'toggle nvim-tree' },
+    { '<C-Home>', '<cmd>NvimTreeFocus<CR>', desc = 'focus nvim-tree' },
+  },
+
   config = function()
     require('nvim-tree').setup({
       on_attach = on_attach,
@@ -83,8 +90,8 @@ return {
       },
     })
     -- toggle tree keymap, finds file
-    vim.keymap.set('n', '+', ':NvimTreeFindFileToggle<CR>', { desc = 'toggle nvim-tree' })
-    vim.keymap.set('n', '<C-Home>', ':NvimTreeFocus<CR>', { desc = 'focus nvim-tree' })
+    -- vim.keymap.set('n', '+', ':NvimTreeFindFileToggle<CR>', { desc = 'toggle nvim-tree' })
+    -- vim.keymap.set('n', '<C-Home>', ':NvimTreeFocus<CR>', { desc = 'focus nvim-tree' })
 
     -- autoclose if last buffer
     vim.api.nvim_create_autocmd('QuitPre', {
