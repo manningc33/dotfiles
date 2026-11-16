@@ -34,3 +34,25 @@ opt.matchtime = 2
 
 opt.title = true
 opt.fillchars:append({ diff = '╱' })
+
+opt.ignorecase = true
+opt.smartcase = true
+opt.path:append('**')
+opt.wildmode = 'longest:full,full'
+opt.wildignore:append({ '*/node_modules/*', '*.o', '*.obj', '*.pyc', '*.class', '*.jar' })
+
+opt.swapfile = false
+opt.writebackup = false
+opt.undofile = true
+opt.undodir = vim.fn.expand('~/.cache/nvim/undodir')
+
+opt.updatetime = 300
+opt.timeoutlen = 500
+opt.ttimeoutlen = 0
+
+opt.splitbelow = true
+opt.splitright = true
+
+opt.foldmethod = 'expr'
+opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+opt.foldlevel = 99
