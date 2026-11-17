@@ -11,8 +11,11 @@ vim.pack.add({
   gh("b0o/incline.nvim"),
   gh("SmiteshP/nvim-navic"),
   gh("folke/snacks.nvim"),
+  gh("folke/todo-comments.nvim"),
+  gh("brenoprata10/nvim-highlight-colors"),
   -- nav
   gh("stevearc/oil.nvim"),
+  gh("folke/flash.nvim"),
   -- lang
   gh("nvim-treesitter/nvim-treesitter"),
 })

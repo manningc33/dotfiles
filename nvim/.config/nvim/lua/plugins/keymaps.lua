@@ -50,3 +50,12 @@ map({
   },
   { "<leader><leader>-", require("oil").open, desc = "Oil (current window)" },
 })
+
+-- Flash
+map({
+  { "s", require("flash").jump, mode = { "n", "x", "o" }, desc = "Flash" },
+  { "S", require("flash").treesitter, mode = { "n", "x", "o" }, desc = "Flash treesitter" },
+  { "r", require("flash").remote, mode = "o", desc = "Remote flash" },
+  { "R", require("flash").treesitter_search, mode = { "o", "x" }, desc = "Treesitter search" },
+  { "<C-s>", require("flash").toggle, mode = "c", desc = "Toggle flash search" },
+})

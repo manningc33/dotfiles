@@ -25,3 +25,8 @@ require("incline").setup({
 require("tiny-cmdline").setup({
   position = { x = "50%", y = "20%" },
 })
+
+require("todo-comments").setup()
+
+vim.lsp.document_color.enable(false)
+require("nvim-highlight-colors").setup({ enable_ansi = true })
