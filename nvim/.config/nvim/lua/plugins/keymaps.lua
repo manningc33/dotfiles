@@ -12,6 +12,17 @@ end
 
 -- Snacks
 map({
+  -- Picker
+  { "\\", Snacks.picker.files, desc = "Find files" },
+  { "<leader>fg", Snacks.picker.grep, desc = "Live grep" },
+  { "<leader>ff", Snacks.picker.resume, desc = "Resume last picker" },
+  { "<leader>fb", Snacks.picker.buffers, desc = "Buffers" },
+  { "<leader>fd", Snacks.picker.diagnostics, desc = "Diagnostics" },
+  { "<leader>fn", Snacks.picker.notifications, desc = "Notification history" },
+  { "<leader>fh", Snacks.picker.git_diff, desc = "Git hunks" },
+  { "<leader>fk", Snacks.picker.keymaps, desc = "Keymaps" },
+
+  -- Words: wrapped to pass the count.
   {
     "]]",
     function()
