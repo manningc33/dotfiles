@@ -1,5 +1,12 @@
+local gh = function(x)
+  return "https://github.com/" .. x
+end
+
 vim.pack.add({
-  "https://github.com/rachartier/tiny-cmdline.nvim",
+  -- ui
+  gh("catppuccin/nvim"),
+  gh("nvim-mini/mini.icons"),
+  gh("rachartier/tiny-cmdline.nvim"),
 })
 
-require("plugins.ui.tiny-cmdline")
+require("plugins.ui")
