@@ -4,8 +4,9 @@ local M = {}
 -- Nested list = equal priority, so the nearest folder with any marker wins.
 local root_markers = { { ".git", "lua", "package.json", "Makefile", "Cargo.toml", "go.mod", "pyproject.toml" } }
 
+-- Oil buffers aren't files, so search from the directory they show.
 local function root()
-  return vim.fs.root(0, root_markers) or vim.fn.getcwd()
+  return vim.fs.root(require("util.oil").dir(0) or 0, root_markers) or vim.fn.getcwd()
 end
 
 -- Wraps text in hl_group's fg/style, on the component's own section background.
@@ -44,7 +45,7 @@ end
 function M.pretty_path(opts)
   opts = vim.tbl_extend("force", { length = 3, directory_hl = "", filename_hl = "Bold" }, opts or {})
   return function(self)
-    local path = vim.api.nvim_buf_get_name(0)
+    local path = require("util.oil").dir(0) or vim.api.nvim_buf_get_name(0)
     if path == "" then
       return ""
     end

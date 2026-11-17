@@ -38,3 +38,15 @@ map({
     desc = "Prev reference",
   },
 })
+
+-- Oil
+map({
+  {
+    "-",
+    function()
+      require("oil").open_float(nil, { preview = {} })
+    end,
+    desc = "Oil (float)",
+  },
+  { "<leader><leader>-", require("oil").open, desc = "Oil (current window)" },
+})

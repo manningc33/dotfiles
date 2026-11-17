@@ -11,8 +11,11 @@ vim.pack.add({
   gh("b0o/incline.nvim"),
   gh("SmiteshP/nvim-navic"),
   gh("folke/snacks.nvim"),
+  -- nav
+  gh("stevearc/oil.nvim"),
 })
 
 require("plugins.ui")
+require("plugins.nav")
 
 require("plugins.keymaps")

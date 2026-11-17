@@ -43,9 +43,12 @@ local function label(tab)
   local buf = vim.api.nvim_win_get_buf(main_win(tab))
   local path = vim.api.nvim_buf_get_name(buf)
   local modified = vim.bo[buf].modified and "[+] " or ""
+  local oil_dir = require("util.oil").label(buf, max_len, cut_len)
 
   if vim.bo[buf].buftype == "terminal" then
     return modified .. "[terminal]"
+  elseif oil_dir then
+    return modified .. oil_dir
   elseif path == "" then
     return modified .. "[no name]"
   end
