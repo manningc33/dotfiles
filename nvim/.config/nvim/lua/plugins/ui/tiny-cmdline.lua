@@ -1,3 +1,3 @@
-require('tiny-cmdline').setup({
-  position = { x = '50%', y = '20%' },
+require("tiny-cmdline").setup({
+  position = { x = "50%", y = "20%" },
 })

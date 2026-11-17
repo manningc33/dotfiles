@@ -1,15 +1,15 @@
 -- ui2 is experimental in 0.12; message kinds are listed in :h ui-messages.
-local pager = 'pager'
-require('vim._core.ui2').enable({
+local pager = "pager"
+require("vim._core.ui2").enable({
   msg = {
-    target = 'msg',
+    target = "msg",
     targets = {
       -- Typed commands win over kind, so their output stays in the cmdline.
-      typed_cmd = 'cmd',
-      search_count = 'cmd',
-      completion = 'cmd',
-      wildlist = 'cmd',
-      confirm = 'cmd',
+      typed_cmd = "cmd",
+      search_count = "cmd",
+      completion = "cmd",
+      wildlist = "cmd",
+      confirm = "cmd",
       emsg = pager,
       lua_error = pager,
       rpc_error = pager,
