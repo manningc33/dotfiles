@@ -13,6 +13,7 @@ function installHomebrew() {
 
 	pkgs=(
 		bat
+		fd
 		eza
 		fzf
 		gcc
