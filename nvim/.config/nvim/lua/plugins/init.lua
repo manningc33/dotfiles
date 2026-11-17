@@ -13,9 +13,12 @@ vim.pack.add({
   gh("folke/snacks.nvim"),
   -- nav
   gh("stevearc/oil.nvim"),
+  -- lang
+  gh("nvim-treesitter/nvim-treesitter"),
 })
 
 require("plugins.ui")
 require("plugins.nav")
+require("plugins.lang")
 
 require("plugins.keymaps")

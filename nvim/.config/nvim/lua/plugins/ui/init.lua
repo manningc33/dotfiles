@@ -19,7 +19,6 @@ require("nvim-navic").setup({ lsp = { auto_attach = true }, highlight = true })
 require("incline").setup({
   -- Low zindex so pickers and popups draw over the tag.
   window = { margin = { vertical = 0, horizontal = 1 }, zindex = 10 },
-  hide = { cursorline = true },
   render = require("util.incline").render,
 })
 
