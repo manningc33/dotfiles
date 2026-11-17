@@ -75,7 +75,10 @@ map("n", "<leader>-", "<cmd>split<cr>", { desc = "Split below" })
 map("n", "<leader>|", "<cmd>vsplit<cr>", { desc = "Split right" })
 
 -- Tabs
-map("n", "<leader>to", "<cmd>tabnew<cr>", { desc = "New tab" })
+map("n", "<leader>tt", "<cmd>tabnew<cr>", { desc = "New tab" })
 map("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close tab" })
+map("n", "<leader>to", "<cmd>tabonly<cr>", { desc = "Close other tabs" })
 map("n", "<leader>tn", "<cmd>tabnext<cr>", { desc = "Next tab" })
 map("n", "<leader>tp", "<cmd>tabprevious<cr>", { desc = "Prev tab" })
+map("n", "<Tab>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+map("n", "<S-Tab>", "<cmd>tabprevious<cr>", { desc = "Prev tab" })

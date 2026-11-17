@@ -8,6 +8,8 @@ vim.cmd.colorscheme("catppuccin")
 require("mini.icons").setup()
 MiniIcons.mock_nvim_web_devicons()
 
+require("util").tabline.setup()
+
 require("tiny-cmdline").setup({
   position = { x = "50%", y = "20%" },
 })
