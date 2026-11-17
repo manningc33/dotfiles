@@ -16,6 +16,8 @@ vim.pack.add({
   -- nav
   gh("stevearc/oil.nvim"),
   gh("folke/flash.nvim"),
+  gh("mrjones2014/smart-splits.nvim"),
+  gh("smart-splits-nvim/backend-tmux"),
   -- lang
   gh("nvim-treesitter/nvim-treesitter"),
 })

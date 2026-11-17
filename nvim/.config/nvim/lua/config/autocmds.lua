@@ -41,14 +41,6 @@ autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   end,
 })
 
-autocmd("VimResized", {
-  callback = function()
-    local tab = vim.fn.tabpagenr()
-    vim.cmd("tabdo wincmd =")
-    vim.cmd.tabnext(tab)
-  end,
-})
-
 autocmd("FileType", {
   pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
   callback = function()

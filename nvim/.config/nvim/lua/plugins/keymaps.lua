@@ -59,3 +59,15 @@ map({
   { "R", require("flash").treesitter_search, mode = { "o", "x" }, desc = "Treesitter search" },
   { "<C-s>", require("flash").toggle, mode = "c", desc = "Toggle flash search" },
 })
+
+-- Windows nav and resize (w/ Tmux)
+map({
+  { "<C-Left>", require("smart-splits").move_cursor_left, mode = { "n", "v" }, desc = "Split/pane left" },
+  { "<C-Right>", require("smart-splits").move_cursor_right, mode = { "n", "v" }, desc = "Split/pane right" },
+  { "<C-Down>", require("smart-splits").move_cursor_down, mode = { "n", "v" }, desc = "Split/pane down" },
+  { "<C-Up>", require("smart-splits").move_cursor_up, mode = { "n", "v" }, desc = "Split/pane up" },
+  { "<S-Left>", require("smart-splits").resize_left, mode = { "n", "i", "v" }, desc = "Resize left" },
+  { "<S-Right>", require("smart-splits").resize_right, mode = { "n", "i", "v" }, desc = "Resize right" },
+  { "<S-Down>", require("smart-splits").resize_down, mode = { "n", "i", "v" }, desc = "Resize down" },
+  { "<S-Up>", require("smart-splits").resize_up, mode = { "n", "i", "v" }, desc = "Resize up" },
+})
