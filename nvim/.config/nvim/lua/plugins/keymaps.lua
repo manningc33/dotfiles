@@ -39,6 +39,28 @@ map({
   },
 })
 
+-- Toggles
+Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
+Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+Snacks.toggle.option("relativenumber", { name = "Relative number" }):map("<leader>uL")
+Snacks.toggle.line_number():map("<leader>ul")
+Snacks.toggle.diagnostics():map("<leader>ud")
+Snacks.toggle.option("conceallevel", { off = 0, on = 2, name = "Conceal level" }):map("<leader>uc")
+Snacks.toggle.treesitter():map("<leader>uT")
+Snacks.toggle.inlay_hints():map("<leader>uh")
+Snacks.toggle.indent():map("<leader>ug")
+Snacks.toggle({
+  name = "Navic breadcrumb",
+  get = function()
+    return not vim.g.navic_disabled
+  end,
+  set = function(state)
+    vim.g.navic_disabled = not state
+    require("incline").refresh()
+  end,
+}):map("<leader>un")
+Snacks.toggle.zoom():map("<leader>uz"):map("<leader>wm")
+
 -- Oil
 map({
   {

@@ -22,8 +22,9 @@ function M.render(props)
   end
 
   -- Only the focused window: navic tracks the cursor, so other windows' crumbs would be stale.
-  if props.focused then
-    for _, item in ipairs(require("nvim-navic").get_data(props.buf) or {}) do
+  if props.focused and not vim.g.navic_disabled then
+    local data = require("nvim-navic").get_data(props.buf) or {}
+    for _, item in ipairs(vim.list_slice(data, #data - 4)) do
       table.insert(res, { " > ", group = "NavicSeparator" })
       table.insert(res, { item.icon, group = "NavicIcons" .. item.type })
       table.insert(res, { item.name, group = "NavicText" })
