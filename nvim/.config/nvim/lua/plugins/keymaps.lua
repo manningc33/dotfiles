@@ -111,3 +111,27 @@ map({
   { "<S-Down>", require("smart-splits").resize_down, mode = { "n", "i", "v" }, desc = "Resize down" },
   { "<S-Up>", require("smart-splits").resize_up, mode = { "n", "i", "v" }, desc = "Resize up" },
 })
+
+-- LSP
+-- Neovim's gr* defaults would make `gr` wait for a second key.
+for _, lhs in ipairs({ "gra", "gri", "grn", "grr", "grt", "grx" }) do
+  pcall(vim.keymap.del, { "n", "x" }, lhs)
+end
+map({
+  { "gd", Snacks.picker.lsp_definitions, desc = "Definition" },
+  { "gD", Snacks.picker.lsp_declarations, desc = "Declaration" },
+  { "gy", Snacks.picker.lsp_type_definitions, desc = "Type definition" },
+  { "gr", Snacks.picker.lsp_references, desc = "References" },
+  { "gI", Snacks.picker.lsp_implementations, desc = "Implementations" },
+  { "gai", Snacks.picker.lsp_incoming_calls, desc = "Incoming calls" },
+  { "gao", Snacks.picker.lsp_outgoing_calls, desc = "Outgoing calls" },
+  { "gK", vim.lsp.buf.signature_help, desc = "Signature help" },
+  { "<C-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature help" },
+  { "<leader>ca", vim.lsp.buf.code_action, mode = { "n", "x" }, desc = "Code actions" },
+  { "<leader>cr", vim.lsp.buf.rename, desc = "Rename symbol" },
+  { "<leader>cR", Snacks.rename.rename_file, desc = "Rename file" },
+  { "<leader>cs", Snacks.picker.lsp_symbols, desc = "Document symbols" },
+  { "<leader>cS", Snacks.picker.lsp_workspace_symbols, desc = "Workspace symbols" },
+  { "<leader>cf", require("conform").format, desc = "Format" },
+  { "<leader>cL", "<cmd>checkhealth vim.lsp<cr>", desc = "LSP info" },
+})
