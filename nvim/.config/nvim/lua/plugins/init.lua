@@ -21,7 +21,9 @@ vim.pack.add({
   -- lang
   gh("nvim-treesitter/nvim-treesitter"),
   gh("mason-org/mason.nvim"),
+  gh("WhoIsSethDaniel/mason-tool-installer.nvim"),
   gh("neovim/nvim-lspconfig"),
+  gh("stevearc/conform.nvim"),
 })
 
 require("plugins.ui")

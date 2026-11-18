@@ -60,6 +60,24 @@ Snacks.toggle({
   end,
 }):map("<leader>un")
 Snacks.toggle.zoom():map("<leader>uz"):map("<leader>wm")
+Snacks.toggle({
+  name = "Format on save",
+  get = function()
+    return not vim.g.disable_autoformat
+  end,
+  set = function(state)
+    vim.g.disable_autoformat = not state
+  end,
+}):map("<leader>uf")
+Snacks.toggle({
+  name = "Format on save (buffer)",
+  get = function()
+    return not vim.b.disable_autoformat
+  end,
+  set = function(state)
+    vim.b.disable_autoformat = not state
+  end,
+}):map("<leader>uF")
 
 -- Oil
 map({
