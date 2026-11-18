@@ -33,4 +33,29 @@ function M.insert_screen_move(motion)
   vim.w.screen_move_want = want
 end
 
+-- Deletes listed buffers shown in no window (any tab); unsaved or undeletable ones are kept.
+function M.close_hidden_buffers()
+  local visible = {}
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    visible[vim.api.nvim_win_get_buf(win)] = true
+  end
+
+  local deleted, skipped = 0, 0
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.bo[buf].buflisted and not visible[buf] then
+      if not vim.bo[buf].modified and pcall(vim.api.nvim_buf_delete, buf, {}) then
+        deleted = deleted + 1
+      else
+        skipped = skipped + 1
+      end
+    end
+  end
+
+  local msg = ("Deleted %d hidden buffer%s"):format(deleted, deleted == 1 and "" or "s")
+  if skipped > 0 then
+    msg = msg .. (" (%d kept)"):format(skipped)
+  end
+  vim.notify(msg)
+end
+
 return M

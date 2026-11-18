@@ -20,6 +20,8 @@ vim.pack.add({
   gh("smart-splits-nvim/backend-tmux"),
   -- lang
   gh("nvim-treesitter/nvim-treesitter"),
+  gh("mason-org/mason.nvim"),
+  gh("neovim/nvim-lspconfig"),
 })
 
 require("plugins.ui")

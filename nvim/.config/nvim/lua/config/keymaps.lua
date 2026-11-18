@@ -82,3 +82,6 @@ map("n", "<leader>tn", "<cmd>tabnext<cr>", { desc = "Next tab" })
 map("n", "<leader>tp", "<cmd>tabprevious<cr>", { desc = "Prev tab" })
 map("n", "<Tab>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 map("n", "<S-Tab>", "<cmd>tabprevious<cr>", { desc = "Prev tab" })
+
+-- Buffers
+map("n", "<leader>bd", editor.close_hidden_buffers, { desc = "Close hidden buffers" })
