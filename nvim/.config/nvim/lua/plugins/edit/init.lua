@@ -17,3 +17,5 @@ require("mini.move").setup({
     line_up = "<M-Up>",
   },
 })
+
+require("guess-indent").setup()

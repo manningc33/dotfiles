@@ -24,6 +24,9 @@ vim.pack.add({
   gh("moyiz/blink-emoji.nvim"),
   gh("windwp/nvim-autopairs"),
   gh("nvim-mini/mini.move"),
+  gh("NMAC427/guess-indent.nvim"),
+  -- git
+  gh("lewis6991/gitsigns.nvim"),
   -- lang
   gh("nvim-treesitter/nvim-treesitter"),
   gh("mason-org/mason.nvim"),
@@ -35,6 +38,7 @@ vim.pack.add({
 require("plugins.ui")
 require("plugins.nav")
 require("plugins.edit")
+require("plugins.git")
 require("plugins.lang")
 
 require("plugins.keymaps")

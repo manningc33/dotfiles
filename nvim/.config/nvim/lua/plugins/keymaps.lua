@@ -62,6 +62,15 @@ Snacks.toggle({
 }):map("<leader>un")
 Snacks.toggle.zoom():map("<leader>uz"):map("<leader>wm")
 Snacks.toggle({
+  name = "Git signs",
+  get = function()
+    return require("gitsigns.config").config.signcolumn
+  end,
+  set = function(state)
+    require("gitsigns").toggle_signs(state)
+  end,
+}):map("<leader>uG")
+Snacks.toggle({
   name = "Format on save",
   get = function()
     return not vim.g.disable_autoformat
@@ -111,6 +120,16 @@ map({
   { "<S-Right>", require("smart-splits").resize_right, mode = { "n", "i", "v" }, desc = "Resize right" },
   { "<S-Down>", require("smart-splits").resize_down, mode = { "n", "i", "v" }, desc = "Resize down" },
   { "<S-Up>", require("smart-splits").resize_up, mode = { "n", "i", "v" }, desc = "Resize up" },
+})
+
+-- Gitsigns
+map({
+  { "<leader>gb", require("gitsigns").blame_line, desc = "Blame line" },
+  { "<leader>gB", require("gitsigns").blame, desc = "Blame buffer" },
+  { "<leader>gp", require("gitsigns").preview_hunk_inline, desc = "Preview hunk" },
+  { "<leader>ga", require("gitsigns").stage_hunk, desc = "Stage/unstage hunk" },
+  { "<leader>gA", require("util.git").toggle_stage_buffer, desc = "Stage/unstage buffer" },
+  { "<leader>go", require("util.git").open_line_commit, desc = "Open line's last commit" },
 })
 
 -- LSP

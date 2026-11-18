@@ -6,4 +6,5 @@ return {
   oil = require("util.oil"),
   lang = require("util.lang"),
   icons = require("util.icons"),
+  git = require("util.git"),
 }
