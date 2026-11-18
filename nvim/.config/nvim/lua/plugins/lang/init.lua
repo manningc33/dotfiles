@@ -21,5 +21,13 @@ lang.use({
   servers = { "lua_ls" },
 })
 
+-- C / C++
+lang.use({
+  parsers = { "c", "cpp", "doxygen" },
+  tools = { "clangd", "clang-format" },
+  formatters = { c = { "clang-format" }, cpp = { "clang-format" } },
+  servers = { "clangd" },
+})
+
 -- Last, once every language has added its tools.
 require("mason-tool-installer").setup({ ensure_installed = lang.tools() })

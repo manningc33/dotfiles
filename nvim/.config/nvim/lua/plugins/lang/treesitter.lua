@@ -1,9 +1,7 @@
 require("nvim-treesitter").install({
   "bash",
-  "c",
   "cmake",
   "comment",
-  "cpp",
   "css",
   "diff",
   "dockerfile",
