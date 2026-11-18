@@ -2,9 +2,19 @@ local M = {}
 
 -- First press goes to the first non-blank; pressed there, to column 0.
 function M.smart_home()
-  local col = vim.api.nvim_win_get_cursor(0)[2]
-  local first = (vim.api.nvim_get_current_line():find("%S") or 1) - 1
-  return col == first and "0" or "^"
+  -- With wrap on, a continuation row has no indent: go to the start of that displayed row.
+  if vim.wo.wrap then
+    local info = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1]
+    if vim.fn.virtcol(".") > info.width - info.textoff then
+      return "g0"
+    end
+  end
+  local first = vim.api.nvim_get_current_line():find("%S")
+  -- A blank line has no first non-blank; `^` would land on the last space.
+  if not first or vim.api.nvim_win_get_cursor(0)[2] == first - 1 then
+    return "0"
+  end
+  return "^"
 end
 
 -- Insert-mode gj/gk. Insert mode resets the wanted column after <Cmd>, so it's kept in w: vars to survive
