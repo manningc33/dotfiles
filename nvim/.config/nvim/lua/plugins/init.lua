@@ -27,6 +27,7 @@ vim.pack.add({
   gh("NMAC427/guess-indent.nvim"),
   -- git
   gh("lewis6991/gitsigns.nvim"),
+  gh("esmuellert/codediff.nvim"),
   -- lang
   gh("nvim-treesitter/nvim-treesitter"),
   gh("mason-org/mason.nvim"),

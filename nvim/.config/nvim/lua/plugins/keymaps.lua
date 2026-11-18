@@ -130,6 +130,34 @@ map({
   { "<leader>ga", require("gitsigns").stage_hunk, desc = "Stage/unstage hunk" },
   { "<leader>gA", require("util.git").toggle_stage_buffer, desc = "Stage/unstage buffer" },
   { "<leader>go", require("util.git").open_line_commit, desc = "Open line's last commit" },
+  {
+    "<leader>gd",
+    function()
+      require("gitsigns").diffthis(nil, { unified = true })
+    end,
+    desc = "Toggle diff overlay",
+  },
+  {
+    "]h",
+    function()
+      require("gitsigns").nav_hunk("next")
+    end,
+    desc = "Next hunk",
+  },
+  {
+    "[h",
+    function()
+      require("gitsigns").nav_hunk("prev")
+    end,
+    desc = "Prev hunk",
+  },
+})
+
+-- CodeDiff
+map({
+  { "<leader>dv", "<cmd>CodeDiff<cr>", desc = "Toggle diff view" },
+  { "<leader>dh", "<cmd>CodeDiff history %<cr>", desc = "File history" },
+  { "<leader>dH", "<cmd>CodeDiff history<cr>", desc = "Repo history" },
 })
 
 -- LSP
