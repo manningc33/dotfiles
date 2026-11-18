@@ -1,3 +1,4 @@
+require("plugins.lang.lsp")
 require("plugins.lang.treesitter")
 
 require("mason").setup()

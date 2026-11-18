@@ -13,3 +13,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
+
+-- navic only works on cursor events, nudge after server finishes loading
+vim.api.nvim_create_autocmd("LspProgress", {
+  group = vim.api.nvim_create_augroup("plugins.lsp", { clear = true }),
+  pattern = "end",
+  callback = function()
+    vim.defer_fn(function()
+      vim.api.nvim_exec_autocmds("CursorHold", { buffer = vim.api.nvim_get_current_buf() })
+    end, 300)
+  end,
+})
