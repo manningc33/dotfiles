@@ -41,4 +41,33 @@ function M.open_line_commit()
   end)
 end
 
+local lazygit_win
+
+-- Opens lazygit, remembering the window so `e` can open files back in it.
+function M.lazygit()
+  lazygit_win = vim.api.nvim_get_current_win()
+  Snacks.lazygit.open()
+end
+
+function M.lazygit_focus_origin()
+  if lazygit_win and vim.api.nvim_win_is_valid(lazygit_win) then
+    vim.api.nvim_set_current_win(lazygit_win)
+  end
+end
+
+-- lazygit's os.edit / os.editAtLine (sh): quit lazygit, focus the launch window, open the file there.
+function M.lazygit_edit_command(at_line)
+  local server = 'nvim --server "$NVIM"'
+  local inside = {
+    server .. " --remote-send q",
+    server .. [[ --remote-send "<Cmd>lua require('util.git').lazygit_focus_origin()<CR>"]],
+    server .. " --remote {{filename}}",
+  }
+  if at_line then
+    inside[#inside + 1] = server .. ' --remote-send ":{{line}}<CR>"'
+  end
+  local outside = at_line and "nvim +{{line}} -- {{filename}}" or "nvim -- {{filename}}"
+  return ('if [ -z "$NVIM" ]; then %s; else %s; fi'):format(outside, table.concat(inside, "; "))
+end
+
 return M

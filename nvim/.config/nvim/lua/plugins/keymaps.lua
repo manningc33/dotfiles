@@ -23,6 +23,10 @@ map({
   { "<leader>fk", Snacks.picker.keymaps, desc = "Keymaps" },
   { "<leader>fe", Snacks.picker.icons, desc = "Emoji and icons" },
 
+  -- Lazygit
+  { "<leader>lg", require("util.git").lazygit, desc = "Lazygit" },
+  { ";;", require("util.git").lazygit, desc = "Lazygit" },
+
   -- Words: wrapped to pass the count.
   {
     "]]",
