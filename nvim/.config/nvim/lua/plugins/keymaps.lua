@@ -132,6 +132,7 @@ map({
   { "<leader>cR", Snacks.rename.rename_file, desc = "Rename file" },
   { "<leader>cs", Snacks.picker.lsp_symbols, desc = "Document symbols" },
   { "<leader>cS", Snacks.picker.lsp_workspace_symbols, desc = "Workspace symbols" },
+  { "<leader>cd", vim.diagnostic.open_float, desc = "Line diagnostics" },
   { "<leader>cf", require("conform").format, desc = "Format" },
   { "<leader>cL", "<cmd>checkhealth vim.lsp<cr>", desc = "LSP info" },
 })

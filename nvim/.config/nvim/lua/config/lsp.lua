@@ -4,17 +4,6 @@ vim.lsp.config("*", {
   },
 })
 
--- Diagnostics open with float
-vim.diagnostic.config({
-  jump = {
-    on_jump = function(diagnostic, buf)
-      if diagnostic then
-        vim.diagnostic.open_float({ bufnr = buf, scope = "cursor" })
-      end
-    end,
-  },
-})
-
 -- Server-specific keys: `keys` in after/lsp/<server>.lua, mapped where that server attaches.
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)

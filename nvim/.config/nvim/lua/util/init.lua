@@ -5,4 +5,5 @@ return {
   incline = require("util.incline"),
   oil = require("util.oil"),
   lang = require("util.lang"),
+  icons = require("util.icons"),
 }

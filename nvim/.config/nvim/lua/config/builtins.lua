@@ -25,3 +25,19 @@ require("vim._core.ui2").enable({
     pager = { height = 0.5 },
   },
 })
+
+-- Underline and no updates while typing are already the defaults.
+local severity = vim.diagnostic.severity
+local icons = require("util.icons").diagnostics
+vim.diagnostic.config({
+  severity_sort = true,
+  virtual_text = { prefix = "●", source = "if_many" },
+  signs = {
+    text = {
+      [severity.ERROR] = icons.error,
+      [severity.WARN] = icons.warn,
+      [severity.INFO] = icons.info,
+      [severity.HINT] = icons.hint,
+    },
+  },
+})

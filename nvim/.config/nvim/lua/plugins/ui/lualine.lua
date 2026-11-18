@@ -32,7 +32,7 @@ require("lualine").setup({
     },
     lualine_x = {
       lualine_utils.macro_recording(),
-      "diagnostics",
+      { "diagnostics", symbols = require("util.icons").diagnostics },
       "diff",
       { "filetype", icons_enabled = false },
     },
