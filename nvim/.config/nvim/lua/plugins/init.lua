@@ -22,6 +22,7 @@ vim.pack.add({
   { src = gh("saghen/blink.cmp"), version = vim.version.range("^1") },
   gh("ribru17/blink-cmp-spell"),
   gh("moyiz/blink-emoji.nvim"),
+  gh("windwp/nvim-autopairs"),
   -- lang
   gh("nvim-treesitter/nvim-treesitter"),
   gh("mason-org/mason.nvim"),

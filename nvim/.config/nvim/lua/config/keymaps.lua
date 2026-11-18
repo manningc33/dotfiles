@@ -77,6 +77,7 @@ end
 -- Windows
 map("n", "<leader>-", "<cmd>split<cr>", { desc = "Split below" })
 map("n", "<leader>|", "<cmd>vsplit<cr>", { desc = "Split right" })
+map("n", "<leader>wd", "<C-w>c", { desc = "Delete window" })
 
 -- Tabs
 map("n", "<leader>tt", "<cmd>tabnew<cr>", { desc = "New tab" })

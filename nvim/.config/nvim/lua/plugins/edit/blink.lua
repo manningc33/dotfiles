@@ -45,7 +45,6 @@ require("blink.cmp").setup({
     },
   },
   sources = {
-    default = { "lsp", "path", "buffer" },
     per_filetype = per_filetype,
     providers = {
       spell = { name = "Spell", module = "blink-cmp-spell" },
