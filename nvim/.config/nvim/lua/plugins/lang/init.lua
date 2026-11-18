@@ -10,3 +10,16 @@ require("conform").setup({
     end
   end,
 })
+
+local lang = require("util.lang")
+
+-- Lua
+lang.use({
+  parsers = { "lua", "luadoc", "luap" },
+  tools = { "lua-language-server", "stylua" },
+  formatters = { lua = { "stylua" } },
+  servers = { "lua_ls" },
+})
+
+-- Last, once every language has added its tools.
+require("mason-tool-installer").setup({ ensure_installed = lang.tools() })

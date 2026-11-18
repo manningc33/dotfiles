@@ -4,4 +4,5 @@ return {
   lualine = require("util.lualine"),
   incline = require("util.incline"),
   oil = require("util.oil"),
+  lang = require("util.lang"),
 }
