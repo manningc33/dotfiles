@@ -1,5 +1,8 @@
 local M = {}
 
+-- Filetypes treated as prose: wrap + spell (1.7) and spell/emoji completion (8.1).
+M.prose_filetypes = { "text", "plaintex", "typst", "gitcommit", "markdown" }
+
 -- First press goes to the first non-blank; pressed there, to column 0.
 function M.smart_home()
   -- With wrap on, a continuation row has no indent: go to the start of that displayed row.

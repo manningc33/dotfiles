@@ -21,6 +21,7 @@ map({
   { "<leader>fn", Snacks.picker.notifications, desc = "Notification history" },
   { "<leader>fh", Snacks.picker.git_diff, desc = "Git hunks" },
   { "<leader>fk", Snacks.picker.keymaps, desc = "Keymaps" },
+  { "<leader>fe", Snacks.picker.icons, desc = "Emoji and icons" },
 
   -- Words: wrapped to pass the count.
   {

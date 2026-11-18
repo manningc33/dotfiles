@@ -42,7 +42,7 @@ autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 })
 
 autocmd("FileType", {
-  pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
+  pattern = require("util").editor.prose_filetypes,
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true

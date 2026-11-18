@@ -18,6 +18,10 @@ vim.pack.add({
   gh("folke/flash.nvim"),
   gh("mrjones2014/smart-splits.nvim"),
   gh("smart-splits-nvim/backend-tmux"),
+  -- edit
+  { src = gh("saghen/blink.cmp"), version = vim.version.range("^1") },
+  gh("ribru17/blink-cmp-spell"),
+  gh("moyiz/blink-emoji.nvim"),
   -- lang
   gh("nvim-treesitter/nvim-treesitter"),
   gh("mason-org/mason.nvim"),
@@ -28,6 +32,7 @@ vim.pack.add({
 
 require("plugins.ui")
 require("plugins.nav")
+require("plugins.edit")
 require("plugins.lang")
 
 require("plugins.keymaps")
