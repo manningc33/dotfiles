@@ -71,4 +71,20 @@ function M.close_hidden_buffers()
   vim.notify(msg)
 end
 
+-- Appends the buffer's comment marker at end of line and leaves you typing inside it.
+function M.comment_at_eol()
+  local left, right = vim.bo.commentstring:match("^(.-)%%s(.-)$")
+  if not left then
+    return
+  end
+  local line = vim.api.nvim_get_current_line():gsub("%s+$", "")
+  vim.api.nvim_set_current_line(line .. " " .. left .. right)
+  if right == "" then
+    vim.cmd("startinsert!")
+  else
+    vim.api.nvim_win_set_cursor(0, { vim.fn.line("."), #line + 1 + #left })
+    vim.cmd.startinsert()
+  end
+end
+
 return M

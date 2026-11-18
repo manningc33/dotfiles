@@ -31,6 +31,11 @@ map("n", "J", "mzJ`z", { desc = "Join lines, keep cursor" })
 map("n", "<leader>o", "o<Esc>^Da", { desc = "Open line below (no comment)" })
 map("n", "<leader>O", "O<Esc>^Da", { desc = "Open line above (no comment)" })
 
+-- Comments (built-in gc)
+map("n", "gco", "o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", { desc = "Add comment below" })
+map("n", "gcO", "O<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", { desc = "Add comment above" })
+map("n", "gcA", editor.comment_at_eol, { desc = "Add comment at end of line" })
+
 -- Quick replace word
 map("n", "<leader>*", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word under cursor" })
 
