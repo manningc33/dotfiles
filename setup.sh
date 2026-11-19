@@ -19,14 +19,18 @@ function installHomebrew() {
 		gcc
 		git
 		git-delta
+		go
 		lazygit
 		neofetch
 		neovim
 		node
+		python
 		ripgrep
 		starship
 		stow
 		tmux
+		tree-sitter-cli
+		unzip
 		wget
 		zoxide
 	)

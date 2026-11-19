@@ -69,6 +69,13 @@ fi
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+# Copy the current dir (~ for home, no trailing newline) and say what was copied
+cpwd() {
+	local dir="${PWD/#$HOME/\~}"
+	printf "%s" "$dir" | clip.exe
+	echo "Copied $dir"
+}
+
 # Run Windows PowerShell
 pwsh() {
     powershell.exe -Command "$*"
