@@ -35,18 +35,18 @@ function installHomebrew() {
 }
 
 function installMisc() {
-  # get bat and delta-git catppuccin theme
-  echo "Getting bat and delta catppuccin themes if not present..."
-  [ ! -f ~/.config/bat/themes/Catppuccin\ Mocha.tmTheme ] && wget -P ~/.config/bat/themes https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
-  [ ! -f ~/.local/share/catppuccin/delta/catppuccin.gitconfig ] && wget -P ~/.local/share/catppuccin/delta https://github.com/catppuccin/delta/raw/main/catppuccin.gitconfig
+	# get bat and delta-git catppuccin theme
+	echo "Getting bat and delta catppuccin themes if not present..."
+	[ ! -f ~/.config/bat/themes/Catppuccin\ Mocha.tmTheme ] && wget -P ~/.config/bat/themes https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+	[ ! -f ~/.local/share/catppuccin/delta/catppuccin.gitconfig ] && wget -P ~/.local/share/catppuccin/delta https://github.com/catppuccin/delta/raw/main/catppuccin.gitconfig
 
-  # build bat themes 
-  bat cache --build
+	# build bat themes
+	bat cache --build
 }
 
 function installApps() {
-  installHomebrew
-  installMisc
+	installHomebrew
+	installMisc
 }
 
 function createStowLinks() {
