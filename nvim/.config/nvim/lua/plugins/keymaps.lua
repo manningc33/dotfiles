@@ -96,6 +96,11 @@ Snacks.toggle({
     vim.b.disable_autoformat = not state
   end,
 }):map("<leader>uF")
+Snacks.toggle({
+  name = "Render markdown",
+  get = require("render-markdown").get,
+  set = require("render-markdown").set,
+}):map("<leader>um")
 
 -- Oil
 map({
@@ -218,4 +223,20 @@ map({
     end,
     desc = "Buffer keymaps",
   },
+})
+
+-- Filetype-specific keys, mapped in each buffer of that filetype.
+local ft_keys = {
+  markdown = {
+    { "<leader>lp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown preview (browser)" },
+  },
+}
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("plugins.keymaps", { clear = true }),
+  pattern = vim.tbl_keys(ft_keys),
+  callback = function(ev)
+    map(vim.tbl_map(function(k)
+      return vim.tbl_extend("force", k, { buffer = ev.buf })
+    end, ft_keys[ev.match]))
+  end,
 })

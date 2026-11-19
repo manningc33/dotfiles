@@ -37,6 +37,8 @@ vim.pack.add({
   gh("WhoIsSethDaniel/mason-tool-installer.nvim"),
   gh("neovim/nvim-lspconfig"),
   gh("stevearc/conform.nvim"),
+  gh("MeanderingProgrammer/render-markdown.nvim"),
+  gh("iamcco/markdown-preview.nvim"),
 })
 
 require("plugins.ui")

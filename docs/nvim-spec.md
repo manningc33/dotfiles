@@ -44,8 +44,10 @@
     - `init.lua`: installs every plugin with one `vim.pack.add({ ... })`, then requires each group folder (`require("plugins.ui")`), in order
     - Each plugin group gets its own directory (`ui/`) with an `init.lua` that sets up the group's plugins in load order. A plugin's `setup()` goes inline there unless its config has autocmds or user commands, or is longer than 15 lines; then it gets its own file (`ui/<plugin>.lua`), required from `init.lua` at its place in the order.
     - No named helper functions in `plugins/`; they live in `util/` (e.g. `util/lualine.lua`). Short inline callbacks passed to an option or keymap are fine. Exceptions: `gh` in `plugins/init.lua` and `map` in `plugins/keymaps.lua`.
-    - `lang/`: each language is set up in one place that names it and lists its parsers, Mason tools, formatters, and servers. Small languages sit inline in `lang/init.lua`; a big one gets `lang/<language>.lua`, with anything extra it needs alongside.
+    - `lang/`: each language is set up in one place that names it and lists its parsers, formatters, servers, and any extra Mason tools. Small languages sit inline in `lang/init.lua`; a big one gets `lang/<language>.lua`, with anything extra it needs alongside.
     - `keymaps.lua`: every keymap that uses a plugin, required last so all plugins are set up first. Group files hold no keymaps, except keys a plugin takes in its `setup()` (e.g. oil's buffer keys).
+      - Keys for one filetype go in its `ft_keys` table, mapped per buffer.
+      - Keys that need a language server go in that server's `keys` in `after/lsp/<server>.lua`, mapped when it attaches.
 
 ### 1.2 Leader and basics
 
@@ -534,14 +536,35 @@ These are small helpers for passing context from Neovim to an agent.
 ### 9.1 Lua
 
 - Parsers: lua, luadoc, luap.
-- Mason tools: lua-language-server, stylua.
 - Format: stylua.
 - Server **lua_ls**: LuaJIT runtime, knows the Neovim runtime and luv types, `Snacks` and `MiniIcons` known as globals, call snippets `Replace`, `checkThirdParty` off, `missing-fields` diagnostic off, its own formatter off.
 
 ### 9.2 C / C++
 
 - Parsers: c, cpp, doxygen.
-- Mason tools: clangd, clang-format.
 - Format: clang-format.
 - Server **clangd**: detailed completion (each overload its own item), clang-tidy diagnostics. Root markers: lspconfig's defaults plus `meson.build` and `build.ninja`.
 - `<leader>lh` switches between source and header.
+
+### 9.3 CMake
+
+- Parsers: cmake.
+- Format: cmake_format.
+- Server **neocmake** with defaults.
+
+### 9.4 Go
+
+- Parsers: go, gomod, gosum, gowork.
+- Format: goimports, then gofumpt.
+- Server **gopls**: staticcheck, completes unimported packages, function placeholders, and every inlay hint (shown with `<leader>uh`).
+
+### 9.5 Markdown
+
+- Parsers: markdown, markdown_inline.
+- Format: markdownlint-cli2, then markdown-toc.
+- Server **marksman** with defaults.
+- [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim) renders markdown buffers in place:
+  - Code blocks: block width, right pad **1**, language label with a space border and no left/right caps.
+  - No sign column marks. Its LSP completion (checkboxes, callouts) on.
+  - `<leader>um` toggles rendering.
+- [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim): `<leader>lp` (markdown only) toggles a browser preview.

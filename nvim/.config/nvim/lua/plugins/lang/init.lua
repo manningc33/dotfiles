@@ -17,7 +17,6 @@ local lang = require("util.lang")
 -- Lua
 lang.use({
   parsers = { "lua", "luadoc", "luap" },
-  tools = { "lua-language-server", "stylua" },
   formatters = { lua = { "stylua" } },
   servers = { "lua_ls" },
 })
@@ -25,10 +24,30 @@ lang.use({
 -- C / C++
 lang.use({
   parsers = { "c", "cpp", "doxygen" },
-  tools = { "clangd", "clang-format" },
   formatters = { c = { "clang-format" }, cpp = { "clang-format" } },
   servers = { "clangd" },
 })
 
--- Last, once every language has added its tools.
-require("mason-tool-installer").setup({ ensure_installed = lang.tools() })
+-- CMake
+lang.use({
+  parsers = { "cmake" },
+  formatters = { cmake = { "cmake_format" } },
+  servers = { "neocmake" },
+})
+
+-- Go
+lang.use({
+  parsers = { "go", "gomod", "gosum", "gowork" },
+  formatters = { go = { "goimports", "gofumpt" } },
+  servers = { "gopls" },
+})
+
+require("plugins.lang.markdown")
+
+-- Last, after every language. Deferred past startup since it reads Mason's registry.
+vim.schedule(function()
+  require("mason-registry").refresh(function()
+    require("mason-tool-installer").setup({ ensure_installed = lang.packages(), run_on_start = false })
+    require("mason-tool-installer").check_install()
+  end)
+end)
