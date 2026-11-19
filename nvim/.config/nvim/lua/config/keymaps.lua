@@ -35,13 +35,9 @@ map("i", "<Home>", function()
   return "<Cmd>normal! " .. editor.smart_home() .. "<CR>"
 end, { expr = true, desc = "Smart home" })
 map("o", "<Home>", "^", { desc = "First non-blank" })
-map({ "n", "x" }, "<End>", function()
-  return vim.wo.wrap and "g$" or "$"
-end, { expr = true, desc = "End of line" })
+map({ "n", "x" }, "<End>", "g$", { desc = "End of screen line" })
 -- g$ lands on the last character; <Right> moves past it so typing appends.
-map("i", "<End>", function()
-  return vim.wo.wrap and "<Cmd>normal! g$<CR><Right>" or "<End>"
-end, { expr = true, desc = "End of line" })
+map("i", "<End>", "<Cmd>normal! g$<CR><Right>", { desc = "End of screen line" })
 
 -- Arrows: Up/Down follow screen lines when wrapped; a count still moves real lines.
 for key, motion in pairs({ ["<Up>"] = "k", ["<Down>"] = "j" }) do

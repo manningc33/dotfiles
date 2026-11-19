@@ -1,5 +1,4 @@
 require("nvim-treesitter").install({
-  "bash",
   "comment",
   "css",
   "diff",

@@ -3,13 +3,24 @@ local M = {}
 -- Filetypes treated as prose: wrap + spell, and spell/emoji completion.
 M.prose_filetypes = { "text", "plaintex", "typst", "gitcommit", "markdown" }
 
--- First press goes to the first non-blank; pressed there, to column 0.
+-- First press goes to the first non-blank; pressed there, to column 0. Both are measured on screen.
 function M.smart_home()
   -- With wrap on, a continuation row has no indent: go to the start of that displayed row.
   if vim.wo.wrap then
     local info = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1]
     if vim.fn.virtcol(".") > info.width - info.textoff then
       return "g0"
+    end
+  else
+    -- With wrap off and the view scrolled sideways, use the part of the line in view.
+    local leftcol = vim.fn.winsaveview().leftcol
+    if leftcol > 0 then
+      local edge = vim.fn.virtcol2col(0, vim.fn.line("."), leftcol + 1)
+      local first = edge > 0 and vim.api.nvim_get_current_line():find("%S", edge)
+      if not first or vim.api.nvim_win_get_cursor(0)[2] == first - 1 then
+        return "g0"
+      end
+      return "g^"
     end
   end
   local first = vim.api.nvim_get_current_line():find("%S")

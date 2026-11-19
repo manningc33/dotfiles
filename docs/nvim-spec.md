@@ -135,8 +135,8 @@ Neovim 0.12's experimental **ui2** handles messages. It's turned on in `config/b
 | `<leader>W` | Saves without autocmds (`:noautocmd w`) | Skips format-on-save. |
 | `<leader>*` | word quick replace. Starts `:%s/\<word\>/word/gI` for the word under the cursor, cursor on the replacement | |
 | `<leader>o` / `<leader>O` | Open a line below or above without continuing a comment (`o<Esc>^Da`) | |
-| `<Home>` (n, v, i) | Goes to the first non-blank; pressed again, to column 0. With wrap on, works on the displayed row | Smart home. Operator-pending `<Home>` is `^`. |
-| `<End>` (n, v, i) | Goes to the end of the line; with wrap on, the end of the displayed row | |
+| `<Home>` (n, v, i) | Goes to the first non-blank; pressed again, to column 0. Works on what's on screen: the displayed row with wrap on, the part of the line in view with wrap off | Smart home. Operator-pending `<Home>` is `^`. Use `0` for the real line start. |
+| `<End>` (n, v, i) | Goes to the end of what's on screen: the displayed row with wrap on, the last visible character with wrap off | With wrap off, pressing again at the edge scrolls right. Use `$` for the real line end. |
 | `<leader>tt` `<leader>td` | New tab / close tab | |
 | `<leader>to` | Close other tabs (`:tabonly`) | |
 
@@ -186,6 +186,7 @@ A custom tabline in `util/tabline.lua`, with no plugin.
 | z | line:column |
 
 - The project root is found by searching upward for `.git`, `lua`, `package.json`, `Makefile`, `Cargo.toml`, `go.mod`, or `pyproject.toml`.
+- Extensions: `man`, `quickfix`, `Mason`
 - Refreshes on cursor move and macro start/stop.
   - The recording indicator replaces the hidden command line.
 
@@ -206,7 +207,7 @@ Later steps turn on more of it, like the picker and the lazygit integration, tog
   - It needs a language server, so it works after step 4.2.
 - **Smooth scroll** is **off**.
   - Scrolling should feel instant.
-- **Indent guides**: no animation
+- **Indent guides**: no animation, no scope highlighting
 
 ### 2.7 UI toggles
 
@@ -258,6 +259,9 @@ The _snacks.nvim_ picker.
 | `<leader>fc` | Lists changed files (git status) | Includes staged and untracked files. |
 | `<leader>fk` | keymaps | |
 | `<leader>fe` | Emoji and icons picker | Inserts at the cursor. |
+| `<leader>fr` | Lists recent files | |
+| `<leader>fu` | Browses undo history | |
+| `<leader>f/` | Searches lines in the current buffer | |
 
 ### 3.2 File explorer
 
@@ -561,10 +565,17 @@ These are small helpers for passing context from Neovim to an agent.
 ### 9.5 Markdown
 
 - Parsers: markdown, markdown_inline.
-- Format: markdownlint-cli2, then markdown-toc.
+- Format: markdownlint-cli2.
 - Server **marksman** with defaults.
 - [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim) renders markdown buffers in place:
   - Code blocks: block width, right pad **1**, language label with a space border and no left/right caps.
   - No sign column marks. Its LSP completion (checkboxes, callouts) on.
   - `<leader>um` toggles rendering.
 - [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim): `<leader>lp` (markdown only) toggles a browser preview.
+
+### 9.6 Shell
+
+- Parsers: bash.
+- Format: shfmt (sh, bash).
+- Server **bashls** with defaults; its diagnostics come from shellcheck.
+- Extra Mason tools: shellcheck.

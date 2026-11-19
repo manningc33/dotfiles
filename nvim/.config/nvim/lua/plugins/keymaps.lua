@@ -25,6 +25,9 @@ map({
   { "<leader>fc", Snacks.picker.git_status, desc = "Changed files (git status)" },
   { "<leader>fk", Snacks.picker.keymaps, desc = "Keymaps" },
   { "<leader>fe", Snacks.picker.icons, desc = "Emoji and icons" },
+  { "<leader>fr", Snacks.picker.recent, desc = "Recent files" },
+  { "<leader>fu", Snacks.picker.undo, desc = "Undo history" },
+  { "<leader>f/", Snacks.picker.lines, desc = "Buffer lines" },
 
   { "<leader>bd", Snacks.bufdelete.delete, desc = "Delete buffer (keep window)" },
 

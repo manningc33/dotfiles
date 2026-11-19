@@ -42,6 +42,14 @@ lang.use({
   servers = { "gopls" },
 })
 
+-- Shell
+lang.use({
+  parsers = { "bash" },
+  tools = { "shellcheck" },
+  formatters = { sh = { "shfmt" }, bash = { "shfmt" } },
+  servers = { "bashls" },
+})
+
 require("plugins.lang.markdown")
 
 -- Last, after every language. Deferred past startup since it reads Mason's registry.

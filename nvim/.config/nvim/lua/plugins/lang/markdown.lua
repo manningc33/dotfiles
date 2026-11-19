@@ -1,6 +1,6 @@
 require("util.lang").use({
   parsers = { "markdown", "markdown_inline" },
-  formatters = { markdown = { "markdownlint-cli2", "markdown-toc" } },
+  formatters = { markdown = { "markdownlint-cli2" } },
   servers = { "marksman" },
 })
 

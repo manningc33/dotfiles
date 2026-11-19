@@ -1,6 +1,6 @@
 require("snacks").setup({
   notifier = { enabled = true },
-  indent = { enabled = true, animate = { enabled = false } },
+  indent = { enabled = true, animate = { enabled = false }, scope = { enabled = false } },
   statuscolumn = { enabled = true },
   words = { enabled = true },
   lazygit = {
