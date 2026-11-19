@@ -46,6 +46,12 @@ function M.insert_screen_move(motion)
   vim.w.screen_move_want = want
 end
 
+-- Treesitter folds only where Treesitter runs. Fold state for other buffers (plugin scratch/preview) can
+-- outlive them and error when a plugin later sets 'foldminlines' (codediff does).
+function M.foldexpr()
+  return vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()] and vim.treesitter.foldexpr() or "0"
+end
+
 -- Deletes listed buffers shown in no window (any tab); unsaved or undeletable ones are kept.
 function M.close_hidden_buffers()
   local visible = {}

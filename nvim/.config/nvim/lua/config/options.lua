@@ -54,5 +54,5 @@ opt.splitbelow = true
 opt.splitright = true
 
 opt.foldmethod = "expr"
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldexpr = "v:lua.require'util'.editor.foldexpr()"
 opt.foldlevel = 99
