@@ -1,6 +1,6 @@
 local M = {}
 
--- Filetypes treated as prose: wrap + spell (1.7) and spell/emoji completion (8.1).
+-- Filetypes treated as prose: wrap + spell, and spell/emoji completion.
 M.prose_filetypes = { "text", "plaintex", "typst", "gitcommit", "markdown" }
 
 -- First press goes to the first non-blank; pressed there, to column 0.
