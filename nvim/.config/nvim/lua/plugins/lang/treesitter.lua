@@ -14,8 +14,6 @@ require("nvim-treesitter").install({
   "java",
   "javascript",
   "jsdoc",
-  "json",
-  "json5",
   "latex",
   "make",
   "php",
@@ -27,14 +25,12 @@ require("nvim-treesitter").install({
   "scss",
   "sql",
   "svelte",
-  "toml",
   "tsx",
   "typescript",
   "typst",
   "vim",
   "vimdoc",
   "xml",
-  "yaml",
 })
 
 local group = vim.api.nvim_create_augroup("plugins.treesitter", { clear = true })

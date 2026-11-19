@@ -63,6 +63,7 @@
 
 - **Hybrid** line numbers: `number` + `relativenumber` **on**, so the cursor line shows its real number.
 - `cursorline` **on**. No wrap, `scrolloff` **10**, `sidescrolloff` **8**.
+- Wrapped lines keep their indent, and list items wrap under their text (`breakindent`).
 - `signcolumn` **always on**.
   - Text doesn't jump when git or diagnostic marks appear.
 - `cmdheight` **0** and one global statusline (`laststatus` **3**).
@@ -131,6 +132,7 @@ Neovim 0.12's experimental **ui2** handles messages. It's turned on in `config/b
 | `<C-d>` / `<C-u>` | Half-page scroll, then center | |
 | `PageDown` / `PageUp` | Same as `<C-d>` / `<C-u>`, centered, folds opened | |
 | `n` / `N` | Next/prev match, centered, folds opened | |
+| `<Esc>` | Clears search highlights | |
 | `<` / `>` (visual) | Indent and keep the selection | |
 | `<leader>W` | Saves without autocmds (`:noautocmd w`) | Skips format-on-save. |
 | `<leader>*` | word quick replace. Starts `:%s/\<word\>/word/gI` for the word under the cursor, cursor on the replacement | |
@@ -140,7 +142,7 @@ Neovim 0.12's experimental **ui2** handles messages. It's turned on in `config/b
 | `<leader>tt` `<leader>td` | New tab / close tab | |
 | `<leader>to` | Close other tabs (`:tabonly`) | |
 
-Arrow keys navigate. `<Up>` / `<Down>` move by screen line when wrap is on, in normal, visual, and insert mode; with a count they move real lines.
+Arrow keys navigate. `<Up>` / `<Down>` move by screen line when wrap is on, in normal, visual, and insert mode; with a count they move real lines. `<Left>` / `<Right>` at a line's start or end continue onto the previous or next line.
 
 ### 1.9 Close hidden buffers
 
@@ -464,8 +466,8 @@ These are small helpers for passing context from Neovim to an agent.
 
 | Keys | Action | Notes |
 | --- | --- | --- |
-| `<leader>yf` (n, x) | Copies the current file's path relative to cwd with `#L<line>`, or `#L<a>-L<b>` for a visual selection | e.g. `lua/craftzdog/config/options.lua#L12` |
-| `<leader>yF` (n, x) | Copies the absolute path the same way | |
+| `<leader>yf` / `<leader>yF` (n, x) | Copies the current file's path, relative to cwd / absolute | |
+| `<leader>yl` / `<leader>yL` (n, x) | Same, with `#L<line>`, or `#L<a>-L<b>` for a visual selection | e.g. `lua/craftzdog/config/options.lua#L12` |
 
 - Both show the copied text in a notification.
   - Pasting the path into an agent's prompt points it at the exact line.
@@ -579,3 +581,9 @@ These are small helpers for passing context from Neovim to an agent.
 - Format: shfmt (sh, bash).
 - Server **bashls** with defaults; its diagnostics come from shellcheck.
 - Extra Mason tools: shellcheck.
+
+### 9.7 Config files (JSON, YAML, TOML)
+
+- Parsers: json, json5, yaml, toml.
+- Servers **jsonls**, **yamlls**, **taplo**; each also formats its files.
+- [SchemaStore.nvim](https://github.com/b0o/SchemaStore.nvim) supplies JSON and YAML schemas (completion, hover, validation); yamlls's own schema download is off.

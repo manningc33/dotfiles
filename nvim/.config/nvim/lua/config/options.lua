@@ -25,6 +25,9 @@ opt.signcolumn = "yes"
 
 -- Wrapping and scrolling
 opt.wrap = false
+opt.breakindent = true
+opt.breakindentopt = "list:-1"
+opt.whichwrap:append("<,>,[,]")
 opt.scrolloff = 10
 opt.sidescrolloff = 8
 

@@ -50,6 +50,12 @@ lang.use({
   servers = { "bashls" },
 })
 
+-- Config files: json, yaml, toml
+lang.use({
+  parsers = { "json", "json5", "yaml", "toml" },
+  servers = { "jsonls", "yamlls", "taplo" },
+})
+
 require("plugins.lang.markdown")
 
 -- Last, after every language. Deferred past startup since it reads Mason's registry.

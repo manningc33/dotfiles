@@ -114,9 +114,9 @@ function M.comment_at_eol()
   end
 end
 
--- Copies the file's path (relative to cwd, or absolute) with `#L<line>` (or `#L<a>-L<b>` from visual
--- mode) for pasting into an agent.
-function M.copy_path(absolute)
+-- Copies the file's path (relative to cwd, or absolute), optionally with `#L<line>` (or `#L<a>-L<b>` from
+-- visual mode) for pasting into an agent.
+function M.copy_path(absolute, with_line)
   local path = vim.fn.expand(absolute and "%:p" or "%:.")
   if path == "" then
     vim.notify("No file to copy", vim.log.levels.WARN)
@@ -127,7 +127,7 @@ function M.copy_path(absolute)
     first, last = math.min(vim.fn.line("v"), last), math.max(vim.fn.line("v"), last)
     vim.api.nvim_feedkeys(vim.keycode("<Esc>"), "n", false)
   end
-  local text = path .. "#L" .. first .. (last ~= first and "-L" .. last or "")
+  local text = with_line and path .. "#L" .. first .. (last ~= first and "-L" .. last or "") or path
   vim.fn.setreg("+", text)
   vim.notify(text)
 end

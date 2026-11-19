@@ -39,6 +39,7 @@ vim.pack.add({
   gh("stevearc/conform.nvim"),
   gh("MeanderingProgrammer/render-markdown.nvim"),
   gh("iamcco/markdown-preview.nvim"),
+  gh("b0o/SchemaStore.nvim"),
 })
 
 require("plugins.ui")
