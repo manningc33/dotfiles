@@ -12,6 +12,6 @@ return {
     ".git",
   },
   keys = {
-    { "<leader>ch", "<cmd>LspClangdSwitchSourceHeader<cr>", desc = "Switch source/header" },
+    { "<leader>lh", "<cmd>LspClangdSwitchSourceHeader<cr>", desc = "Switch source/header" },
   },
 }

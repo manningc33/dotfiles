@@ -13,6 +13,7 @@ vim.pack.add({
   gh("folke/snacks.nvim"),
   gh("folke/todo-comments.nvim"),
   gh("brenoprata10/nvim-highlight-colors"),
+  gh("folke/which-key.nvim"),
   -- nav
   gh("stevearc/oil.nvim"),
   gh("folke/flash.nvim"),
@@ -28,6 +29,7 @@ vim.pack.add({
   -- git
   gh("lewis6991/gitsigns.nvim"),
   gh("esmuellert/codediff.nvim"),
+  gh("linrongbin16/gitlinker.nvim"),
   -- lang
   gh("nvim-treesitter/nvim-treesitter"),
   gh("mason-org/mason.nvim"),

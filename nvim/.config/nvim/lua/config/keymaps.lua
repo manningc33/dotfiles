@@ -18,9 +18,6 @@ end, { expr = true, desc = "Delete line (blank lines not yanked)" })
 -- v makes b inclusive, so the char under the cursor goes too.
 map("n", "dw", '"_dvb', { desc = "Delete word backwards (no yank)" })
 
--- Select All
-map("n", "<C-a>", "ggVG", { desc = "Select all" })
-
 -- Indent and dedent
 map("x", "<", "<gv", { desc = "Dedent, keep selection" })
 map("x", ">", ">gv", { desc = "Indent, keep selection" })
@@ -35,6 +32,13 @@ map("n", "<leader>O", "O<Esc>^Da", { desc = "Open line above (no comment)" })
 map("n", "gco", "o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", { desc = "Add comment below" })
 map("n", "gcO", "O<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", { desc = "Add comment above" })
 map("n", "gcA", editor.comment_at_eol, { desc = "Add comment at end of line" })
+
+-- Copy paths for agents
+map({ "n", "x" }, "<leader>yf", editor.copy_path, { desc = "Copy relative path with line" })
+map({ "n", "x" }, "<leader>yF", function()
+  editor.copy_path(true)
+end, { desc = "Copy absolute path with line" })
+map("x", "<leader>yc", editor.copy_code_block, { desc = "Copy selection as code block" })
 
 -- Quick replace word
 map("n", "<leader>*", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word under cursor" })
@@ -88,10 +92,8 @@ map("n", "<leader>wd", "<C-w>c", { desc = "Delete window" })
 map("n", "<leader>tt", "<cmd>tabnew<cr>", { desc = "New tab" })
 map("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close tab" })
 map("n", "<leader>to", "<cmd>tabonly<cr>", { desc = "Close other tabs" })
-map("n", "<leader>tn", "<cmd>tabnext<cr>", { desc = "Next tab" })
-map("n", "<leader>tp", "<cmd>tabprevious<cr>", { desc = "Prev tab" })
 map("n", "<Tab>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 map("n", "<S-Tab>", "<cmd>tabprevious<cr>", { desc = "Prev tab" })
 
 -- Buffers
-map("n", "<leader>bd", editor.close_hidden_buffers, { desc = "Close hidden buffers" })
+map("n", "<leader>bo", editor.close_hidden_buffers, { desc = "Close hidden buffers" })

@@ -15,17 +15,21 @@ map({
   -- Picker
   { "\\", Snacks.picker.files, desc = "Find files" },
   { "<leader>fg", Snacks.picker.grep, desc = "Live grep" },
+  { "<leader>fg", Snacks.picker.grep_word, mode = "x", desc = "Grep selection" },
+  { "<leader>fw", Snacks.picker.grep_word, mode = { "n", "x" }, desc = "Grep word or selection" },
   { "<leader>ff", Snacks.picker.resume, desc = "Resume last picker" },
   { "<leader>fb", Snacks.picker.buffers, desc = "Buffers" },
   { "<leader>fd", Snacks.picker.diagnostics, desc = "Diagnostics" },
   { "<leader>fn", Snacks.picker.notifications, desc = "Notification history" },
   { "<leader>fh", Snacks.picker.git_diff, desc = "Git hunks" },
+  { "<leader>fc", Snacks.picker.git_status, desc = "Changed files (git status)" },
   { "<leader>fk", Snacks.picker.keymaps, desc = "Keymaps" },
   { "<leader>fe", Snacks.picker.icons, desc = "Emoji and icons" },
 
+  { "<leader>bd", Snacks.bufdelete.delete, desc = "Delete buffer (keep window)" },
+
   -- Lazygit
-  { "<leader>lg", require("util.git").lazygit, desc = "Lazygit" },
-  { ";;", require("util.git").lazygit, desc = "Lazygit" },
+  { "<leader>gg", require("util.git").lazygit, desc = "Lazygit" },
 
   -- Words: wrapped to pass the count.
   {
@@ -64,7 +68,7 @@ Snacks.toggle({
     require("incline").refresh()
   end,
 }):map("<leader>un")
-Snacks.toggle.zoom():map("<leader>uz"):map("<leader>wm")
+Snacks.toggle.zoom():map("<leader>wm")
 Snacks.toggle({
   name = "Git signs",
   get = function()
@@ -75,7 +79,7 @@ Snacks.toggle({
   end,
 }):map("<leader>uG")
 Snacks.toggle({
-  name = "Format on save",
+  name = "Format on save (global)",
   get = function()
     return not vim.g.disable_autoformat
   end,
@@ -102,7 +106,7 @@ map({
     end,
     desc = "Oil (float)",
   },
-  { "<leader><leader>-", require("oil").open, desc = "Oil (current window)" },
+  { "<leader>_", require("oil").open, desc = "Oil (current window)" },
 })
 
 -- Flash
@@ -133,6 +137,8 @@ map({
   { "<leader>gp", require("gitsigns").preview_hunk_inline, desc = "Preview hunk" },
   { "<leader>ga", require("gitsigns").stage_hunk, desc = "Stage/unstage hunk" },
   { "<leader>gA", require("util.git").toggle_stage_buffer, desc = "Stage/unstage buffer" },
+  { "<leader>gr", require("gitsigns").reset_hunk, desc = "Reset hunk" },
+  { "<leader>gR", require("gitsigns").reset_buffer, desc = "Reset buffer" },
   { "<leader>go", require("util.git").open_line_commit, desc = "Open line's last commit" },
   {
     "<leader>gd",
@@ -159,9 +165,14 @@ map({
 
 -- CodeDiff
 map({
-  { "<leader>dv", "<cmd>CodeDiff<cr>", desc = "Toggle diff view" },
-  { "<leader>dh", "<cmd>CodeDiff history %<cr>", desc = "File history" },
-  { "<leader>dH", "<cmd>CodeDiff history<cr>", desc = "Repo history" },
+  { "<leader>gv", "<cmd>CodeDiff<cr>", desc = "Toggle diff view" },
+  { "<leader>gh", "<cmd>CodeDiff history %<cr>", desc = "File history" },
+  { "<leader>gH", "<cmd>CodeDiff history<cr>", desc = "Repo history" },
+})
+
+-- Gitlinker
+map({
+  { "<leader>yg", "<cmd>GitLink<cr>", mode = { "n", "x" }, desc = "Copy git permalink" },
 })
 
 -- LSP
@@ -179,12 +190,23 @@ map({
   { "gao", Snacks.picker.lsp_outgoing_calls, desc = "Outgoing calls" },
   { "gK", vim.lsp.buf.signature_help, desc = "Signature help" },
   { "<C-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature help" },
-  { "<leader>ca", vim.lsp.buf.code_action, mode = { "n", "x" }, desc = "Code actions" },
-  { "<leader>cr", vim.lsp.buf.rename, desc = "Rename symbol" },
-  { "<leader>cR", Snacks.rename.rename_file, desc = "Rename file" },
-  { "<leader>cs", Snacks.picker.lsp_symbols, desc = "Document symbols" },
-  { "<leader>cS", Snacks.picker.lsp_workspace_symbols, desc = "Workspace symbols" },
-  { "<leader>cd", vim.diagnostic.open_float, desc = "Line diagnostics" },
-  { "<leader>cf", require("conform").format, desc = "Format" },
-  { "<leader>cL", "<cmd>checkhealth vim.lsp<cr>", desc = "LSP info" },
+  { "<leader>la", vim.lsp.buf.code_action, mode = { "n", "x" }, desc = "Code actions" },
+  { "<leader>lr", vim.lsp.buf.rename, desc = "Rename symbol" },
+  { "<leader>lR", Snacks.rename.rename_file, desc = "Rename file" },
+  { "<leader>ls", Snacks.picker.lsp_symbols, desc = "Document symbols" },
+  { "<leader>lS", Snacks.picker.lsp_workspace_symbols, desc = "Workspace symbols" },
+  { "<leader>ld", vim.diagnostic.open_float, desc = "Line diagnostics" },
+  { "<leader>lf", require("conform").format, desc = "Format" },
+  { "<leader>li", "<cmd>checkhealth vim.lsp<cr>", desc = "LSP info" },
+})
+
+-- Which-key
+map({
+  {
+    "<leader>?",
+    function()
+      require("which-key").show({ global = false })
+    end,
+    desc = "Buffer keymaps",
+  },
 })

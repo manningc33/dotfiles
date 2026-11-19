@@ -2,7 +2,7 @@
 require("catppuccin").setup({
   flavour = "mocha",
   transparent_background = true,
-  integrations = { navic = { enabled = true } },
+  integrations = { navic = { enabled = true }, which_key = true },
 })
 vim.cmd.colorscheme("catppuccin")
 
@@ -31,3 +31,21 @@ require("todo-comments").setup()
 
 vim.lsp.document_color.enable(false)
 require("nvim-highlight-colors").setup({ enable_ansi = true })
+
+require("which-key").setup({
+  delay = 500,
+  spec = {
+    { "<leader>f", group = "find" },
+    { "<leader>g", group = "git" },
+    { "<leader>l", group = "lsp/code", mode = { "n", "x" } },
+    { "<leader>u", group = "toggle" },
+    { "<leader>t", group = "tabs" },
+    { "<leader>w", group = "windows", proxy = "<C-w>" },
+    { "<leader>b", group = "buffers" },
+    { "<leader>y", group = "special copy", mode = { "n", "x" } },
+    { "gc", group = "comment" },
+    { "[", group = "prev" },
+    { "]", group = "next" },
+    { "z", group = "fold" },
+  },
+})

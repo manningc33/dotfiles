@@ -87,4 +87,37 @@ function M.comment_at_eol()
   end
 end
 
+-- Copies the file's path (relative to cwd, or absolute) with `#L<line>` (or `#L<a>-L<b>` from visual
+-- mode) for pasting into an agent.
+function M.copy_path(absolute)
+  local path = vim.fn.expand(absolute and "%:p" or "%:.")
+  if path == "" then
+    vim.notify("No file to copy", vim.log.levels.WARN)
+    return
+  end
+  local first, last = vim.fn.line("."), vim.fn.line(".")
+  if vim.fn.mode():match("[vV\22]") then
+    first, last = math.min(vim.fn.line("v"), last), math.max(vim.fn.line("v"), last)
+    vim.api.nvim_feedkeys(vim.keycode("<Esc>"), "n", false)
+  end
+  local text = path .. "#L" .. first .. (last ~= first and "-L" .. last or "")
+  vim.fn.setreg("+", text)
+  vim.notify(text)
+end
+
+-- Copies the visual selection as a Markdown code block with Inkdrop-style `filename`/`line` attributes.
+function M.copy_code_block()
+  local first, last = vim.fn.line("v"), vim.fn.line(".")
+  if first > last then
+    first, last = last, first
+  end
+  local short = { typescriptreact = "tsx", javascriptreact = "jsx", typescript = "ts", javascript = "js" }
+  local lang = short[vim.bo.filetype] or vim.bo.filetype
+  local code = table.concat(vim.api.nvim_buf_get_lines(0, first - 1, last, false), "\n")
+  local text = ('```%s filename="%s" line=%d\n%s\n```'):format(lang, vim.fn.expand("%:."), first, code)
+  vim.fn.setreg("+", text)
+  vim.api.nvim_feedkeys(vim.keycode("<Esc>"), "n", false)
+  vim.notify(text)
+end
+
 return M
