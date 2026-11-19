@@ -545,8 +545,3 @@ These are small helpers for passing context from Neovim to an agent.
 - Format: clang-format.
 - Server **clangd**: detailed completion (each overload its own item), clang-tidy diagnostics. Root markers: lspconfig's defaults plus `meson.build` and `build.ninja`.
 - `<leader>lh` switches between source and header.
-
-## todo
-
-- fix section 5
-- figure out lg keymaps
