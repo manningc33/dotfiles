@@ -1,4 +1,5 @@
 require("plugins.edit.blink")
+require("plugins.edit.dial")
 
 require("nvim-autopairs").setup({
   check_ts = true,

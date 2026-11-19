@@ -118,6 +118,15 @@ map({
   { "<C-s>", require("flash").toggle, mode = "c", desc = "Toggle flash search" },
 })
 
+-- Dial
+local dial = require("util").editor.dial
+map({
+  { "<C-a>", dial(true), mode = { "n", "x" }, expr = true, desc = "Increment" },
+  { "<C-x>", dial(false), mode = { "n", "x" }, expr = true, desc = "Decrement" },
+  { "g<C-a>", dial(true, true), mode = { "n", "x" }, expr = true, desc = "Increment (progressive)" },
+  { "g<C-x>", dial(false, true), mode = { "n", "x" }, expr = true, desc = "Decrement (progressive)" },
+})
+
 -- Windows nav and resize (w/ Tmux)
 map({
   { "<C-Left>", require("smart-splits").move_cursor_left, mode = { "n", "v" }, desc = "Split/pane left" },

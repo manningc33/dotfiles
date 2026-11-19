@@ -26,6 +26,7 @@ vim.pack.add({
   gh("windwp/nvim-autopairs"),
   gh("nvim-mini/mini.move"),
   gh("NMAC427/guess-indent.nvim"),
+  gh("monaqa/dial.nvim"),
   -- git
   gh("lewis6991/gitsigns.nvim"),
   gh("esmuellert/codediff.nvim"),

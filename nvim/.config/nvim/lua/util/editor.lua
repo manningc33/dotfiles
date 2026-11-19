@@ -52,6 +52,16 @@ function M.foldexpr()
   return vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()] and vim.treesitter.foldexpr() or "0"
 end
 
+-- Keymap callback for dial.nvim's <C-a>/<C-x> (`g` for the progressive g<C-a>/g<C-x>), using the filetype's
+-- group from vim.g.dials_by_ft and the visual or normal variant from the current mode.
+function M.dial(increment, g)
+  return function()
+    local visual = vim.fn.mode():match("[vV\22]")
+    local fn = (increment and "inc" or "dec") .. (g and "_g" or "_") .. (visual and "visual" or "normal")
+    return require("dial.map")[fn](vim.g.dials_by_ft[vim.bo.filetype] or "default")
+  end
+end
+
 -- Deletes listed buffers shown in no window (any tab); unsaved or undeletable ones are kept.
 function M.close_hidden_buffers()
   local visible = {}
