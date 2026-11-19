@@ -5,6 +5,11 @@ return {
     event = 'LazyFile',
   },
   {
+    -- Detect tabstop and shiftwidth automatically
+    'tpope/vim-fugitive',
+    event = 'LazyFile',
+  },
+  {
     'nvim-mini/mini.hipatterns',
     event = 'LazyFile',
     config = function()

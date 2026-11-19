@@ -8,7 +8,7 @@ return {
     optional = true,
     opts = {
       linters_by_ft = {
-        cmake = { 'cmakelint' },
+        -- cmake = { 'cmakelint' },
       },
     },
   },

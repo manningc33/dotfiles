@@ -47,8 +47,8 @@ return {
     optional = true,
     opts = {
       linters_by_ft = {
-        c = { 'cpplint' },
-        cpp = { 'cpplint' },
+        -- c = { 'cpplint' },
+        -- cpp = { 'cpplint' },
       },
     },
   },
