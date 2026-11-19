@@ -1,16 +1,18 @@
--- Counts how often this config's keymaps and autocmds fire, which user commands get typed, which
--- filetypes get opened, and which language servers attach. Totals persist across sessions (and across
--- Neovim instances running at once); `:UsageStats` lists them with never-used entries last.
+-- Counts how often keymaps (this config's and Neovim's defaults) and this config's autocmds fire, which
+-- user commands get typed, filetypes opened, language servers attached, formatters run, and notifications
+-- sent. Totals persist across sessions (and across Neovim instances running at once); `:UsageStats` lists
+-- them with never-used entries last.
 local M = {}
 
 local file = vim.fn.stdpath("state") .. "/usage.json"
 local config_dir = vim.fn.stdpath("config")
 local self_src = debug.getinfo(1, "S").source
-local kinds = { "keys", "commands", "filetypes", "servers", "autocmds" }
+local kinds = { "keys", "commands", "filetypes", "servers", "formatters", "notifications", "autocmds" }
 local maps = {} -- keymap id -> { mode, lhs, desc, file }
 local autocmds = {} -- autocmd ids defined this session
 local session = {} -- unsaved uses per kind: id -> { n, last }
 local running = false
+local default_src -- set while re-wrapping Neovim's default mappings
 
 local function clear_session()
   for _, kind in ipairs(kinds) do
@@ -73,7 +75,7 @@ local function wrap_keymap_set()
   local set = vim.keymap.set
   vim.keymap.set = function(mode, lhs, rhs, opts)
     -- Keymaps a tracked keymap sets while running (e.g. oil's buffer keys) belong to the plugin.
-    local src = not running and config_file()
+    local src = default_src or (not running and config_file())
     -- An expr string is a Vimscript expression, and "" disables a key; leave both alone.
     if not src or (type(rhs) == "string" and (rhs == "" or (opts and opts.expr))) then
       return set(mode, lhs, rhs, opts)
@@ -118,7 +120,11 @@ local function wrap_create_autocmd()
     if not path then
       return create(event, opts)
     end
-    local id = ("%s  %s:%d"):format(type(event) == "table" and table.concat(event, ",") or event, path, info.linedefined)
+    local id = ("%s  %s:%d"):format(
+      type(event) == "table" and table.concat(event, ",") or event,
+      path,
+      info.linedefined
+    )
     autocmds[id] = true
     opts = vim.tbl_extend("force", {}, opts)
     opts.callback = function(...)
@@ -159,8 +165,27 @@ local function write(data)
   return vim.fn.writefile({ vim.json.encode(data) }, tmp) == 0 and vim.uv.fs_rename(tmp, file)
 end
 
+-- Notifications are read from Snacks' history, which records every vim.notify call. Snacks swaps vim.notify
+-- in on first use, so a wrapper around it would miss them.
+local last_notification = 0
+local function count_notifications()
+  local ok, history = pcall(function()
+    return Snacks.notifier.get_history()
+  end)
+  local seen = last_notification
+  for _, n in ipairs(ok and history or {}) do
+    if n.id > seen then
+      local msg = type(n.msg) == "string" and n.msg or ""
+      local source = (n.title ~= "" and n.title) or msg:match("^([%w%-%._]+):") or "(untitled)"
+      bump(session.notifications, n.level .. "  " .. source)
+      last_notification = math.max(last_notification, n.id)
+    end
+  end
+end
+
 -- Adds the unsaved counts to the file, then clears them so the next save doesn't add them twice.
 local function save(exiting)
+  count_notifications()
   local pending = vim.iter(kinds):any(function(kind)
     return next(session[kind]) ~= nil
   end)
@@ -216,8 +241,12 @@ local sections = {
     name = "keymaps",
     title = "Keymaps:",
     kind = "keys",
+    -- Defaults this config later deletes (the gr* LSP keys) aren't keymaps anymore.
     ids = function()
-      return vim.tbl_keys(maps)
+      return vim.tbl_filter(function(id)
+        local m = maps[id]
+        return m.file ~= "(default)" or vim.fn.maparg(m.lhs, m.mode:sub(1, 1)) ~= ""
+      end, vim.tbl_keys(maps))
     end,
     label = function(id)
       local m = maps[id]
@@ -248,6 +277,8 @@ local sections = {
       return ids
     end,
   },
+  { name = "formatters", title = "Formatters run:", kind = "formatters" },
+  { name = "notifications", title = "Notifications by level and source:", kind = "notifications" },
   {
     name = "autocmds",
     title = "Config autocmds fired:",
@@ -260,6 +291,7 @@ local sections = {
 
 -- `only` limits the report to one section by name.
 function M.report(only)
+  count_notifications()
   local data = read()
   merge(data)
 
@@ -316,6 +348,24 @@ end
 function M.setup()
   wrap_keymap_set()
   wrap_create_autocmd()
+
+  -- Neovim's default mappings (]d, gcc, gx...) exist before this config runs; re-set them so they're counted.
+  default_src = "(default)"
+  for _, mode in ipairs({ "n", "x", "o", "i" }) do
+    for _, m in ipairs(vim.api.nvim_get_keymap(mode)) do
+      if not m.lhs:match("^<Plug>") and (m.callback or m.expr == 0) then
+        vim.keymap.set(mode, m.lhs, m.callback or m.rhs, {
+          expr = m.expr == 1,
+          remap = m.noremap == 0,
+          silent = m.silent == 1,
+          nowait = m.nowait == 1,
+          desc = m.desc,
+        })
+      end
+    end
+  end
+  default_src = nil
+
   local group = vim.api.nvim_create_augroup("util.usage", {})
   local function on(event, callback, pattern)
     vim.api.nvim_create_autocmd(event, { group = group, pattern = pattern, callback = callback })
@@ -346,6 +396,9 @@ function M.setup()
       bump(session.filetypes, ev.match)
     end
   end)
+  on("User", function(ev)
+    bump(session.formatters, ev.data.formatter.name .. (ev.data.err and " (failed)" or ""))
+  end, "ConformFormatPost")
   on("LspAttach", function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     if client then
