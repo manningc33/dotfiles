@@ -1,0 +1,221 @@
+local map = function(keymaps)
+  for _, k in ipairs(keymaps) do
+    local opts = { silent = true }
+    for key, value in pairs(k) do
+      if type(key) == "string" and key ~= "mode" then
+        opts[key] = value
+      end
+    end
+    vim.keymap.set(k.mode or "n", k[1], k[2], opts)
+  end
+end
+
+-- Snacks
+map({
+  -- Picker
+  { "\\", Snacks.picker.files, desc = "Find files" },
+  { "<leader>fg", Snacks.picker.grep, desc = "Live grep" },
+  { "<leader>fg", Snacks.picker.grep_word, mode = "x", desc = "Grep selection" },
+  { "<leader>fw", Snacks.picker.grep_word, mode = { "n", "x" }, desc = "Grep word or selection" },
+  { "<leader>ff", Snacks.picker.resume, desc = "Resume last picker" },
+  { "<leader>fb", Snacks.picker.buffers, desc = "Buffers" },
+  { "<leader>fd", Snacks.picker.diagnostics, desc = "Diagnostics" },
+  { "<leader>fn", Snacks.picker.notifications, desc = "Notification history" },
+  { "<leader>fh", Snacks.picker.git_diff, desc = "Git hunks" },
+  { "<leader>fc", Snacks.picker.git_status, desc = "Changed files (git status)" },
+  { "<leader>fk", Snacks.picker.keymaps, desc = "Keymaps" },
+  { "<leader>fe", Snacks.picker.icons, desc = "Emoji and icons" },
+
+  { "<leader>bd", Snacks.bufdelete.delete, desc = "Delete buffer (keep window)" },
+
+  -- Lazygit
+  { "<leader>gg", require("util.git").lazygit, desc = "Lazygit" },
+
+  -- Words: wrapped to pass the count.
+  {
+    "]]",
+    function()
+      Snacks.words.jump(vim.v.count1)
+    end,
+    desc = "Next reference",
+  },
+  {
+    "[[",
+    function()
+      Snacks.words.jump(-vim.v.count1)
+    end,
+    desc = "Prev reference",
+  },
+})
+
+-- Toggles
+Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
+Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+Snacks.toggle.option("relativenumber", { name = "Relative number" }):map("<leader>uL")
+Snacks.toggle.line_number():map("<leader>ul")
+Snacks.toggle.diagnostics():map("<leader>ud")
+Snacks.toggle.option("conceallevel", { off = 0, on = 2, name = "Conceal level" }):map("<leader>uc")
+Snacks.toggle.treesitter():map("<leader>uT")
+Snacks.toggle.inlay_hints():map("<leader>uh")
+Snacks.toggle.indent():map("<leader>ug")
+Snacks.toggle({
+  name = "Navic breadcrumb",
+  get = function()
+    return not vim.g.navic_disabled
+  end,
+  set = function(state)
+    vim.g.navic_disabled = not state
+    require("incline").refresh()
+  end,
+}):map("<leader>un")
+Snacks.toggle.zoom():map("<leader>wm")
+Snacks.toggle({
+  name = "Git signs",
+  get = function()
+    return require("gitsigns.config").config.signcolumn
+  end,
+  set = function(state)
+    require("gitsigns").toggle_signs(state)
+  end,
+}):map("<leader>uG")
+Snacks.toggle({
+  name = "Format on save (global)",
+  get = function()
+    return not vim.g.disable_autoformat
+  end,
+  set = function(state)
+    vim.g.disable_autoformat = not state
+  end,
+}):map("<leader>uf")
+Snacks.toggle({
+  name = "Format on save (buffer)",
+  get = function()
+    return not vim.b.disable_autoformat
+  end,
+  set = function(state)
+    vim.b.disable_autoformat = not state
+  end,
+}):map("<leader>uF")
+
+-- Oil
+map({
+  {
+    "-",
+    function()
+      require("oil").open_float(nil, { preview = {} })
+    end,
+    desc = "Oil (float)",
+  },
+  { "<leader>_", require("oil").open, desc = "Oil (current window)" },
+})
+
+-- Flash
+map({
+  { "s", require("flash").jump, mode = { "n", "x", "o" }, desc = "Flash" },
+  { "S", require("flash").treesitter, mode = { "n", "x", "o" }, desc = "Flash treesitter" },
+  { "r", require("flash").remote, mode = "o", desc = "Remote flash" },
+  { "R", require("flash").treesitter_search, mode = { "o", "x" }, desc = "Treesitter search" },
+  { "<C-s>", require("flash").toggle, mode = "c", desc = "Toggle flash search" },
+})
+
+-- Dial
+local dial = require("util").editor.dial
+map({
+  { "<C-a>", dial(true), mode = { "n", "x" }, expr = true, desc = "Increment" },
+  { "<C-x>", dial(false), mode = { "n", "x" }, expr = true, desc = "Decrement" },
+  { "g<C-a>", dial(true, true), mode = { "n", "x" }, expr = true, desc = "Increment (progressive)" },
+  { "g<C-x>", dial(false, true), mode = { "n", "x" }, expr = true, desc = "Decrement (progressive)" },
+})
+
+-- Windows nav and resize (w/ Tmux)
+map({
+  { "<C-Left>", require("smart-splits").move_cursor_left, mode = { "n", "v" }, desc = "Split/pane left" },
+  { "<C-Right>", require("smart-splits").move_cursor_right, mode = { "n", "v" }, desc = "Split/pane right" },
+  { "<C-Down>", require("smart-splits").move_cursor_down, mode = { "n", "v" }, desc = "Split/pane down" },
+  { "<C-Up>", require("smart-splits").move_cursor_up, mode = { "n", "v" }, desc = "Split/pane up" },
+  { "<S-Left>", require("smart-splits").resize_left, mode = { "n", "i", "v" }, desc = "Resize left" },
+  { "<S-Right>", require("smart-splits").resize_right, mode = { "n", "i", "v" }, desc = "Resize right" },
+  { "<S-Down>", require("smart-splits").resize_down, mode = { "n", "i", "v" }, desc = "Resize down" },
+  { "<S-Up>", require("smart-splits").resize_up, mode = { "n", "i", "v" }, desc = "Resize up" },
+})
+
+-- Gitsigns
+map({
+  { "<leader>gb", require("gitsigns").blame_line, desc = "Blame line" },
+  { "<leader>gB", require("gitsigns").blame, desc = "Blame buffer" },
+  { "<leader>gp", require("gitsigns").preview_hunk_inline, desc = "Preview hunk" },
+  { "<leader>ga", require("gitsigns").stage_hunk, desc = "Stage/unstage hunk" },
+  { "<leader>gA", require("util.git").toggle_stage_buffer, desc = "Stage/unstage buffer" },
+  { "<leader>gr", require("gitsigns").reset_hunk, desc = "Reset hunk" },
+  { "<leader>gR", require("gitsigns").reset_buffer, desc = "Reset buffer" },
+  { "<leader>go", require("util.git").open_line_commit, desc = "Open line's last commit" },
+  {
+    "<leader>gd",
+    function()
+      require("gitsigns").diffthis(nil, { unified = true })
+    end,
+    desc = "Toggle diff overlay",
+  },
+  {
+    "]h",
+    function()
+      require("gitsigns").nav_hunk("next")
+    end,
+    desc = "Next hunk",
+  },
+  {
+    "[h",
+    function()
+      require("gitsigns").nav_hunk("prev")
+    end,
+    desc = "Prev hunk",
+  },
+})
+
+-- CodeDiff
+map({
+  { "<leader>gv", "<cmd>CodeDiff<cr>", desc = "Toggle diff view" },
+  { "<leader>gh", "<cmd>CodeDiff history %<cr>", desc = "File history" },
+  { "<leader>gH", "<cmd>CodeDiff history<cr>", desc = "Repo history" },
+})
+
+-- Gitlinker
+map({
+  { "<leader>yg", "<cmd>GitLink<cr>", mode = { "n", "x" }, desc = "Copy git permalink" },
+})
+
+-- LSP
+-- Neovim's gr* defaults would make `gr` wait for a second key.
+for _, lhs in ipairs({ "gra", "gri", "grn", "grr", "grt", "grx" }) do
+  pcall(vim.keymap.del, { "n", "x" }, lhs)
+end
+map({
+  { "gd", Snacks.picker.lsp_definitions, desc = "Definition" },
+  { "gD", Snacks.picker.lsp_declarations, desc = "Declaration" },
+  { "gy", Snacks.picker.lsp_type_definitions, desc = "Type definition" },
+  { "gr", Snacks.picker.lsp_references, desc = "References" },
+  { "gI", Snacks.picker.lsp_implementations, desc = "Implementations" },
+  { "gai", Snacks.picker.lsp_incoming_calls, desc = "Incoming calls" },
+  { "gao", Snacks.picker.lsp_outgoing_calls, desc = "Outgoing calls" },
+  { "gK", vim.lsp.buf.signature_help, desc = "Signature help" },
+  { "<C-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature help" },
+  { "<leader>la", vim.lsp.buf.code_action, mode = { "n", "x" }, desc = "Code actions" },
+  { "<leader>lr", vim.lsp.buf.rename, desc = "Rename symbol" },
+  { "<leader>lR", Snacks.rename.rename_file, desc = "Rename file" },
+  { "<leader>ls", Snacks.picker.lsp_symbols, desc = "Document symbols" },
+  { "<leader>lS", Snacks.picker.lsp_workspace_symbols, desc = "Workspace symbols" },
+  { "<leader>ld", vim.diagnostic.open_float, desc = "Line diagnostics" },
+  { "<leader>lf", require("conform").format, desc = "Format" },
+  { "<leader>li", "<cmd>checkhealth vim.lsp<cr>", desc = "LSP info" },
+})
+
+-- Which-key
+map({
+  {
+    "<leader>?",
+    function()
+      require("which-key").show({ global = false })
+    end,
+    desc = "Buffer keymaps",
+  },
+})
