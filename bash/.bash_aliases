@@ -68,3 +68,11 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Run Windows PowerShell
+pwsh() {
+    powershell.exe -Command "$*"
+}
+
+alias winpwsh='powershell.exe -NoExit -Command "$env:Path = [Environment]::GetEnvironmentVariable(\"Path\", \"Machine\") + \";\" + [Environment]::GetEnvironmentVariable(\"Path\", \"User\")"'
+
