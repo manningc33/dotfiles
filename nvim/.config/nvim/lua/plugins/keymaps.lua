@@ -71,6 +71,16 @@ Snacks.toggle({
     require("incline").refresh()
   end,
 }):map("<leader>un")
+Snacks.toggle({
+  name = "Path",
+  get = function()
+    return not vim.g.incline_path_disabled
+  end,
+  set = function(state)
+    vim.g.incline_path_disabled = not state
+    require("incline").refresh()
+  end,
+}):map("<leader>up")
 Snacks.toggle.zoom():map("<leader>wm")
 Snacks.toggle({
   name = "Git signs",
@@ -107,13 +117,7 @@ Snacks.toggle({
 
 -- Oil
 map({
-  {
-    "-",
-    function()
-      require("oil").open_float(nil, { preview = {} })
-    end,
-    desc = "Oil (float)",
-  },
+  { "-", require("util.oil").open_float, desc = "Oil (float)" },
   { "<leader>_", require("oil").open, desc = "Oil (current window)" },
 })
 

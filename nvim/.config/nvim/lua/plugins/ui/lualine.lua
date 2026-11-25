@@ -31,6 +31,7 @@ require("lualine").setup({
       { lualine_utils.pretty_path() },
     },
     lualine_x = {
+      "searchcount",
       lualine_utils.macro_recording(),
       { "diagnostics", symbols = require("util.icons").diagnostics },
       "diff",

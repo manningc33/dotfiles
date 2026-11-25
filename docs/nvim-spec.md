@@ -130,7 +130,7 @@ Neovim 0.12's experimental **ui2** handles messages. It's turned on in `config/b
 | `<S-Tab>` (insert) | Dedents (`<C-d>`) | |
 | `J` | Joins lines, cursor stays put (`mzJ\`z`) | |
 | `<C-d>` / `<C-u>` | Half-page scroll, then center | |
-| `PageDown` / `PageUp` | Same as `<C-d>` / `<C-u>`, centered, folds opened | |
+| `PageDown` / `PageUp` (n, x) | Same as `<C-d>` / `<C-u>`, centered, folds opened | |
 | `n` / `N` | Next/prev match, centered, folds opened | |
 | `<Esc>` | Clears search highlights | |
 | `<` / `>` (visual) | Indent and keep the selection | |
@@ -183,7 +183,7 @@ A custom tabline in `util/tabline.lua`, with no plugin.
 | a | Mode |
 | b | Git branch |
 | c | Project root name (only when it differs from cwd), filetype icon, pretty path |
-| x | anything in progress (just macro recording register for now), diagnostics, git diff counts, filetype |
+| x | search count, anything in progress (just macro recording register for now), diagnostics, git diff counts, filetype |
 | y | Progress |
 | z | line:column |
 
@@ -194,7 +194,8 @@ A custom tabline in `util/tabline.lua`, with no plugin.
 
 ### 2.5 Window labels
 
-- [incline.nvim](https://github.com/b0o/incline.nvim?ref=devas.life) shows a filename tag with an icon in the top-right corner of each window, plus `[+]` when unsaved.
+- [incline.nvim](https://github.com/b0o/incline.nvim?ref=devas.life) shows a filename tag with an icon and its cwd-relative path in the top-right corner of each window, plus `[+]` when unsaved.
+  - The path is shortened (`l/p/nav/`) only when the tag wouldn't fit the window. `<leader>up` toggles it.
   - With a single global statusline, each split still needs to say which file it holds, then the [nvim-navic](https://github.com/SmiteshP/nvim-navic) breadcrumb. These can be included in one file if appropriate.
   - `<leader>un` disables navic breadcrumbs
   - The breadcrumb shows at most **5** levels.
@@ -227,6 +228,7 @@ Every `<leader>u*` key is a `Snacks.toggle`, which shows its on/off state in whi
 | `<leader>uh` | Inlay hints |
 | `<leader>ug` | Indent guides |
 | `<leader>un` | navic breadcrumb (2.5) |
+| `<leader>up` | Incline path (2.5) |
 | `<leader>wm` | Zoom the window |
 
 ### 2.8 Small highlights
@@ -270,7 +272,7 @@ The _snacks.nvim_ picker.
 [oil.nvim](https://github.com/stevearc/oil.nvim?ref=devas.life) replaces netrw and shows hidden files.
 
 - The directory is a buffer, so renaming, moving, and deleting files is plain text editing followed by `:w`.
-- Columns: icon, permissions, size, modified time. `gd` toggles a detail view icon only
+- Columns: icon only. `gd` toggles permissions, size, and modified time.
 - Renaming a file asks the LSP to update imports and saves those edits automatically.
 - Deletes go to the **trash**. Simple edits skip the confirm prompt. Watches the disk for changes.
 - In the tabline (2.3), an oil tab shows its directory (`~/foo`) with no icon.
@@ -278,7 +280,7 @@ The _snacks.nvim_ picker.
 
 | Keys | Action | Notes |
 | --- | --- | --- |
-| `-` | Opens oil as a centered float with a live preview | At most **200** columns wide, with rounded corners. |
+| `-` | Opens oil as a centered float with a live preview, cursor on the current file | At most **200** columns wide, with rounded corners. |
 | `<leader>_` | Opens oil in the current window | Global key. |
 | `h` | Toggles hidden files | |
 | `K` | Preview | |

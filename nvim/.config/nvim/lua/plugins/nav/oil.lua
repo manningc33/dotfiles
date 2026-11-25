@@ -1,5 +1,5 @@
 require("oil").setup({
-  columns = { "icon", "permissions", "size", "mtime" },
+  columns = { "icon" }, -- gd toggles the detail columns
   view_options = {
     show_hidden = true,
     is_always_hidden = function(name)

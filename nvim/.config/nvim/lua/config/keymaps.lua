@@ -55,8 +55,8 @@ end
 -- Scrolling and search: keep the cursor centered, open folds
 map("n", "<C-d>", "<C-d>zz", { desc = "Half page down" })
 map("n", "<C-u>", "<C-u>zz", { desc = "Half page up" })
-map("n", "<PageDown>", "<C-d>zzzv", { desc = "Half page down" })
-map("n", "<PageUp>", "<C-u>zzzv", { desc = "Half page up" })
+map({ "n", "x" }, "<PageDown>", "<C-d>zzzv", { desc = "Half page down" })
+map({ "n", "x" }, "<PageUp>", "<C-u>zzzv", { desc = "Half page up" })
 map("n", "n", "nzzzv", { desc = "Next match" })
 map("n", "N", "Nzzzv", { desc = "Prev match" })
 map("n", "<Esc>", "<cmd>nohlsearch<cr><Esc>", { desc = "Clear search highlight" })

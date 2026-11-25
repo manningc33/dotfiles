@@ -9,7 +9,7 @@ require("vim._core.ui2").enable({
       completion = "cmd",
       wildlist = "cmd",
       confirm = "cmd",
-      emsg = "pager",
+      emsg = "msg",
       echoerr = "pager",
       lua_error = "pager",
       rpc_error = "pager",
